@@ -6,6 +6,9 @@ import Footer from '../components/Footer'
 import Preloader from '../components/Preloader'
 import SearchPopup from '../components/SearchPopup'
 import CustomSelect from '../components/CustomSelect'
+import samarkandImg from '../assets/Img/samarkand.png'
+import chimganImg from '../assets/Img/chimgan.png'
+import charvakImg from '../assets/Img/charvak.png'
 
 // Tour card data
 const tours = [
@@ -385,7 +388,7 @@ export default function HomePage() {
                                         </div>
                                         <div className="col-lg-6 offset-lg-1 order-lg-2 order-1">
                                             <div className="box-blur-bg mb-16 mb-lg-0">
-                                                <img src="/assets/media/tour/tour_destination_1.png" alt="" className="b-radius-20 w-100" />
+                                                <img src={samarkandImg} alt="" className="b-radius-20 w-100" />
                                             </div>
                                         </div>
                                     </div>
@@ -393,7 +396,7 @@ export default function HomePage() {
                                     <div className="row py-64 align-items-center">
                                         <div className="col-lg-6">
                                             <div className="box-blur-bg mb-16 mb-lg-0">
-                                                <img src="/assets/media/tour/tour_destination_2.png" alt="" className="b-radius-20 w-100" />
+                                                <img src={chimganImg} alt="" className="b-radius-20 w-100" />
                                             </div>
                                         </div>
                                         <div className="col-lg-5 offset-lg-1">
@@ -409,7 +412,7 @@ export default function HomePage() {
                                         </div>
                                         <div className="col-lg-6 offset-lg-1 order-lg-2 order-1">
                                             <div className="box-blur-bg mb-16 mb-lg-0">
-                                                <img src="/assets/media/tour/tour_destination_3.png" alt="" className="b-radius-20 w-100" />
+                                                <img src={charvakImg} alt="" className="b-radius-20 w-100" />
                                             </div>
                                         </div>
                                     </div>
