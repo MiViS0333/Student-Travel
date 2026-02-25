@@ -1,0 +1,196 @@
+/*----------------------------------------*/
+/*  CONTACT CSS START
+/*----------------------------------------*/
+.contact-us {
+    .form-block {
+        position: relative;
+        row-gap: clamp(24px, 2.5vw, 64px);
+        .field-block {
+            display: flex;
+            gap: clamp(16px, 1.25vw, 42px);
+            align-items: flex-end;
+            @include media-query(992px) {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            @include media-query(767px) {
+                gap: clamp(12px, 1.25vw, 24px);
+            }
+        }
+        label {
+            flex-shrink: 0;
+            br {
+                @include media-query(992px) {
+                    display: none;
+                }
+            }
+        }
+        input {
+            width: 100%;
+            background: transparent;
+            padding: 8px;
+            color: $black;
+            border-radius: 0;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            border: none;
+            border-bottom: 1px solid $black;
+            @include media-query(992px) {
+                justify-content: flex-start;
+                text-align: start;
+                padding-left: 0;
+            }
+            &:focus {
+                color: $black;
+                outline: none;
+                background: transparent !important;
+                border-bottom: 1px solid $black;
+                border-radius: 0;
+            }
+            &:hover {
+                color: $black;
+                border: none;
+                border-bottom: 1px solid $black;
+            }
+            &::placeholder {
+                color: $black;
+                opacity: 1;
+            }
+        }
+        .ui-btn {
+            flex-shrink: 0;
+            @include media-query(992px) {
+                margin: 0 auto;
+            }
+        }
+    }
+    .contact-block {
+        display: flex;
+        gap: clamp(48px, 6vw, 64px);
+        @include media-query(1199px) {
+            gap: clamp(32px, 3vw, 64px);
+        }
+        @include media-query(575px) {
+            flex-direction: column;
+            gap: clamp(24px, 2.5vw, 64px);
+        }
+        .contact-info {
+            flex-shrink: 0;
+        }
+        iframe {
+            height: clamp(350px, 27.708vw, 800px);
+            width: 100%;
+            border: none;
+            border-radius: clamp(20px, 1.55vw, 40px);
+            @include media-query(575px) {
+                height: 300px;
+            }
+            &:focus-visible {
+                border: none;
+            }
+        }
+    }
+}
+
+.account-sec {
+    .account-wrapper {
+        border-radius: 30px;
+        border: 1px solid #cdcccb;
+        background: rgba(255, 252, 250, 0.5);
+        box-shadow:
+            41px 37px 15px 0px rgba(0, 0, 0, 0),
+            26px 23px 14px 0px rgba(0, 0, 0, 0.01),
+            15px 13px 12px 0px rgba(0, 0, 0, 0.03),
+            7px 6px 9px 0px rgba(0, 0, 0, 0.04),
+            2px 1px 5px 0px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(15px);
+        padding: clamp(12px, 0.833vw, 32px);
+        .account-block {
+            padding: clamp(18px, 1.25vw, 48px);
+            border-radius: 20px;
+            background-color: $white;
+            .login-block {
+                display: flex;
+                align-items: center;
+                gap: clamp(12px, 0.833vw, 32px);
+                @include media-query(821px) {
+                    flex-wrap: wrap;
+                }
+                .block-1 {
+                    width: 100%;
+                    padding: clamp(12px, 0.833vw, 32px) clamp(18px, 1.25vw, 48px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 12px;
+                    border: 1px solid $black;
+                    border-radius: 15px;
+                    svg {
+                        width: clamp(24px, 1.667vw, 64px);
+                        height: clamp(24px, 1.667vw, 64px);
+                    }
+                }
+            }
+
+            .or {
+                position: relative;
+                text-align: center;
+                color: $dark-gray;
+                padding: clamp(16px, 1.25vw, 32px) 0;
+
+                &::after,
+                &::before {
+                    content: "";
+                    height: 0.75px;
+                    width: 46%;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    opacity: 1;
+                    background: #a4a3a2;
+                }
+
+                &::after {
+                    right: 0;
+                }
+
+                &::before {
+                    left: 0;
+                }
+            }
+        }
+    }
+    .cus-checkBox {
+        input {
+            display: none;
+        }
+
+        label {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 0.625vw, 24px);
+            cursor: pointer;
+
+            &::before {
+                content: "\f0c8";
+                font-family: $font-awesome;
+                color: $black;
+                font-size: clamp(14px, 0.833vw, 28px);
+                font-weight: 400;
+                letter-spacing: 0.32px;
+            }
+        }
+
+        input[type="checkbox"]:checked {
+            + label {
+                &::before {
+                    content: "\f14a";
+                    color: $accent-1;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

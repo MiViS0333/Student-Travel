@@ -1,0 +1,114 @@
+.custom-select-container {
+    position: relative;
+    width: 100%;
+    user-select: none;
+    z-index: 100;
+}
+
+.custom-select-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.custom-select-trigger:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.custom-select-container.is-open .custom-select-trigger {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--color-primary, #ff5e14);
+}
+
+.arrow-icon {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+
+.arrow-icon.rotate {
+    transform: rotate(180deg);
+}
+
+.custom-select-options {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+    background: rgba(15, 15, 15, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 101;
+}
+
+.options-wrapper {
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+/* Custom Scrollbar */
+.options-wrapper::-webkit-scrollbar {
+    width: 4px;
+}
+
+.options-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.options-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.options-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary, #ff5e14);
+}
+
+.custom-select-option {
+    padding: 12px 18px;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-size: 15px;
+}
+
+.custom-select-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding-left: 22px;
+}
+
+.custom-select-option.selected {
+    background: var(--color-primary, #ff5e14);
+    color: #fff;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
