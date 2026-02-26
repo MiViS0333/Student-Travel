@@ -10,19 +10,19 @@ export default function Footer() {
                         <div className="features-row row">
                             <div className="col-lg-3 col-6 feature-block">
                                 <img src="/assets/media/icons/australia.png" alt="" />
-                                <h6>SPECIAL ACTIVITES</h6>
+                                <h6>ОСОБЫЕ МЕРОПРИЯТИЯ</h6>
                             </div>
                             <div className="col-lg-3 col-6 feature-block">
                                 <img src="/assets/media/icons/tour-guide.png" alt="" />
-                                <h6>BEST GUIDES</h6>
+                                <h6>ЛУЧШИЕ ГИДЫ</h6>
                             </div>
                             <div className="col-lg-3 col-6 feature-block">
                                 <img src="/assets/media/icons/bus.png" alt="" />
-                                <h6>TRANSPORT SERVICES</h6>
+                                <h6>ТРАНСПОРТНЫЕ УСЛУГИ</h6>
                             </div>
                             <div className="col-lg-3 col-6 feature-block">
                                 <img src="/assets/media/icons/online-chat.png" alt="" />
-                                <h6>UNRIVALED SUPPORT</h6>
+                                <h6>НЕПРЕВЗОЙДЕННАЯ ПОДДЕРЖКА</h6>
                             </div>
                         </div>
                         <div className="footer-main py-64">
@@ -31,10 +31,7 @@ export default function Footer() {
                                     <Link to="/" className="footer-logo mb-40">
                                         <img src="/assets/media/footer-logo.png" alt="" />
                                     </Link>
-                                    <p className="mb-40 mb-xl-0">Ideal Office Furniture have been working in the
-                                        commercial furniture market place for many years already and come with
-                                        over 20 years of sales and design experience, so you will be in very
-                                        good hands when doing business with us.</p>
+                                    <p className="mb-40 mb-xl-0">Компания Ideal Office Furniture работает на рынке коммерческой мебели уже много лет и обладает более чем 20-летним опытом продаж и проектирования, поэтому вы будете в надежных руках при ведении бизнеса с нами.</p>
                                 </div>
                                 <div className="col-xl-6 offset-xl-1">
                                     <div className="footer-right-content">
@@ -42,45 +39,45 @@ export default function Footer() {
                                             <div className="row">
                                                 <div className="col-sm-4 col-6">
                                                     <div className="widget mb-24">
-                                                        <h6 className="mb-12">SITE MAP</h6>
+                                                        <h6 className="mb-12">КАРТА САЙТА</h6>
                                                         <ul className="unstyled item-list">
-                                                            <li><Link to="/about">About Us</Link></li>
-                                                            <li><Link to="/contact">Contact Us</Link></li>
-                                                            <li><Link to="/booking">Booking Page</Link></li>
-                                                            <li><Link to="/blog">Blogs</Link></li>
+                                                            <li><Link to="/about">О нас</Link></li>
+                                                            <li><Link to="/contact">Контакты</Link></li>
+                                                            <li><Link to="/booking">Бронирование</Link></li>
+                                                            <li><Link to="/blog">Блоги</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                                 <div className="col-sm-4 col-6">
                                                     <div className="widget mb-24">
-                                                        <h6 className="mb-12">CATEGORIES</h6>
+                                                        <h6 className="mb-12">КАТЕГОРИИ</h6>
                                                         <ul className="unstyled item-list">
-                                                            <li><Link to="/tours">Package</Link></li>
-                                                            <li><Link to="/tours">Tours</Link></li>
-                                                            <li><Link to="/tours">Honeymoon Plans</Link></li>
-                                                            <li><Link to="/tours">Couple Trip</Link></li>
-                                                            <li><Link to="/tours">Family Trips</Link></li>
+                                                            <li><Link to="/tours">Пакеты</Link></li>
+                                                            <li><Link to="/tours">Туры</Link></li>
+                                                            <li><Link to="/tours">Медовый месяц</Link></li>
+                                                            <li><Link to="/tours">Поездка для пар</Link></li>
+                                                            <li><Link to="/tours">Семейные поездки</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                                 <div className="col-sm-4">
                                                     <div className="widget mb-24">
-                                                        <h6 className="mb-12">CONTACT INFO</h6>
+                                                        <h6 className="mb-12">КОНТАКТЫ</h6>
                                                         <ul className="unstyled item-list">
                                                             <li><a href="tel:123456789">1300 337 446</a></li>
                                                             <li><a href="mailto:info@example.com">sales@iof.com.au</a></li>
                                                         </ul>
                                                     </div>
                                                     <div className="widget mb-24">
-                                                        <h6 className="mb-12">OPENING HOUR</h6>
+                                                        <h6 className="mb-12">ЧАСЫ РАБОТЫ</h6>
                                                         <ul className="unstyled item-list">
                                                             <li className="d-flex align-items-center justify-content-between">
-                                                                <p>MON-FRI</p>
-                                                                <p>09am-5pm</p>
+                                                                <p>ПН-ПТ</p>
+                                                                <p>09:00-17:00</p>
                                                             </li>
                                                             <li className="d-flex align-items-center justify-content-between">
-                                                                <p>SAT-SUN</p>
-                                                                <p>09am-5pm</p>
+                                                                <p>СБ-ВС</p>
+                                                                <p>09:00-17:00</p>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -88,18 +85,15 @@ export default function Footer() {
                                             </div>
                                         </div>
                                         <div className="newsletter">
-                                            <h5 className="mb-12">WANT TO HEAR FROM US?</h5>
-                                            <p className="mb-32">Get regular updates on furniture products, offers
-                                                and solution. Staying in touch is the best way to get the best
-                                                deals. This site is protected by reCAPTCHA and the
-                                                Google Privacy Policy.</p>
+                                            <h5 className="mb-12">ХОТИТЕ ПОЛУЧАТЬ НОВОСТИ?</h5>
+                                            <p className="mb-32">Получайте регулярные обновления о продуктах, предложениях и решениях. Оставаться на связи — лучший способ получать выгодные предложения. Этот сайт защищен reCAPTCHA и Политикой конфиденциальности Google.</p>
                                             <form action="/">
                                                 <div className="newsletter-field">
                                                     <div className="form-group">
-                                                        <input type="email" required placeholder="email@emaple.com" />
+                                                        <input type="email" required placeholder="email@example.com" />
                                                     </div>
                                                     <div className="ui-btn ui-btn-primary">
-                                                        <button type="submit" data-hover="SUBSCRIBE">SUBSCRIBE</button>
+                                                        <button type="submit" data-hover="ПОДПИСАТЬСЯ">ПОДПИСАТЬСЯ</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -109,7 +103,7 @@ export default function Footer() {
                             </div>
                         </div>
                         <div className="footer-bottom-row">
-                            <p>©2025 All Rights Reserved</p>
+                            <p>© 2025 Все права защищены</p>
                             <ul className="unstyled payment-methods">
                                 <li><img src="/assets/media/icons/payment-1.png" alt="" /></li>
                                 <li><img src="/assets/media/icons/payment-2.png" alt="" /></li>

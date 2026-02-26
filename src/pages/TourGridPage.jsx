@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 import PageLayout from '../components/PageLayout'
 
 const tours = [
-    { img: 'tour_1.png', title: 'Serene Lakeside Escapes', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
-    { img: 'tour_2.png', title: 'Hidden Lake Gems', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
-    { img: 'tour_3.png', title: 'Pristine Natural Waters', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
-    { img: 'tour_4.png', title: 'Mystical Blue Horizons', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
-    { img: 'tour_1.png', title: 'Serene Lakeside Escapes', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
-    { img: 'tour_2.png', title: 'Hidden Lake Gems', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
-    { img: 'tour_3.png', title: 'Pristine Natural Waters', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
-    { img: 'tour_4.png', title: 'Mystical Blue Horizons', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
+    { img: 'tour_1.png', title: 'Спокойный отдых на берегу озера', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
+    { img: 'tour_2.png', title: 'Скрытые жемчужины озера', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
+    { img: 'tour_3.png', title: 'Нетронутые природные воды', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
+    { img: 'tour_4.png', title: 'Мистические голубые горизонты', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
+    { img: 'tour_1.png', title: 'Спокойный отдых на берегу озера', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
+    { img: 'tour_2.png', title: 'Скрытые жемчужины озера', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
+    { img: 'tour_3.png', title: 'Нетронутые природные воды', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
+    { img: 'tour_4.png', title: 'Мистические голубые горизонты', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
 ]
 
 function TourCard({ tour, idx, wishlist, toggleWishlist }) {
@@ -48,13 +48,13 @@ export default function TourGridPage() {
     return (
         <PageLayout>
             <section className="page-header">
-                <h1 className="color-white">TOUR GRID</h1>
+                <h1 className="color-white">СПИСОК ТУРОВ</h1>
             </section>
             <section className="position-relative z-2 py-64">
                 <div className="container-fluid">
                     <div className="heading mb-48">
-                        <h3 className="font-sec color-primary">tour list :</h3>
-                        <h2>AWESOME TOURS FOR YOU</h2>
+                        <h3 className="font-sec color-primary">список туров :</h3>
+                        <h2>ПОТРЯСАЮЩИЕ ТУРЫ ДЛЯ ВАС</h2>
                     </div>
                     <div className="row mb-16">
                         {tours.map((tour, idx) => (

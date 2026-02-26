@@ -12,10 +12,10 @@ import charvakImg from '../assets/Img/charvak.png'
 
 // Tour card data
 const tours = [
-    { img: 'tour_1.png', title: 'Serene Lakeside Escapes', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
-    { img: 'tour_2.png', title: 'Hidden Lake Gems', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
-    { img: 'tour_3.png', title: 'Pristine Natural Waters', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
-    { img: 'tour_4.png', title: 'Mystical Blue Horizons', location: 'Banf National Park, Canada', days: '6 Days', persons: '6 Person', price: '$5000' },
+    { img: 'tour_1.png', title: 'Безмятежный отдых у озера', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
+    { img: 'tour_2.png', title: 'Скрытые сокровища озер', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
+    { img: 'tour_3.png', title: 'Первозданные природные воды', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
+    { img: 'tour_4.png', title: 'Мистические синие горизонты', location: 'Национальный парк Банф, Канада', days: '6 дней', persons: '6 человек', price: '$5000' },
 ]
 
 const testimonials = [
@@ -27,39 +27,39 @@ const testimonials = [
 ]
 
 const blogs = [
-    { img: 'blog_1.png', title: 'Perfect Outdoor Picnic Ideas', author: 'Julia Fernandez', authorImg: 'author.png' },
-    { img: 'blog_2.png', title: 'Ultimate Guide to Picnicking', author: 'Carlos Taylor', authorImg: 'author-2.png' },
-    { img: 'blog_3.png', title: 'Best Picnic Spots Worldwide', author: 'Julia Fernandez', authorImg: 'author.png' },
-    { img: 'blog_4.png', title: 'Delicious Picnic Food Ideas', author: 'Julia Fernandez', authorImg: 'author.png' },
-    { img: 'blog_2.png', title: 'Ultimate Guide to Picnicking', author: 'Carlos Taylor', authorImg: 'author-2.png' },
+    { img: 'blog_1.png', title: 'Идеи для идеального пикника на природе', author: 'Юлия Фернандес', authorImg: 'author.png' },
+    { img: 'blog_2.png', title: 'Полное руководство по пикникам', author: 'Карлос Тейлор', authorImg: 'author-2.png' },
+    { img: 'blog_3.png', title: 'Лучшие места для пикников по всему миру', author: 'Юлия Фернандес', authorImg: 'author.png' },
+    { img: 'blog_4.png', title: 'Идеи вкусной еды для пикника', author: 'Юлия Фернандес', authorImg: 'author.png' },
+    { img: 'blog_2.png', title: 'Полное руководство по пикникам', author: 'Карлос Тейлор', authorImg: 'author-2.png' },
 ]
 
 const galleryImages = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]
 
 const locationOptions = [
-    { label: 'Kyoto, Japan', value: 'kyoto' },
-    { label: 'Bali, Indonesia', value: 'bali' },
-    { label: 'Paris, France', value: 'paris' },
-    { label: 'Hawaii, USA', value: 'hawaii' },
-    { label: 'Rome, Italy', value: 'rome' },
+    { label: 'Киото, Япония', value: 'kyoto' },
+    { label: 'Бали, Индонезия', value: 'bali' },
+    { label: 'Париж, Франция', value: 'paris' },
+    { label: 'Гавайи, США', value: 'hawaii' },
+    { label: 'Рим, Италия', value: 'rome' },
 ]
 
 const departureOptions = [
-    { label: 'Mumbai, India', value: 'mumbai' },
-    { label: 'Toronto, Canada', value: 'toronto' },
-    { label: 'Rome, Italy', value: 'rome' },
-    { label: 'Istanbul, Turkey', value: 'istanbul' },
-    { label: 'Cairo, Egypt', value: 'cairo' },
-    { label: 'Paris, France', value: 'paris' },
-    { label: 'Beijing, China', value: 'beijing' },
+    { label: 'Мумбаи, Индия', value: 'mumbai' },
+    { label: 'Торонто, Канада', value: 'toronto' },
+    { label: 'Рим, Италия', value: 'rome' },
+    { label: 'Стамбул, Турция', value: 'istanbul' },
+    { label: 'Каир, Египет', value: 'cairo' },
+    { label: 'Париж, Франция', value: 'paris' },
+    { label: 'Пекин, Китай', value: 'beijing' },
 ]
 
 const typeOptions = [
-    { label: 'Adventure', value: 'adventure' },
-    { label: 'Historical/Cultural', value: 'history' },
-    { label: 'Beach', value: 'beach' },
-    { label: 'Relaxation', value: 'relax' },
-    { label: 'Romantic', value: 'romantic' },
+    { label: 'Приключения', value: 'adventure' },
+    { label: 'Исторические/Культурные', value: 'history' },
+    { label: 'Пляжный отдых', value: 'beach' },
+    { label: 'Релаксация', value: 'relax' },
+    { label: 'Романтические', value: 'romantic' },
 ]
 
 export default function HomePage() {
@@ -253,7 +253,7 @@ export default function HomePage() {
                                                     options={locationOptions}
                                                     value={searchForm.destination}
                                                     onChange={handleSearchChange}
-                                                    placeholder="Where to?"
+                                                    placeholder="Куда едем?"
                                                 />
                                             </div>
                                             <div className="form-group">
@@ -262,7 +262,7 @@ export default function HomePage() {
                                                     options={departureOptions}
                                                     value={searchForm.departure}
                                                     onChange={handleSearchChange}
-                                                    placeholder="Select Departure"
+                                                    placeholder="Откуда вылет"
                                                 />
                                             </div>
                                             <div className="form-group">
@@ -271,11 +271,11 @@ export default function HomePage() {
                                                     options={typeOptions}
                                                     value={searchForm.type}
                                                     onChange={handleSearchChange}
-                                                    placeholder="Select Type"
+                                                    placeholder="Тип тура"
                                                 />
                                             </div>
                                             <div className="ui-btn ui-btn-primary">
-                                                <button type="submit" data-hover="FIND NOW">FIND NOW</button>
+                                                <button type="submit" data-hover="НАЙТИ">НАЙТИ</button>
                                             </div>
                                         </div>
                                     </form>
@@ -294,10 +294,10 @@ export default function HomePage() {
                                         <div className="row align-items-center">
                                             <div className="col-xl-6 col-md-7">
                                                 <div className="text-block text-md-start text-center">
-                                                    <h3 className="mb-8 font-sec color-primary">about us :</h3>
-                                                    <h2 className="mb-24">WHERE PASSION<br /> MEETS ADVENTURE,<br /> FUELING YOUR<br /> WANDERLUST DESIRES</h2>
+                                                    <h3 className="mb-8 font-sec color-primary">о нас :</h3>
+                                                    <h2 className="mb-24">ГДЕ СТРАСТЬ<br /> ВСТРЕЧАЕТСЯ С ПРИКЛЮЧЕНИЯМИ,<br /> ПИТАЯ ВАШУ<br /> ЖАЖДУ ПУТЕШЕСТВИЙ</h2>
                                                     <div className="ui-btn ui-btn-primary mx-auto ms-md-0">
-                                                        <Link to="/about" data-hover="LEARN MORE">LEARN MORE</Link>
+                                                        <Link to="/about" data-hover="УЗНАТЬ БОЛЬШЕ">УЗНАТЬ БОЛЬШЕ</Link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -328,8 +328,8 @@ export default function HomePage() {
                             <section className="position-relative z-2 py-64">
                                 <div className="container-fluid">
                                     <div className="heading mb-48">
-                                        <h3 className="font-sec color-primary">tour list :</h3>
-                                        <h2>AWESOME TOURS FOR YOU</h2>
+                                        <h3 className="font-sec color-primary">список туров :</h3>
+                                        <h2>ПОТРЯСАЮЩИЕ ТУРЫ ДЛЯ ВАС</h2>
                                     </div>
                                     <div className="row mb-16">
                                         {tours.map((tour, idx) => (
@@ -367,7 +367,7 @@ export default function HomePage() {
                                     </div>
                                     <div className="text-center">
                                         <div className="ui-btn ui-btn-primary">
-                                            <Link to="/about" data-hover="Explore All">Explore All</Link>
+                                            <Link to="/about" data-hover="Смотреть все">Смотреть все</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -377,14 +377,14 @@ export default function HomePage() {
                             <section className="position-relative z-2 py-64">
                                 <div className="container-fluid">
                                     <div className="heading mb-48">
-                                        <h3 className="font-sec color-primary">destinations :</h3>
-                                        <h2>BEST TRAVEL PLACES</h2>
+                                        <h3 className="font-sec color-primary">направления :</h3>
+                                        <h2>ЛУЧШИЕ МЕСТА ДЛЯ ПУТЕШЕСТВИЙ</h2>
                                     </div>
                                     {/* Netherlands */}
                                     <div className="row py-64 align-items-center">
                                         <div className="col-lg-5 order-lg-1 order-2">
-                                            <h2 className="mb-8">NETHERLANDS</h2>
-                                            <p className="pe-sm-5">Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in turpis nulla et. Varius felis pellentesque molestie justo semper id. Donec tortor dui et etiam. Vitae fermentum nibh nam ac aliquet fringilla ante integer. Scelerisque adipiscing eget nisl ut molestie.</p>
+                                            <h2 className="mb-8">САМАРКАНД</h2>
+                                            <p className="pe-sm-5">Откройте для себя величие Самарканда — одного из старейших городов мира и жемчужины Великого шелкового пути. Погрузитесь в атмосферу древности, прогуливаясь по площади Регистан, любуясь бирюзовыми куполами мечетей и слушая легенды о великом Тамерлане. Самарканд — это место, где история оживает в каждом камне, приглашая вас в незабываемое путешествие во времени.</p>
                                         </div>
                                         <div className="col-lg-6 offset-lg-1 order-lg-2 order-1">
                                             <div className="box-blur-bg mb-16 mb-lg-0">
@@ -400,15 +400,15 @@ export default function HomePage() {
                                             </div>
                                         </div>
                                         <div className="col-lg-5 offset-lg-1">
-                                            <h2 className="mb-8">GREECE</h2>
-                                            <p className="pe-sm-5">Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in turpis nulla et. Varius felis pellentesque molestie justo semper id. Donec tortor dui et etiam. Vitae fermentum nibh nam ac aliquet fringilla ante integer. Scelerisque adipiscing eget nisl ut molestie.</p>
+                                            <h2 className="mb-8">ЧИМГАН</h2>
+                                            <p className="pe-sm-5">Почувствуйте дыхание гор в Чимгане — идеальном месте для любителей активного отдыха и первозданной природы. Чистейший горный воздух, величественные вершины Тянь-Шаня и захватывающие дух панорамы ждут вас. Будь то зимние лыжные трассы или летние прогулки по цветущим склонам, Чимган подарит вам заряд энергии и незабываемые впечатления от единения с природой.</p>
                                         </div>
                                     </div>
                                     {/* Italy */}
                                     <div className="row py-64 align-items-center">
                                         <div className="col-lg-5 order-lg-1 order-2">
-                                            <h2 className="mb-8">ITALY</h2>
-                                            <p className="pe-sm-5">Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in turpis nulla et. Varius felis pellentesque molestie justo semper id. Donec tortor dui et etiam. Vitae fermentum nibh nam ac aliquet fringilla ante integer. Scelerisque adipiscing eget nisl ut molestie.</p>
+                                            <h2 className="mb-8">ЧАРВАК</h2>
+                                            <p className="pe-sm-5">Проведите идеальный отпуск на берегах Чарвакского водохранилища. Это голубое зеркало, окруженное изумрудными горами, — настоящий оазис прохлады и спокойствия. Насладитесь водными прогулками, пляжным отдыхом или просто созерцайте закат над водной гладью. Чарвак — это гармония природы и комфорта, созданная для вашего идеального отдыха и релаксации.</p>
                                         </div>
                                         <div className="col-lg-6 offset-lg-1 order-lg-2 order-1">
                                             <div className="box-blur-bg mb-16 mb-lg-0">
@@ -436,14 +436,14 @@ export default function HomePage() {
                                                             <div className="title-block">
                                                                 <div className="discount-tag">
                                                                     <h2 className="color-white">30%</h2>
-                                                                    <h4 className="color-white">OFF</h4>
+                                                                    <h4 className="color-white">СКИДКА</h4>
                                                                 </div>
-                                                                <h1 className="mb-16 color-white position-relative z-3">INTERESTED?</h1>
+                                                                <h1 className="mb-16 color-white position-relative z-3">ИНТЕРЕСНО?</h1>
                                                             </div>
-                                                            <h5 className="mb-16 color-primary">DISCOUNT IF YOU BOOK NOW</h5>
-                                                            <p className="mb-48 color-white">Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend <br />placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit <br />lorem. Ut felis velit tristique posuere tellus sed. </p>
+                                                            <h5 className="mb-16 color-primary">СКИДКА ПРИ БРОНИРОВАНИИ СЕЙЧАС</h5>
+                                                            <p className="mb-48 color-white">Мы предлагаем эксклюзивные условия для наших клиентов. <br />Забронируйте свое следующее приключение сегодня <br />и получите гарантированную скидку на проживание и экскурсии. <br />Не упустите шанс сэкономить!</p>
                                                             <div className="ui-btn ui-btn-primary">
-                                                                <Link to="/booking" data-hover="GET IN TOUCH">GET IN TOUCH</Link>
+                                                                <Link to="/booking" data-hover="СВЯЗАТЬСЯ">СВЯЗАТЬСЯ</Link>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -458,8 +458,8 @@ export default function HomePage() {
                             <section className="py-64">
                                 <div className="container-fluid">
                                     <div className="heading mb-48">
-                                        <h3 className="font-sec color-primary">testimonials :</h3>
-                                        <h2>WHAT PEOPLE SAY ABOUT US!</h2>
+                                        <h3 className="font-sec color-primary">отзывы :</h3>
+                                        <h2>ЧТО ЛЮДИ ГОВОРЯТ О НАС!</h2>
                                     </div>
                                     <Slider {...testimonialSettings} className="testimonials-slider">
                                         {testimonials.map((t, idx) => (
@@ -468,7 +468,7 @@ export default function HomePage() {
                                                     <div className="content b-radius-20">
                                                         <img src="/assets/media/icons/comment.png" alt="" className="mb-16 comment-icon" />
                                                         <div className="review">
-                                                            <p>Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in turpis nulla et.</p>
+                                                            <p>Путешествие с этим агентством превзошло все мои ожидания. Организация была на высшем уровне, а гиды — настоящие профессионалы. Я рекомендую их всем, кто ищет незабываемые впечатления и комфорт в поездке!</p>
                                                             <div className="reviewer">
                                                                 <img src={`/assets/media/users/${t.user}`} alt="" className="reviewer-img" />
                                                                 <div>
@@ -493,21 +493,21 @@ export default function HomePage() {
                             <section className="py-64">
                                 <div className="container-fluid">
                                     <div className="heading mb-48">
-                                        <h3 className="font-sec color-primary">blogs :</h3>
-                                        <h2>READ EXCITING STORIES</h2>
+                                        <h3 className="font-sec color-primary">блоги :</h3>
+                                        <h2>ЧИТАЙТЕ ЗАХВАТЫВАЮЩИЕ ИСТОРИИ</h2>
                                     </div>
                                     <Slider {...blogSettings} className="blogs-slider">
                                         {blogs.map((blog, idx) => (
                                             <div key={idx}>
                                                 <div className="blog-card mb-32 box-blur-bg">
                                                     <div className="content b-radius-20">
-                                                        <span className="date">12-Oct-2024</span>
+                                                        <span className="date">12-Окт-2024</span>
                                                         <Link to="/blog-detail" className="image-block">
                                                             <img src={`/assets/media/blogs/${blog.img}`} alt="" className="blog-img" />
                                                         </Link>
                                                         <div className="text-block">
                                                             <Link to="/blog-detail" className="mb-16 h6">{blog.title}</Link>
-                                                            <p className="mb-40">Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placera...</p>
+                                                            <p className="mb-40">Узнайте лучшие советы для вашего следующего приключения на свежем воздухе...</p>
                                                             <div className="bottom-row">
                                                                 <div className="author">
                                                                     <img src={`/assets/media/users/${blog.authorImg}`} alt="" className="author-img" />
@@ -529,8 +529,8 @@ export default function HomePage() {
                             {/* Gallery */}
                             <section className="py-64">
                                 <div className="heading mb-48">
-                                    <h3 className="font-sec color-primary">instagram :</h3>
-                                    <h2>TRAVEL GALLERIES</h2>
+                                    <h3 className="font-sec color-primary">инстаграм :</h3>
+                                    <h2>ГАЛЕРЕИ ПУТЕШЕСТВИЙ</h2>
                                 </div>
                                 <Slider {...gallerySettings} className="gallery-slider">
                                     {galleryImages.map((num, idx) => (

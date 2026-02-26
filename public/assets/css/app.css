@@ -18,12 +18,163 @@ STYLE SHEET INDEXING
 |___ END STYLE SHEET INDEXING
 
 --------------------------------------------*/
+/* Tour Detail Enhancements */
+.info-detail ul {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.info-detail ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-detail ul li i.fa-period.dot {
+  font-size: 6px;
+  opacity: 0.5;
+}
+
+.info-detail ul li p {
+  margin-bottom: 0;
+}
+
+.tour-advantage-card {
+  background: rgba(255, 255, 252, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.tour-advantage-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #f95c19;
+}
+
+.advantage-icon {
+  font-size: 32px;
+  color: #f95c19;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.program-timeline {
+  position: relative;
+  padding-left: 20px;
+}
+
+.program-timeline::before {
+  content: '';
+  position: absolute;
+  left: 31px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #f95c19, transparent);
+  opacity: 0.3;
+}
+
+.program-step {
+  position: relative;
+  margin-bottom: 32px;
+  padding-left: 60px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.program-step:last-child {
+  margin-bottom: 0;
+}
+
+.program-step-content {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 32px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.program-step-content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background: #f95c19;
+  transition: all 0.4s ease;
+}
+
+.program-step:hover .program-step-content {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(249, 92, 25, 0.3);
+  transform: translateX(10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.program-step:hover .program-step-content::after {
+  height: 100%;
+}
+
+.program-step-dot {
+  position: absolute;
+  left: 24px;
+  top: 36px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fffcfa;
+  border: 3px solid #f95c19;
+  z-index: 2;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 0 4px rgba(249, 92, 25, 0.1);
+}
+
+.program-step:hover .program-step-dot {
+  background: #f95c19;
+  transform: scale(1.2);
+  box-shadow: 0 0 0 8px rgba(249, 92, 25, 0.2);
+}
+
+.program-step-number {
+  font-family: "Marck Script", cursive;
+  font-size: 28px;
+  color: #f95c19;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.program-step-content h5 {
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.program-step-content p {
+  color: #817f7e;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.sticky-sidebar {
+  position: relative;
+  z-index: 10;
+}
+
 /*-------------------------
     Fonts
 -------------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap&subset=cyrillic,cyrillic-ext");
 @import url("https://fonts.googleapis.com/css2?family=Italianno&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Marck+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Marck+Script&display=swap&subset=cyrillic,cyrillic-ext");
 
 /*-------------------------
     Variables
@@ -583,7 +734,7 @@ Helpers
 }
 
 .font-sec {
-  font-family: "Marck Script", "cursive";
+  font-family: "Italianno", "Marck Script", cursive;
   font-weight: 400;
   line-height: 120%;
   /* 61.2px */

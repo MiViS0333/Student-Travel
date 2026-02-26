@@ -106,7 +106,7 @@ export default function AboutPage() {
 
                         {/* Page Header */}
                         <section className="page-header">
-                            <h1 className="color-white">ABOUT US</h1>
+                            <h1 className="color-white">О НАС</h1>
                         </section>
 
                         {/* About Section 1 */}
@@ -117,9 +117,9 @@ export default function AboutPage() {
                                         <div className="row align-items-center">
                                             <div className="col-xl-6 col-md-7">
                                                 <div className="text-block text-md-start text-center">
-                                                    <h3 className="mb-8 font-sec color-primary">about us :</h3>
-                                                    <h2 className="mb-24">WHERE PASSION<br /> MEETS ADVENTURE,<br /> FUELING YOUR<br /> WANDERLUST DESIRES</h2>
-                                                    <p>Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in turpis nulla et.</p>
+                                                    <h3 className="mb-8 font-sec color-primary">о нас :</h3>
+                                                    <h2 className="mb-24">ГДЕ СТРАСТЬ<br /> ВСТРЕЧАЕТСЯ С ПРИКЛЮЧЕНИЯМИ,<br /> ПИТАЯ ВАШУ<br /> ЖАЖДУ ПУТЕШЕСТВИЙ</h2>
+                                                    <p>Мы верим, что каждое путешествие — это уникальная история, которую стоит прожить. Наша команда стремится сделать ваш отдых не просто поездкой, а настоящим приключением, наполненным яркими эмоциями и незабываемыми открытиями. Мы заботимся о каждой детали, чтобы вы могли полностью погрузиться в атмосферу новых мест и наслаждаться каждым моментом своего отпуска.</p>
                                                 </div>
                                             </div>
                                             <div className="col-xl-6 col-md-5">
@@ -147,9 +147,9 @@ export default function AboutPage() {
                                         <div className="row align-items-center">
                                             <div className="col-xl-6 col-md-7 order-md-2">
                                                 <div className="text-block text-md-start text-center">
-                                                    <h3 className="mb-8 font-sec color-primary">about us :</h3>
-                                                    <h2 className="mb-24">WE WANT TO GIVE THE BEST TOURS</h2>
-                                                    <p>Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in turpis nulla et. Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in turpis nulla et.</p>
+                                                    <h3 className="mb-8 font-sec color-primary">о нас :</h3>
+                                                    <h2 className="mb-24">МЫ ХОТИМ ДАРИТЬ ЛУЧШИЕ ТУРЫ</h2>
+                                                    <p>Наша цель — предложить вам самые интересные и качественные туристические маршруты по всему миру. Мы тщательно отбираем направления и партнеров, чтобы гарантировать безопасность, комфорт и высокий уровень обслуживания на каждом этапе вашего пути. Будь то спокойный пляжный отдых, захватывающее горное восхождение или культурное погружение в историю древних городов — мы создаем условия для того, чтобы ваша мечта о идеальном путешествии стала реальностью.</p>
                                                 </div>
                                             </div>
                                             <div className="col-xl-6 col-md-5 order-md-1">
@@ -186,8 +186,8 @@ export default function AboutPage() {
                         <section className="py-64">
                             <div className="container-fluid">
                                 <div className="heading mb-48">
-                                    <h3 className="font-sec color-primary">testimonials :</h3>
-                                    <h2>WHAT PEOPLE SAY ABOUT US!</h2>
+                                    <h3 className="font-sec color-primary">отзывы :</h3>
+                                    <h2>ЧТО ЛЮДИ ГОВОРЯТ О НАС!</h2>
                                 </div>
                                 <Slider {...testimonialSettings} className="testimonials-slider">
                                     {testimonials.map((t, idx) => (
@@ -196,7 +196,7 @@ export default function AboutPage() {
                                                 <div className="content b-radius-20">
                                                     <img src="/assets/media/icons/comment.png" alt="" className="mb-16 comment-icon" />
                                                     <div className="review">
-                                                        <p>Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in turpis nulla et.</p>
+                                                        <p>Путешествие с этим агентством превзошло все мои ожидания. Организация была на высшем уровне, а гиды — настоящие профессионалы. Я рекомендую их всем, кто ищет незабываемые впечатления и комфорт в поездке!</p>
                                                         <div className="reviewer">
                                                             <img src={`/assets/media/users/${t.user}`} alt="" className="reviewer-img" />
                                                             <div>
@@ -218,8 +218,8 @@ export default function AboutPage() {
                         {/* Gallery */}
                         <section className="py-64">
                             <div className="heading mb-48">
-                                <h3 className="font-sec color-primary">instagram :</h3>
-                                <h2>TRAVEL GALLERIES</h2>
+                                <h3 className="font-sec color-primary">инстаграм :</h3>
+                                <h2>ГАЛЕРЕИ ПУТЕШЕСТВИЙ</h2>
                             </div>
                             <Slider {...gallerySettings} className="gallery-slider">
                                 {galleryImages.map((num, idx) => (
