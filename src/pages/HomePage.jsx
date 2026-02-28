@@ -9,6 +9,8 @@ import CustomSelect from '../components/CustomSelect'
 import samarkandImg from '../assets/Img/samarkand.png'
 import chimganImg from '../assets/Img/chimgan.png'
 import charvakImg from '../assets/Img/charvak.png'
+import sketchPhotoImg from '../assets/Img/sketchPhoto.png'
+import bgSketchPhotoImg from '../assets/Img/BgsketchPhoto.png'
 
 // Tour card data
 const tours = [
@@ -367,7 +369,7 @@ export default function HomePage() {
                                     </div>
                                     <div className="text-center">
                                         <div className="ui-btn ui-btn-primary">
-                                            <Link to="/about" data-hover="Смотреть все">Смотреть все</Link>
+                                            <Link to="/tours" data-hover="Смотреть все">Смотреть все</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -423,11 +425,11 @@ export default function HomePage() {
                             <section className="position-relative z-2 py-64">
                                 <div className="container-fluid">
                                     <div className="box-blur-bg">
-                                        <div className="discount-banner b-radius-20">
+                                        <div className="discount-banner b-radius-20" style={{ backgroundImage: `url(${bgSketchPhotoImg})` }}>
                                             <div className="row">
                                                 <div className="col-lg-6 order-lg-1 order-2">
                                                     <div className="img-block text-center">
-                                                        <img src="/assets/media/banner/dicount-banner/main-object.png" alt="" />
+                                                        <img src={sketchPhotoImg} alt="" />
                                                     </div>
                                                 </div>
                                                 <div className="col-lg-6 order-lg-2 order-1">
@@ -527,7 +529,7 @@ export default function HomePage() {
                             </section>
 
                             {/* Gallery */}
-                            <section className="py-64">
+                            <section className="pt-64 pb-120">
                                 <div className="heading mb-48">
                                     <h3 className="font-sec color-primary">инстаграм :</h3>
                                     <h2>ГАЛЕРЕИ ПУТЕШЕСТВИЙ</h2>

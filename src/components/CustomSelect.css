@@ -14,11 +14,12 @@
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    color: #fff;
+    color: var(--select-text-color, #fff);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 16px;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .custom-select-trigger:hover {
@@ -88,6 +89,7 @@
     border-radius: 8px;
     transition: all 0.2s ease;
     font-size: 15px;
+    white-space: nowrap;
 }
 
 .custom-select-option:hover {

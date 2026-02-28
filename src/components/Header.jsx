@@ -90,67 +90,11 @@ export default function Header() {
                                                 <li><Link to="/">Главная</Link></li>
                                                 <li><Link to="/about">О нас</Link></li>
 
-                                                {/* Tours submenu */}
-                                                <li className="ui-ol-submenu-wrap">
-                                                    <div className={`ui-ol-submenu-trigger${openSubmenus.tours ? ' ui-ol-submenu-open' : ''}`}>
-                                                        <a href="#" onClick={(e) => toggleSubmenu('tours', e)}>Туры</a>
-                                                        <div className="ui-ol-submenu-caret-wrap" onClick={(e) => toggleSubmenu('tours', e)}>
-                                                            <div className="ui-ol-submenu-caret"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="ui-ol-submenu" style={{ display: openSubmenus.tours ? 'block' : 'none' }}>
-                                                        <ul className="ui-ol-submenu-list">
-                                                            <li className="ui-ol-submenu-wrap">
-                                                                <div className={`ui-ol-submenu-trigger${openSubmenus.tourLists ? ' ui-ol-submenu-open' : ''}`}>
-                                                                    <a href="#" className="ui-ol-submenu-link" onClick={(e) => toggleSubmenu('tourLists', e)}>Список туров</a>
-                                                                    <div className="ui-ol-submenu-caret-wrap" onClick={(e) => toggleSubmenu('tourLists', e)}>
-                                                                        <div className="ui-ol-submenu-caret"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="ui-ol-submenu" style={{ display: openSubmenus.tourLists ? 'block' : 'none' }}>
-                                                                    <ul className="ui-ol-submenu-list">
-                                                                        <li><Link to="/tours">Сетка туров</Link></li>
-                                                                        <li><Link to="/tours/left-sidebar">Сетка туров (Слева)</Link></li>
-                                                                        <li><Link to="/tours/right-sidebar">Сетка туров (Справа)</Link></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </li>
-                                                            <li className="ui-ol-submenu-wrap">
-                                                                <div className={`ui-ol-submenu-trigger${openSubmenus.tourDetail ? ' ui-ol-submenu-open' : ''}`}>
-                                                                    <a href="#" className="ui-ol-submenu-link" onClick={(e) => toggleSubmenu('tourDetail', e)}>Детали тура</a>
-                                                                    <div className="ui-ol-submenu-caret-wrap" onClick={(e) => toggleSubmenu('tourDetail', e)}>
-                                                                        <div className="ui-ol-submenu-caret"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="ui-ol-submenu" style={{ display: openSubmenus.tourDetail ? 'block' : 'none' }}>
-                                                                    <ul className="ui-ol-submenu-list">
-                                                                        <li><Link to="/tour-detail">Детали тура</Link></li>
-                                                                        <li><Link to="/tour-detail-sidebar">Детали тура (Сбоку)</Link></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </li>
-                                                            <li><Link to="/booking">Бронирование</Link></li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
+                                                {/* Tours link */}
+                                                <li><Link to="/tours">Туры</Link></li>
 
-                                                {/* Blogs submenu */}
-                                                <li className="ui-ol-submenu-wrap">
-                                                    <div className={`ui-ol-submenu-trigger${openSubmenus.blogs ? ' ui-ol-submenu-open' : ''}`}>
-                                                        <a href="#" onClick={(e) => toggleSubmenu('blogs', e)}>Блоги</a>
-                                                        <div className="ui-ol-submenu-caret-wrap" onClick={(e) => toggleSubmenu('blogs', e)}>
-                                                            <div className="ui-ol-submenu-caret"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="ui-ol-submenu" style={{ display: openSubmenus.blogs ? 'block' : 'none' }}>
-                                                        <ul className="ui-ol-submenu-list">
-                                                            <li><Link to="/blog">Сетка блогов</Link></li>
-                                                            <li><Link to="/blog/left-sidebar">Сетка блогов (Слева)</Link></li>
-                                                            <li><Link to="/blog/right-sidebar">Сетка блогов (Справа)</Link></li>
-                                                            <li><Link to="/blog-detail">Детали блога</Link></li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
+                                                {/* Blogs link */}
+                                                <li><Link to="/blog/left-sidebar">Блоги</Link></li>
 
                                                 <li><Link to="/account">Личный кабинет</Link></li>
                                                 <li><Link to="/contact">Контакты</Link></li>

@@ -31,7 +31,7 @@ export default function Footer() {
                                     <Link to="/" className="footer-logo mb-40">
                                         <img src="/assets/media/footer-logo.png" alt="" />
                                     </Link>
-                                    <p className="mb-40 mb-xl-0">Компания Ideal Office Furniture работает на рынке коммерческой мебели уже много лет и обладает более чем 20-летним опытом продаж и проектирования, поэтому вы будете в надежных руках при ведении бизнеса с нами.</p>
+                                    <p className="mb-40 mb-xl-0">Studentravel — ваш надежный партнер в мире студенческих путешествий. Мы создаем уникальные туры, которые объединяют обучение, отдых и новые знакомства, помогая студентам открывать мир и находить вдохновение для будущего.</p>
                                 </div>
                                 <div className="col-xl-6 offset-xl-1">
                                     <div className="footer-right-content">
@@ -64,8 +64,8 @@ export default function Footer() {
                                                     <div className="widget mb-24">
                                                         <h6 className="mb-12">КОНТАКТЫ</h6>
                                                         <ul className="unstyled item-list">
-                                                            <li><a href="tel:123456789">1300 337 446</a></li>
-                                                            <li><a href="mailto:info@example.com">sales@iof.com.au</a></li>
+                                                            <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
+                                                            <li><a href="mailto:info@studentravel.com">info@studentravel.com</a></li>
                                                         </ul>
                                                     </div>
                                                     <div className="widget mb-24">
@@ -86,7 +86,7 @@ export default function Footer() {
                                         </div>
                                         <div className="newsletter">
                                             <h5 className="mb-12">ХОТИТЕ ПОЛУЧАТЬ НОВОСТИ?</h5>
-                                            <p className="mb-32">Получайте регулярные обновления о продуктах, предложениях и решениях. Оставаться на связи — лучший способ получать выгодные предложения. Этот сайт защищен reCAPTCHA и Политикой конфиденциальности Google.</p>
+                                            <p className="mb-32">Подпишитесь на нашу рассылку, чтобы первыми узнавать о самых выгодных студенческих турах, эксклюзивных предложениях и вдохновляющих историях путешествий. Мы защищаем ваши данные и отправляем только самое интересное.</p>
                                             <form action="/">
                                                 <div className="newsletter-field">
                                                     <div className="form-group">
@@ -105,11 +105,8 @@ export default function Footer() {
                         <div className="footer-bottom-row">
                             <p>© 2025 Все права защищены</p>
                             <ul className="unstyled payment-methods">
-                                <li><img src="/assets/media/icons/payment-1.png" alt="" /></li>
                                 <li><img src="/assets/media/icons/payment-2.png" alt="" /></li>
-                                <li><img src="/assets/media/icons/payment-3.png" alt="" /></li>
                                 <li><img src="/assets/media/icons/payment-4.png" alt="" /></li>
-                                <li><img src="/assets/media/icons/payment-5.png" alt="" /></li>
                             </ul>
                             <ul className="unstyled social-links">
                                 <li><a href=""><img src="/assets/media/icons/Instagram.png" alt="" /></a></li>

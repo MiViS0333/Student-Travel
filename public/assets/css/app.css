@@ -165,8 +165,72 @@ STYLE SHEET INDEXING
 }
 
 .sticky-sidebar {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 10;
+}
+
+/* Glass Panel & Banner Row Styles */
+.glass-panel {
+  background: rgba(13, 13, 12, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(170, 170, 170, 0.34);
+  border-radius: 20px;
+  box-shadow: 2px 1px 5px 0px rgba(0, 0, 0, 0.05), 7px 6px 9px 0px rgba(0, 0, 0, 0.04), 15px 13px 12px 0px rgba(0, 0, 0, 0.03), 26px 23px 14px 0px rgba(0, 0, 0, 0.01), 41px 37px 15px 0px rgba(0, 0, 0, 0);
+}
+
+.grid-sort-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 12px;
+  position: relative;
+  z-index: 1000;
+  --select-text-color: #0d0d0c;
+}
+
+.find-banner-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: clamp(12px, 0.833vw, 18px);
+  gap: clamp(16px, 1.25vw, 28px);
+  width: fit-content;
+}
+
+/* Override for CustomSelect inside glass-panel on light backgrounds */
+.grid-sort-panel .custom-select-trigger {
+  color: #0d0d0c;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+}
+
+.grid-sort-panel .custom-select-trigger:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.grid-sort-panel .custom-select-options {
+  background: #ffffff !important;
+  border: 1px solid #eee;
+}
+
+.grid-sort-panel .custom-select-option {
+  color: #f95c19 !important;
+  font-weight: 500;
+}
+
+.grid-sort-panel .custom-select-option:hover {
+  background: #fdf2ee !important;
+  color: #f95c19 !important;
+}
+
+.grid-sort-panel .custom-select-option.selected {
+  background: #f95c19 !important;
+  color: #ffffff !important;
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
 }
 
 /*-------------------------
@@ -4483,58 +4547,78 @@ body.ui-search-open .scrollbar-track {
 }
 
 .slick-dots {
-  width: 100%;
+  position: relative;
+  width: fit-content;
   padding: 0;
-  margin: 0;
+  margin: 40px auto 0;
   list-style: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-top: 16px;
+  gap: 40px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 @media (max-width: 575px) {
   .slick-dots {
-    margin-top: 0;
+    margin-top: 32px;
+    gap: 12px;
   }
 }
 
 .slick-dots li {
   position: relative;
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  padding: 0;
   cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .slick-dots li button {
   font-size: 0;
   line-height: 0;
   display: block;
-  width: 16px;
-  height: 4px;
+  width: 100%;
+  height: 100%;
+  padding: 0;
   cursor: pointer;
   color: transparent;
   border: 0;
-  border-radius: 5000px;
+  border-radius: 100px;
   outline: none;
-  background: #0d0d0c;
+  background: rgba(13, 13, 12, 0.15);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.slick-dots li button:hover,
-.slick-dots li button:focus {
-  outline: none;
+.slick-dots li button:hover {
+  background: rgba(249, 92, 25, 0.3);
+  transform: scale(1.1);
 }
 
-.slick-dots li button::before,
-.slick-dots li button::after {
-  opacity: 1;
-}
-
-.slick-dots li button::before {
-  opacity: 1;
+.slick-dots li.slick-active {
+  width: 50px;
 }
 
 .slick-dots li.slick-active button {
   background: #f95c19;
+  box-shadow: 0 0 20px rgba(249, 92, 25, 0.4);
+}
+
+.slick-dots li.slick-active button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 100px;
 }
 
 /*----------------------------------------*/

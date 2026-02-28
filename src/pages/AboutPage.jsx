@@ -216,7 +216,7 @@ export default function AboutPage() {
                         </section>
 
                         {/* Gallery */}
-                        <section className="py-64">
+                        <section className="pt-64 pb-120">
                             <div className="heading mb-48">
                                 <h3 className="font-sec color-primary">инстаграм :</h3>
                                 <h2>ГАЛЕРЕИ ПУТЕШЕСТВИЙ</h2>
