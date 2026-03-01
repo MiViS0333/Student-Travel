@@ -99,11 +99,10 @@ export default function AboutPage() {
     return (
         <>
             <Preloader />
+            <Header />
             <div id="scroll-wrapper">
                 <div id="smooth-content">
                     <main>
-                        <Header />
-
                         {/* Page Header */}
                         <section className="page-header">
                             <h1 className="color-white">О НАС</h1>

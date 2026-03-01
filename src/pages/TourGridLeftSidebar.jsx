@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import PageLayout from '../components/PageLayout'
 import { Link } from 'react-router-dom'
 import CustomSelect from '../components/CustomSelect'
@@ -20,9 +21,23 @@ export default function TourGridLeftSidebar() {
     const [maxPrice, setMaxPrice] = useState(10000)
     const [sortBy, setSortBy] = useState('relevance')
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
+    const [mounted, setMounted] = useState(false)
 
     const sidebarRef = useRef(null)
     const contentRef = useRef(null)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    useEffect(() => {
+        if (isMobileFilterOpen) {
+            document.body.classList.add('no-scroll')
+        } else {
+            document.body.classList.remove('no-scroll')
+        }
+        return () => document.body.classList.remove('no-scroll')
+    }, [isMobileFilterOpen])
 
     useEffect(() => {
         const gsap = window.gsap
@@ -81,12 +96,55 @@ export default function TourGridLeftSidebar() {
             <section className="position-relative z-2 py-64" ref={contentRef}>
                 <div className="container-fluid">
                     <div className="row align-items-stretch">
-                        <div className={`mobile-filter-overlay ${isMobileFilterOpen ? 'mobile-open' : ''}`} onClick={() => setIsMobileFilterOpen(false)}></div>
-                        <div className={`col-lg-3 filter-sidebar-wrapper ${isMobileFilterOpen ? 'mobile-open' : ''}`}>
-                            <div className="mobile-filter-header d-lg-none mb-24 d-flex justify-content-between align-items-center">
-                                <h5 className="mb-0">Фильтры</h5>
-                                <button type="button" className="btn-close" aria-label="Close" onClick={() => setIsMobileFilterOpen(false)} style={{ fontSize: '1.2rem' }}></button>
-                            </div>
+                        {mounted && createPortal(
+                            <>
+                                <div className={`mobile-filter-overlay d-lg-none ${isMobileFilterOpen ? 'mobile-open' : ''}`} onClick={() => setIsMobileFilterOpen(false)}></div>
+                                <div className={`d-lg-none filter-sidebar-wrapper ${isMobileFilterOpen ? 'mobile-open' : ''}`}>
+                                    <div className="mobile-filter-header d-lg-none mb-24 d-flex justify-content-between align-items-center">
+                                        <h5 className="mb-0">Фильтры</h5>
+                                        <button type="button" className="btn-close" aria-label="Close" onClick={() => setIsMobileFilterOpen(false)} style={{ fontSize: '1.2rem' }}></button>
+                                    </div>
+                                    <div className="sidebar-widget mb-32">
+                                        <div className="widget-title-row"><h6>КАТЕГОРИИ</h6><i className="fa-light fa-horizontal-rule"></i></div>
+                                        <div className="widget-content-block">
+                                            <ul className="unstyled item-list mobile-category-list">
+                                                {categories.map(cat => (
+                                                    <li key={cat}>
+                                                        <a href="#"
+                                                            className={selectedCategory === cat ? 'color-primary fw-bold' : ''}
+                                                            onClick={(e) => { e.preventDefault(); setSelectedCategory(cat) }}>
+                                                            {cat}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div className="sidebar-widget mb-32">
+                                        <div className="widget-title-row"><h6>ЦЕНОВОЙ ДИАПАЗОН</h6><i className="fa-light fa-horizontal-rule"></i></div>
+                                        <div className="widget-content-block">
+                                            <div className="price-filter">
+                                                <input
+                                                    type="range"
+                                                    className="w-100"
+                                                    min="0"
+                                                    max="10000"
+                                                    step="100"
+                                                    value={maxPrice}
+                                                    onChange={(e) => setMaxPrice(parseInt(e.target.value))}
+                                                />
+                                                <div className="d-flex justify-content-between mt-8">
+                                                    <span>$0</span>
+                                                    <span className="color-primary fw-bold">${maxPrice}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>,
+                            document.body
+                        )}
+                        <div className="col-lg-3 d-none d-lg-block">
                             <div className="sticky-sidebar glass-panel p-24" ref={sidebarRef}>
                                 <div className="sidebar-widget mb-32">
                                     <div className="widget-title-row"><h6>КАТЕГОРИИ</h6><i className="fa-light fa-horizontal-rule"></i></div>
@@ -132,7 +190,7 @@ export default function TourGridLeftSidebar() {
                                 <h2>ЛУЧШИЕ ТУРЫ ДЛЯ ВАС</h2>
                             </div>
                             <div className="d-flex justify-content-between align-items-center mb-24">
-                                <button className="d-lg-none d-flex align-items-center justify-content-center gap-8" onClick={() => setIsMobileFilterOpen(true)} style={{ background: 'var(--color-primary)', color: '#fff', border: 'none', borderRadius: '12px', padding: '12px 20px', fontWeight: '600', height: '100%' }}>
+                                <button className="d-lg-none d-flex align-items-center justify-content-center gap-8" onClick={() => setIsMobileFilterOpen(true)} style={{ background: 'var(--color-primary)', color: '#0d0d0c', border: 'none', borderRadius: '12px', padding: '12px 20px', fontWeight: '600', height: '100%' }}>
                                     <i className="fa-light fa-sliders"></i> Фильтры
                                 </button>
                                 <div className="grid-sort-panel d-flex align-items-center gap-12 py-4 px-12 ms-auto">

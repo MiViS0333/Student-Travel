@@ -234,11 +234,10 @@ export default function HomePage() {
     return (
         <>
             <Preloader />
+            <Header />
             <div id="scroll-wrapper" ref={scrollWrapperRef}>
                 <div id="smooth-content" ref={smoothContentRef}>
                     <main>
-                        <Header />
-
                         {/* Hero Section */}
                         <section className="hero-banner-1 banner-content-parallax" id="hero">
                             <div className="container-fluid">

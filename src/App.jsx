@@ -8,7 +8,7 @@ import TourDetailSidebarPage from './pages/TourDetailSidebarPage'
 import TourBookingPage from './pages/TourBookingPage'
 import BlogGridLeftSidebar from './pages/BlogGridLeftSidebar'
 import BlogDetailPage from './pages/BlogDetailPage'
-import AccountPage from './pages/AccountPage'
+
 import ContactPage from './pages/ContactPage'
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
       <Route path="/booking" element={<TourBookingPage />} />
       <Route path="/blog/left-sidebar" element={<BlogGridLeftSidebar />} />
       <Route path="/blog-detail" element={<BlogDetailPage />} />
-      <Route path="/account" element={<AccountPage />} />
+
       <Route path="/contact" element={<ContactPage />} />
     </Routes>
   )

@@ -51,13 +51,27 @@ export default function Header() {
         setOpenSubmenus(prev => ({ ...prev, [key]: !prev[key] }))
     }
 
+    const [scrolled, setScrolled] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setScrolled(true)
+            } else {
+                setScrolled(false)
+            }
+        }
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
     const handleSearchClick = (e) => {
         e.preventDefault()
         if (window.__searchToggle) window.__searchToggle()
     }
 
     return (
-        <header id="ui-header">
+        <header id="ui-header" className={scrolled ? 'ui-active' : ''}>
             <div className="ui-header-inner container-fluid">
                 <div className="ui-header-col">
                     <div className="ui-logo">
@@ -96,7 +110,7 @@ export default function Header() {
                                                 {/* Blogs link */}
                                                 <li><Link to="/blog/left-sidebar">Блоги</Link></li>
 
-                                                <li><Link to="/account">Личный кабинет</Link></li>
+
                                                 <li><Link to="/contact">Контакты</Link></li>
                                             </ul>
                                         </div>
@@ -110,9 +124,7 @@ export default function Header() {
                         <a href="#" className="ui-header-tools-item search-toggler" onClick={handleSearchClick}>
                             <i className="fa-regular fa-magnifying-glass"></i>
                         </a>
-                        <Link to="/account" className="ui-header-tools-item">
-                            <i className="fa-regular fa-user"></i>
-                        </Link>
+
                         <div className="ui-btn ui-btn-primary hide-on-mobile">
                             <Link to="/booking" data-hover="ЗАБРОНИРОВАТЬ">ЗАБРОНИРОВАТЬ</Link>
                         </div>

@@ -35,10 +35,10 @@ export default function PageLayout({ children, initGsap = true }) {
     return (
         <>
             <Preloader />
+            <Header />
             <div id="scroll-wrapper">
                 <div id="smooth-content">
                     <main>
-                        <Header />
                         {children}
                         <Footer />
                     </main>
