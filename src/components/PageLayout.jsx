@@ -4,7 +4,7 @@ import Footer from './Footer'
 import Preloader from './Preloader'
 import SearchPopup from './SearchPopup'
 
-export default function PageLayout({ children, initGsap = true }) {
+export default function PageLayout({ children, bottomBar, initGsap = true }) {
     useEffect(() => {
         if (!initGsap) return
         const gsap = window.gsap
@@ -45,6 +45,7 @@ export default function PageLayout({ children, initGsap = true }) {
                 </div>
             </div>
             <SearchPopup />
+            {bottomBar}
         </>
     )
 }

@@ -9,18 +9,21 @@
     background-size: cover;
     background-position: center;
     background-color: $white;
+
     @include media-query(1199px) {
         background: url(../media/banner/banner-tab-bg.png);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
     }
+
     @include media-query(575px) {
         background: url(../media/banner/banner-mobile-bg.png);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
     }
+
     .title {
         position: absolute;
         font-size: clamp(120px, 15.417vw, 350px);
@@ -32,11 +35,13 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -56%);
+
         @include media-query(575px) {
             font-size: 22.93vw;
             transform: translate(-50%, calc(-50% - 12.93vw));
         }
     }
+
     .content {
         position: relative;
         z-index: 3;
@@ -45,13 +50,16 @@
         align-content: end;
         justify-content: center;
         padding-bottom: 11.042vw;
+
         @include media-query(1199px) {
             padding-bottom: 30.042vw;
         }
+
         .sub-title {
             margin-bottom: clamp(16px, 1.66vw, 40px);
         }
     }
+
     .find-banner-row {
         display: flex;
         align-items: center;
@@ -69,45 +77,59 @@
             26px 23px 14px 0px rgba(0, 0, 0, 0.01),
             41px 37px 15px 0px rgba(0, 0, 0, 0);
         backdrop-filter: blur(15px);
+
         @include media-query(1199px) {
             justify-content: center;
         }
+
         @include media-query(575px) {
             flex-direction: column;
+            width: 90vw;
         }
+
         .form-group {
             width: 18.021vw;
+
             @include media-query(1199px) {
                 width: 29vw;
             }
+
             @include media-query(575px) {
-                width: 80vw;
+                width: 100%;
             }
         }
     }
+
     .mask-layer {
         width: 100%;
         position: absolute;
         left: 0;
         right: 0;
         z-index: 2;
+
         &.mask-layer-desktop {
             bottom: -7.031vw;
+
             @include media-query(1199px) {
                 display: none;
             }
         }
+
         &.mask-layer-tab {
             bottom: -15vw;
+
             @include media-query-min(1200px) {
                 display: none;
             }
+
             @include media-query(575px) {
                 display: none;
             }
         }
+
         &.mask-layer-phone {
             bottom: -22.419vw;
+
             @include media-query-min(576px) {
                 display: none;
             }
@@ -119,6 +141,7 @@
     .discount-banner .img-block img {
         transform: rotate(23deg);
     }
+
     .discount-banner .content .text-block .title-block .discount-tag {
         top: -15% !important;
         right: -26% !important;

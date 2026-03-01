@@ -41,10 +41,11 @@ export default function Footer() {
                                                     <div className="widget mb-24">
                                                         <h6 className="mb-12">КАРТА САЙТА</h6>
                                                         <ul className="unstyled item-list">
+                                                            <li><Link to="/">Главная</Link></li>
                                                             <li><Link to="/about">О нас</Link></li>
+                                                            <li><Link to="/tours">Туры</Link></li>
+                                                            <li><Link to="/blog/left-sidebar">Блоги</Link></li>
                                                             <li><Link to="/contact">Контакты</Link></li>
-                                                            <li><Link to="/booking">Бронирование</Link></li>
-                                                            <li><Link to="/blog">Блоги</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>

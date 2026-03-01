@@ -35,7 +35,23 @@ export default function TourDetailPage() {
     }, [])
 
     return (
-        <PageLayout>
+        <PageLayout bottomBar={
+            <div className="mobile-bottom-booking-bar d-lg-none">
+                <div className="container-fluid d-flex justify-content-between align-items-center">
+                    <div>
+                        <span className="small text-muted d-block mb-1" style={{ fontSize: '12px' }}>Стоимость</span>
+                        <h4 className="color-primary mb-0">$5000</h4>
+                    </div>
+                    <button
+                        type="button"
+                        className="ui-btn ui-btn-primary"
+                        onClick={() => setIsBookingPopupOpen(true)}
+                        style={{ padding: '12px 24px', border: 'none', borderRadius: '12px', fontWeight: 'bold', color: 'white' }}>
+                        ЗАБРОНИРОВАТЬ
+                    </button>
+                </div>
+            </div>
+        }>
             <section className="page-header">
                 <h1 className="color-white">ДЕТАЛИ ТУРА</h1>
             </section>
@@ -184,23 +200,6 @@ export default function TourDetailPage() {
                     </div>
                 </div>
             </section>
-
-            {/* Mobile Bottom Booking Bar */}
-            <div className="mobile-bottom-booking-bar d-lg-none">
-                <div className="container-fluid d-flex justify-content-between align-items-center">
-                    <div>
-                        <span className="small text-muted d-block mb-1" style={{ fontSize: '12px' }}>Стоимость</span>
-                        <h4 className="color-primary mb-0">$5000</h4>
-                    </div>
-                    <button
-                        type="button"
-                        className="ui-btn ui-btn-primary"
-                        onClick={() => setIsBookingPopupOpen(true)}
-                        style={{ padding: '12px 24px', border: 'none', borderRadius: '12px', fontWeight: 'bold' }}>
-                        ЗАБРОНИРОВАТЬ
-                    </button>
-                </div>
-            </div>
 
             <BookingPopup isOpen={isBookingPopupOpen} onClose={() => setIsBookingPopupOpen(false)} />
         </PageLayout>

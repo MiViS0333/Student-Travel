@@ -41,8 +41,8 @@
 
 .no-scroll {
     overflow: hidden !important;
-    height: 100vh !important;
 }
+
 /* Mobile Category List Enhancements */
 .mobile-category-list {
     display: flex;

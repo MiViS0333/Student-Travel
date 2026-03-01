@@ -3668,6 +3668,7 @@ body.ui-search-open .scrollbar-track {
 @media (max-width: 575px) {
   .hero-banner-1 .find-banner-row {
     flex-direction: column;
+    width: 85vw;
   }
 }
 
@@ -3683,7 +3684,7 @@ body.ui-search-open .scrollbar-track {
 
 @media (max-width: 575px) {
   .hero-banner-1 .find-banner-row .form-group {
-    width: 80vw;
+    width: 100%;
   }
 }
 

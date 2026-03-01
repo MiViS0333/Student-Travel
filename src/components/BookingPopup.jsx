@@ -82,7 +82,7 @@ export default function BookingPopup({ isOpen, onClose }) {
                     </div>
 
                     <div className="mt-32">
-                        <button type="submit" className="ui-btn ui-btn-primary w-100" style={{ border: 'none' }}>
+                        <button type="submit" className="ui-btn ui-btn-primary w-100" style={{ border: 'none', color: 'white' }}>
                             ОТПРАВИТЬ ЗАЯВКУ
                         </button>
                     </div>
