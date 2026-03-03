@@ -287,9 +287,9 @@ export default function HomePage() {
                             <img src="/assets/media/banner/mobilemask.png" alt="" className="mask-layer mask-layer-phone" />
                         </section>
 
-                        <div className="about-trigger-1" id="page-content">
+                        <div id="page-content">
                             {/* About Section */}
-                            <section className="about-features-1 about-1 position-relative z-2">
+                            <section className="about-features-1 about-1 about-trigger-1 position-relative z-2">
                                 <div className="container-fluid">
                                     <div className="all-content">
                                         <div className="row align-items-center">
