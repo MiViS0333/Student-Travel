@@ -73,37 +73,11 @@ export default function TourDetailPage() {
                                 </ul>
                             </div>
                             <p className="mb-24">Мы верим, что каждое путешествие — это уникальная история, которую стоит прожить. Наша команда стремится сделать ваш отдых не просто поездкой, а настоящим приключением, наполненным яркими эмоциями и незабываемыми открытиями. Мы заботимся о каждой детали, чтобы вы могли полностью погрузиться в атмосферу новых мест и наслаждаться каждым моментом своего отпуска.</p>
-
-                            <h4 className="mb-24">Преимущества тура</h4>
-                            <div className="row mb-32">
-                                <div className="col-md-4 mb-16">
-                                    <div className="tour-advantage-card">
-                                        <i className="fa-light fa-mountain-sun advantage-icon"></i>
-                                        <h6>Лучшие виды</h6>
-                                        <p className="mb-0">Панорамные виды на горы и озера прямо из окон.</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 mb-16">
-                                    <div className="tour-advantage-card">
-                                        <i className="fa-light fa-shield-check advantage-icon"></i>
-                                        <h6>Безопасность</h6>
-                                        <p className="mb-0">Личное сопровождение и страховка включены.</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 mb-16">
-                                    <div className="tour-advantage-card">
-                                        <i className="fa-light fa-utensils advantage-icon"></i>
-                                        <h6>Всё включено</h6>
-                                        <p className="mb-0">Трехразовое питание от лучших шеф-поваров.</p>
-                                    </div>
-                                </div>
-                            </div>
-
                             <p className="mb-24">Наша цель — предложить вам самые интересные и качественные туристические маршруты по всему миру. Мы тщательно отбираем направления и партнеров, чтобы гарантировать безопасность, комфорт и высокий уровень обслуживания на каждом этапе вашего пути.</p>
 
-                            <div className="text-block text-start mb-48">
-                                <h3 className="font-sec color-primary">программа :</h3>
-                                <h2 className="mb-24">Программа тура</h2>
+                            <div className="text-block text-start mb-48 d-flex align-items-baseline gap-3">
+                                <h3 className="font-sec color-primary mb-0">программа :</h3>
+                                <h2 className="mb-0">Программа тура</h2>
                             </div>
                             <div className="program-timeline mb-48">
                                 <div className="program-step">
@@ -141,45 +115,37 @@ export default function TourDetailPage() {
                             </div>
 
                             <h4 className="mb-24">Основные моменты</h4>
-                            <div className="row g-4 mb-48">
-                                <div className="col-lg-4 col-md-6">
-                                    <div className="box-blur-bg highlight-card">
-                                        <div className="highlight-icon">
-                                            <i className="fa-light fa-mountains"></i>
+                            <div className="highlights-list mb-48">
+                                <div className="row g-3">
+                                    <div className="col-md-6">
+                                        <div className="highlight-item">
+                                            <i className="fa-solid fa-check-circle color-primary me-2"></i>
+                                            <span>Захватывающие горные пейзажи</span>
                                         </div>
-                                        <p className="highlight-text">Захватывающие горные пейзажи</p>
                                     </div>
-                                </div>
-                                <div className="col-lg-4 col-md-6">
-                                    <div className="box-blur-bg highlight-card">
-                                        <div className="highlight-icon">
-                                            <i className="fa-light fa-water"></i>
+                                    <div className="col-md-6">
+                                        <div className="highlight-item">
+                                            <i className="fa-solid fa-check-circle color-primary me-2"></i>
+                                            <span>Кристально чистые озерные воды</span>
                                         </div>
-                                        <p className="highlight-text">Кристально чистые озерные воды</p>
                                     </div>
-                                </div>
-                                <div className="col-lg-4 col-md-6">
-                                    <div className="box-blur-bg highlight-card">
-                                        <div className="highlight-icon">
-                                            <i className="fa-light fa-user-tie"></i>
+                                    <div className="col-md-6">
+                                        <div className="highlight-item">
+                                            <i className="fa-solid fa-check-circle color-primary me-2"></i>
+                                            <span>Профессиональные гиды</span>
                                         </div>
-                                        <p className="highlight-text">Профессиональные гиды</p>
                                     </div>
-                                </div>
-                                <div className="col-lg-4 col-md-6">
-                                    <div className="box-blur-bg highlight-card">
-                                        <div className="highlight-icon">
-                                            <i className="fa-light fa-hotel"></i>
+                                    <div className="col-md-6">
+                                        <div className="highlight-item">
+                                            <i className="fa-solid fa-check-circle color-primary me-2"></i>
+                                            <span>Комфортное проживание</span>
                                         </div>
-                                        <p className="highlight-text">Комфортное проживание</p>
                                     </div>
-                                </div>
-                                <div className="col-lg-4 col-md-6">
-                                    <div className="box-blur-bg highlight-card">
-                                        <div className="highlight-icon">
-                                            <i className="fa-light fa-utensils"></i>
+                                    <div className="col-md-6">
+                                        <div className="highlight-item">
+                                            <i className="fa-solid fa-check-circle color-primary me-2"></i>
+                                            <span>Знакомство с местной кухней</span>
                                         </div>
-                                        <p className="highlight-text">Знакомство с местной кухней</p>
                                     </div>
                                 </div>
                             </div>
