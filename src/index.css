@@ -1,9 +1,0 @@
-/* Vendor CSS - same order as original HTML */
-@import url('/assets/css/vendor/bootstrap.min.css');
-@import url('/assets/css/vendor/all.min.css');
-@import url('/assets/css/vendor/ion.rangeSlider.css');
-@import url('/assets/css/vendor/slick.css');
-@import url('/assets/css/vendor/nice-select.css');
-
-/* Main app CSS (compiled from SCSS) */
-@import url('/assets/css/app.css');

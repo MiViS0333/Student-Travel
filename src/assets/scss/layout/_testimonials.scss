@@ -1,0 +1,68 @@
+.testimonial-card {
+    .content {
+        background: $white;
+        position: relative;
+        padding: clamp(16px, 1.25vw, 30px);
+
+        .comment-icon {
+            width: clamp(42px, 3.333vw, 80px);
+        }
+
+        .review {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(48px, 4.688vw, 100px);
+
+            .reviewer {
+                display: flex;
+                align-items: center;
+                gap: clamp(12px, 0.833vw, 20px);
+
+                .reviewer-img {
+                    width: clamp(42px, 3.333vw, 80px);
+                }
+
+                .rating {
+                    display: flex;
+                    align-items: center;
+                    gap: clamp(6px, 0.52vw, 14px);
+
+                    i {
+                        color: $accent-1;
+                        font-size: clamp(12px, 0.94vw, 24px);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Swiper Pagination Dots Style
+.testimonials-slider,
+.blogs-slider {
+    .swiper-pagination {
+        position: relative;
+        margin-top: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        @include media-query(575px) {
+            margin-top: 0;
+        }
+
+        .swiper-pagination-bullet {
+            width: 16px;
+            height: 4px;
+            border-radius: 5000px;
+            background: $black;
+            opacity: 1;
+            margin: 0 !important;
+
+            &.swiper-pagination-bullet-active {
+                background: $accent-1;
+            }
+        }
+    }
+}
