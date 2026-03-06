@@ -12,15 +12,15 @@ const testimonials = [
     { image: '/media/users/user_1.png', name: 'Julia Fernandez', rating: 5 },
 ];
 
-const defaultReview = 'Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in turpis nulla et.';
+const defaultReview = 'Studentravel предоставляет лучшие услуги для студентов. Отличная организация и незабываемые впечатления! Мы обязательно поедем еще раз. Спасибо! Это было потрясающе.';
 
 export default function TestimonialsSlider() {
     return (
         <section className="py-64">
             <div className="container-fluid">
                 <div className="heading mb-48">
-                    <h3 className="font-sec color-primary">testimonials :</h3>
-                    <h2>WHAT PEOPLE SAY ABOUT US!</h2>
+                    <h3 className="font-sec color-primary">отзывы :</h3>
+                    <h2>ЧТО ГОВОРЯТ О НАС!</h2>
                 </div>
                 <Swiper
                     className="testimonials-slider"

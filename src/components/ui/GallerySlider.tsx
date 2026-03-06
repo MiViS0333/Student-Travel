@@ -4,26 +4,26 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode } from 'swiper/modules';
 
 const galleryImages = [
-    '/media/gallery/gallery_1.png',
-    '/media/gallery/gallery_2.png',
-    '/media/gallery/gallery_3.png',
-    '/media/gallery/gallery_4.png',
-    '/media/gallery/gallery_5.png',
-    '/media/gallery/gallery_6.png',
-    '/media/gallery/gallery_1.png',
-    '/media/gallery/gallery_2.png',
-    '/media/gallery/gallery_3.png',
-    '/media/gallery/gallery_4.png',
-    '/media/gallery/gallery_5.png',
-    '/media/gallery/gallery_6.png',
+    '/media/gallery/sdvb.png',
+    '/media/gallery/sdvsdv-1.png',
+    '/media/gallery/sdvsdv.png',
+    '/media/gallery/sdvsvb.png',
+    '/media/gallery/vsdv.png',
+    '/media/gallery/vsdvsb.png',
+    '/media/gallery/sdvb.png',
+    '/media/gallery/sdvsdv-1.png',
+    '/media/gallery/sdvsdv.png',
+    '/media/gallery/sdvsvb.png',
+    '/media/gallery/vsdv.png',
+    '/media/gallery/vsdvsb.png',
 ];
 
 export default function GallerySlider() {
     return (
         <section className="py-64">
             <div className="heading mb-48">
-                <h3 className="font-sec color-primary">instagram :</h3>
-                <h2>TRAVEL GALLERIES</h2>
+                <h3 className="font-sec color-primary">инстаграм :</h3>
+                <h2>ГАЛЕРЕЯ ПУТЕШЕСТВИЙ</h2>
             </div>
             <Swiper
                 className="gallery-slider"

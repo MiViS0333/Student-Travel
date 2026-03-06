@@ -62,11 +62,11 @@ export default function AboutPage() {
         return () => { ScrollTrigger.getAll().forEach((t) => t.kill()); };
     }, []);
 
-    const aboutText = 'Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in turpis nulla et.';
+    const aboutText = 'Studentravel предлагает лучшие туры для студентов по всему миру. Мы заботимся о вашем отдыхе, предоставляя незабываемые впечатления и отличный сервис.';
 
     return (
         <>
-            <PageHeader title="ABOUT US" />
+            <PageHeader title="О НАС" />
 
             {/* About Section 1 */}
             <section className="about-features-1 about-trigger-1 position-relative z-2">
@@ -76,8 +76,8 @@ export default function AboutPage() {
                             <div className="row align-items-center">
                                 <div className="col-xl-6 col-md-7">
                                     <div className="text-block text-md-start text-center">
-                                        <h3 className="mb-8 font-sec color-primary">about us :</h3>
-                                        <h2 className="mb-24">WHERE PASSION<br /> MEETS ADVENTURE,<br /> FUELING YOUR<br /> WANDERLUST DESIRES</h2>
+                                        <h3 className="mb-8 font-sec color-primary">о нас :</h3>
+                                        <h2 className="mb-24">ГДЕ СТРАСТЬ<br /> ВСТРЕЧАЕТСЯ С ПРИКЛЮЧЕНИЯМИ,<br /> РАЗЖИГАЯ ВАШЕ ЖЕЛАНИЕ<br /> ПУТЕШЕСТВОВАТЬ</h2>
                                         <p>{aboutText}</p>
                                     </div>
                                 </div>
@@ -106,8 +106,8 @@ export default function AboutPage() {
                             <div className="row align-items-center">
                                 <div className="col-xl-6 col-md-7 order-md-2">
                                     <div className="text-block text-md-start text-center">
-                                        <h3 className="mb-8 font-sec color-primary">about us :</h3>
-                                        <h2 className="mb-24">WE WANT TO GIVE THE BEST TOURS</h2>
+                                        <h3 className="mb-8 font-sec color-primary">о нас :</h3>
+                                        <h2 className="mb-24">МЫ ХОТИМ ПРЕДОСТАВЛЯТЬ ЛУЧШИЕ ТУРЫ</h2>
                                         <p>{aboutText} {aboutText}</p>
                                     </div>
                                 </div>

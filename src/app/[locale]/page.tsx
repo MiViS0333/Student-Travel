@@ -10,22 +10,48 @@ import TestimonialsSlider from '@/components/ui/TestimonialsSlider';
 import BlogsSlider from '@/components/ui/BlogsSlider';
 import GallerySlider from '@/components/ui/GallerySlider';
 
+import NiceSelect from '@/components/ui/NiceSelect';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const tours = [
-  { image: '/media/tour/tour_1.png', title: 'Serene Lakeside Escapes', location: 'Banf National Park, Canada', days: 6, persons: 6, price: '$5000' },
-  { image: '/media/tour/tour_2.png', title: 'Hidden Lake Gems', location: 'Banf National Park, Canada', days: 6, persons: 6, price: '$5000' },
-  { image: '/media/tour/tour_3.png', title: 'Pristine Natural Waters', location: 'Banf National Park, Canada', days: 6, persons: 6, price: '$5000' },
-  { image: '/media/tour/tour_4.png', title: 'Mystical Blue Horizons', location: 'Banf National Park, Canada', days: 6, persons: 6, price: '$5000' },
+  { image: '/media/tour/tour_1.png', title: 'Serene Lakeside Escapes', location: 'Banf National Park, Canada', days: 6, persons: 6, price: 5000 },
+  { image: '/media/tour/tour_2.png', title: 'Hidden Lake Gems', location: 'Banf National Park, Canada', days: 6, persons: 6, price: 4200 },
+  { image: '/media/tour/tour_3.png', title: 'Pristine Natural Waters', location: 'Banf National Park, Canada', days: 6, persons: 6, price: 3800 },
+  { image: '/media/tour/tour_4.png', title: 'Mystical Blue Horizons', location: 'Banf National Park, Canada', days: 6, persons: 6, price: 5500 },
 ];
 
 const destinations = [
-  { name: 'NETHERLANDS', image: '/media/tour/tour_destination_1.png', reverse: true },
-  { name: 'GREECE', image: '/media/tour/tour_destination_2.png', reverse: false },
-  { name: 'ITALY', image: '/media/tour/tour_destination_3.png', reverse: true },
+  { name: 'Чарвакское водохранилище', image: '/media/banner/charvak.png', reverse: true },
+  { name: 'Чимганские горы', image: '/media/banner/chimgan.png', reverse: false },
+  { name: 'Самарканд', image: '/media/banner/samarkand.png', reverse: true },
 ];
 
-const defaultDescription = 'Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in turpis nulla et. Varius felis pellentesque molestie justo semper id. Donec tortor dui et etiam. Vitae fermentum nibh nam ac aliquet fringilla ante integer. Scelerisque adipiscing eget nisl ut molestie.';
+const destinationOptions = [
+  { value: 'kyoto', label: 'Киото, Япония' },
+  { value: 'bali', label: 'Бали, Индонезия' },
+  { value: 'paris', label: 'Париж, Франция' },
+  { value: 'hawaii', label: 'Гавайи, США' },
+  { value: 'rome', label: 'Рим, Италия' },
+];
+
+const departureOptions = [
+  { value: 'tashkent', label: 'Ташкент, Узбекистан' },
+  { value: 'samarkand', label: 'Самарканд, Узбекистан' },
+  { value: 'bukhara', label: 'Бухара, Узбекистан' },
+  { value: 'khiva', label: 'Хива, Узбекистан' },
+  { value: 'fergana', label: 'Фергана, Узбекистан' },
+];
+
+const typeOptions = [
+  { value: 'adventure', label: 'Приключения' },
+  { value: 'historical', label: 'Исторические/Культурные' },
+  { value: 'beach', label: 'Пляжные' },
+  { value: 'relaxation', label: 'Отдых' },
+  { value: 'romantic', label: 'Романтические' },
+];
+
+const defaultDescription = 'Studentravel предлагает лучшие туры для студентов по всему миру. Мы заботимся о вашем отдыхе, предоставляя незабываемые впечатления и отличный сервис.';
 
 export default function HomePage() {
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -87,42 +113,21 @@ export default function HomePage() {
           <h1 className="title banner-caption-title ph-appear">TRAVEL</h1>
           <div className="content">
             <div className="text-center sub-title">
-              <h3 className="font-sec color-white">Travel where your heart takes you!</h3>
+              <h3 className="font-sec color-white">Путешествуйте туда, куда зовёт ваше сердце!</h3>
             </div>
             <form action="/tours">
               <div className="find-banner-row">
                 <div className="form-group white-input">
-                  <select name="destination" className="has-nice-select cus-form-control" defaultValue="">
-                    <option value="" disabled>Where to?</option>
-                    <option value="kyoto">Kyoto, Japan</option>
-                    <option value="bali">Bali, Indonesia</option>
-                    <option value="paris">Paris, France</option>
-                    <option value="hawaii">Hawaii, USA</option>
-                    <option value="rome">Rome, Italy</option>
-                  </select>
+                  <NiceSelect name="destination" options={destinationOptions} placeholder="Куда?" />
                 </div>
                 <div className="form-group white-input">
-                  <select name="departure" className="has-nice-select cus-form-control" defaultValue="">
-                    <option value="" disabled>Select Departure</option>
-                    <option value="mumbai">Mumbai, India</option>
-                    <option value="toronto">Toronto, Canada</option>
-                    <option value="rome">Rome, Italy</option>
-                    <option value="istanbul">Istanbul, Turkey</option>
-                    <option value="cairo">Cairo, Egypt</option>
-                  </select>
+                  <NiceSelect name="departure" options={departureOptions} placeholder="Откуда" />
                 </div>
                 <div className="form-group white-input">
-                  <select name="type" className="has-nice-select cus-form-control" defaultValue="">
-                    <option value="" disabled>Select Type</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="historical">Historical/Cultural</option>
-                    <option value="beach">Beach</option>
-                    <option value="relaxation">Relaxation</option>
-                    <option value="romantic">Romantic</option>
-                  </select>
+                  <NiceSelect name="type" options={typeOptions} placeholder="Тип тура" />
                 </div>
                 <div className="ui-btn ui-btn-primary">
-                  <button type="submit" data-hover="FIND NOW">FIND NOW</button>
+                  <button type="submit" data-hover="НАЙТИ">НАЙТИ</button>
                 </div>
               </div>
             </form>
@@ -141,21 +146,26 @@ export default function HomePage() {
               <div className="row align-items-center">
                 <div className="col-xl-6 col-md-7">
                   <div className="text-block text-md-start text-center">
-                    <h3 className="mb-8 font-sec color-primary">about us :</h3>
+                    <h3 className="mb-8 font-sec color-primary">о нас :</h3>
                     <h2 className="mb-24">
-                      WHERE PASSION<br /> MEETS ADVENTURE,<br /> FUELING YOUR<br /> WANDERLUST DESIRES
+                      ГДЕ СТРАСТЬ<br /> ВСТРЕЧАЕТСЯ С ПРИКЛЮЧЕНИЯМИ,<br /> РАЗЖИГАЯ ВАШЕ ЖЕЛАНИЕ<br /> ПУТЕШЕСТВОВАТЬ
                     </h2>
                     <div className="ui-btn ui-btn-primary mx-auto ms-md-0">
-                      <Link href="/about" data-hover="LEARN MORE">LEARN MORE</Link>
+                      <Link href="/about" data-hover="УЗНАТЬ БОЛЬШЕ">УЗНАТЬ БОЛЬШЕ</Link>
                     </div>
                   </div>
                 </div>
                 <div className="col-xl-6 col-md-5">
                   <div className="images-area">
                     <div className="images-block">
-                      {[1, 2, 3, 4].map((n) => (
-                        <div key={n} className={`about-img-card box-blur-bg v-${n}`}>
-                          <img src={`/media/about/about-img-${n}.png`} alt="" className="b-radius-20" />
+                      {[
+                        '/media/fwev.png',
+                        '/media/rgewfes.png',
+                        '/media/wefwe.png',
+                        '/media/wefwv.png'
+                      ].map((src, i) => (
+                        <div key={i} className={`about-img-card box-blur-bg v-${i + 1}`}>
+                          <img src={src} alt="" className="b-radius-20" />
                         </div>
                       ))}
                     </div>
@@ -170,8 +180,8 @@ export default function HomePage() {
         <section className="position-relative z-2 py-64">
           <div className="container-fluid">
             <div className="heading mb-48">
-              <h3 className="font-sec color-primary">tour list :</h3>
-              <h2>AWESOME TOURS FOR YOU</h2>
+              <h3 className="font-sec color-primary">список туров :</h3>
+              <h2>ПОТРЯСАЮЩИЕ ТУРЫ ДЛЯ ВАС</h2>
             </div>
             <div className="row mb-16">
               {tours.map((tour, i) => (
@@ -182,7 +192,7 @@ export default function HomePage() {
             </div>
             <div className="text-center">
               <div className="ui-btn ui-btn-primary">
-                <Link href="/tours" data-hover="Explore All">Explore All</Link>
+                <Link href="/tours" data-hover="Посмотреть все">Посмотреть все</Link>
               </div>
             </div>
           </div>
@@ -192,8 +202,8 @@ export default function HomePage() {
         <section className="position-relative z-2 py-64">
           <div className="container-fluid">
             <div className="heading mb-48">
-              <h3 className="font-sec color-primary">destinations :</h3>
-              <h2>BEST TRAVEL PLACES</h2>
+              <h3 className="font-sec color-primary">направления :</h3>
+              <h2>ЛУЧШИЕ МЕСТА ДЛЯ ПУТЕШЕСТВИЙ</h2>
             </div>
             {destinations.map((dest, i) => (
               <div key={i} className="row py-64 align-items-center">

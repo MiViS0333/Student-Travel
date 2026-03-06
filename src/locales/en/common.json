@@ -1,9 +1,26 @@
 {
-    "title": "Student Travel",
+    "title": "Studentravel",
     "welcome": "Welcome to Student Travel!",
     "description": "The best tours for students around the world.",
     "about": "About Us",
     "tours": "Tours",
     "contact": "Contact",
-    "language": "Language"
+    "language": "Language",
+    "form_success": "Thank you! Your message has been sent successfully.",
+    "form_error": "Oops! Failed to send message. Please try again.",
+    "booking_success": "Thank you for your booking! We will contact you soon.",
+    "months": {
+        "01": "January",
+        "02": "February",
+        "03": "March",
+        "04": "April",
+        "05": "May",
+        "06": "June",
+        "07": "July",
+        "08": "August",
+        "09": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+    }
 }

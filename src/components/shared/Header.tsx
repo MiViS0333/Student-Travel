@@ -6,7 +6,6 @@ import Image from 'next/image';
 import gsap from 'gsap';
 
 interface HeaderProps {
-    onSearchToggle: () => void;
 }
 
 interface SubmenuItem {
@@ -16,43 +15,16 @@ interface SubmenuItem {
     active?: boolean;
 }
 
-const menuItems: { label: string; href: string; children?: SubmenuItem[]; active?: boolean }[] = [
-    { label: 'Home', href: '/' },
-    { label: 'About Us', href: '/about' },
-    {
-        label: 'Tours',
-        href: '#',
-        children: [
-            {
-                label: 'Tour Lists',
-                href: '#',
-                children: [
-                    { label: 'Tour Grid', href: '/tours' },
-                ],
-            },
-            {
-                label: 'Tour Detail',
-                href: '#',
-                children: [
-                    { label: 'Tour Detail', href: '/tours/1' },
-                ],
-            },
-            { label: 'Tour Booking', href: '/tours/booking' },
-        ],
-    },
-    {
-        label: 'Blogs',
-        href: '#',
-        children: [
-            { label: 'Blog Grid', href: '/blog' },
-            { label: 'Blog Detail', href: '/blog/1' },
-        ],
-    },
-    { label: 'Account', href: '/account' },
-    { label: 'Contact', href: '/contact' },
+const menuItems: { label: string; href: string; active?: boolean }[] = [
+    { label: 'Главная', href: '/' },
+    { label: 'О нас', href: '/about' },
+    { label: 'Туры', href: '/tours' },
+    { label: 'Блог', href: '/blog' },
+    { label: 'Аккаунт', href: '/account' },
+    { label: 'Контакты', href: '/contact' },
 ];
 
-export default function Header({ onSearchToggle }: HeaderProps) {
+export default function Header({ }: HeaderProps) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [openSubmenus, setOpenSubmenus] = useState<Set<string>>(new Set());
     const overlayRef = useRef<HTMLElement>(null);
@@ -132,36 +104,6 @@ export default function Header({ onSearchToggle }: HeaderProps) {
         }
     }, [menuOpen, toggleMenu]);
 
-    const renderSubmenu = (items: SubmenuItem[], parentKey: string) => (
-        <div className={`ui-ol-submenu${openSubmenus.has(parentKey) ? ' ui-ol-submenu-visible' : ''}`}
-            style={{ display: openSubmenus.has(parentKey) ? 'block' : 'none' }}>
-            <ul className="ui-ol-submenu-list">
-                {items.map((item, i) => {
-                    const key = `${parentKey}-${i}`;
-                    if (item.children) {
-                        return (
-                            <li key={key} className="ui-ol-submenu-wrap">
-                                <div className={`ui-ol-submenu-trigger${openSubmenus.has(key) ? ' ui-ol-submenu-open' : ''}`}>
-                                    <a href="#" className="ui-ol-submenu-link" onClick={(e) => { e.preventDefault(); toggleSubmenu(key); }}>
-                                        {item.label}
-                                    </a>
-                                    <div className="ui-ol-submenu-caret-wrap" onClick={() => toggleSubmenu(key)}>
-                                        <div className="ui-ol-submenu-caret"></div>
-                                    </div>
-                                </div>
-                                {renderSubmenu(item.children, key)}
-                            </li>
-                        );
-                    }
-                    return (
-                        <li key={key}>
-                            <Link href={item.href} onClick={handleLinkClick}>{item.label}</Link>
-                        </li>
-                    );
-                })}
-            </ul>
-        </div>
-    );
 
     return (
         <header id="ui-header">
@@ -169,22 +111,9 @@ export default function Header({ onSearchToggle }: HeaderProps) {
                 <div className="ui-header-col">
                     <div className="ui-logo">
                         <Link href="/">
-                            <img src="/media/logo.png" className="ui-logo-light" alt="Logo" />
-                            <img src="/media/logo-dark.png" className="ui-logo-dark" alt="Logo" />
+                            <img src="/media/logoStudent (1).png" className="ui-logo-light" alt="Logo" />
+                            <img src="/media/logoStudent (1).png" className="ui-logo-dark" alt="Logo" />
                         </Link>
-                    </div>
-                </div>
-                <div className="ui-header-col">
-                    <div id="ui-ol-menu-toggle-btn-wrap">
-                        <div className="ui-ol-menu-toggle-btn-holder">
-                            <a href="#" className="ui-ol-menu-toggle-btn" onClick={(e) => { e.preventDefault(); toggleMenu(); }}>
-                                <span></span>
-                            </a>
-                        </div>
-                        <div className="ui-ol-menu-toggle-btn-text">
-                            <span className="text-menu h6 color-white" data-hover="OPEN">MENU</span>
-                            <span className="text-close h6">CLOSE</span>
-                        </div>
                     </div>
                 </div>
 
@@ -198,21 +127,6 @@ export default function Header({ onSearchToggle }: HeaderProps) {
                                             <ul className="ui-ol-menu-list" ref={menuListRef}>
                                                 {menuItems.map((item, i) => {
                                                     const key = `menu-${i}`;
-                                                    if (item.children) {
-                                                        return (
-                                                            <li key={key} className="ui-ol-submenu-wrap">
-                                                                <div className={`ui-ol-submenu-trigger${openSubmenus.has(key) ? ' ui-ol-submenu-open' : ''}`}>
-                                                                    <a href="#" onClick={(e) => { e.preventDefault(); toggleSubmenu(key); }}>
-                                                                        {item.label}
-                                                                    </a>
-                                                                    <div className="ui-ol-submenu-caret-wrap" onClick={() => toggleSubmenu(key)}>
-                                                                        <div className="ui-ol-submenu-caret"></div>
-                                                                    </div>
-                                                                </div>
-                                                                {renderSubmenu(item.children, key)}
-                                                            </li>
-                                                        );
-                                                    }
                                                     return (
                                                         <li key={key}>
                                                             <Link href={item.href} onClick={handleLinkClick}>{item.label}</Link>
@@ -228,15 +142,19 @@ export default function Header({ onSearchToggle }: HeaderProps) {
                     </nav>
 
                     <div className="ui-header-tools">
-                        <a href="#" className="ui-header-tools-item search-toggler"
-                            onClick={(e) => { e.preventDefault(); onSearchToggle(); }}>
-                            <i className="fa-regular fa-magnifying-glass"></i>
-                        </a>
-                        <Link href="/account" className="ui-header-tools-item">
-                            <i className="fa-regular fa-user"></i>
-                        </Link>
+                        <div id="ui-ol-menu-toggle-btn-wrap">
+                            <div className="ui-ol-menu-toggle-btn-holder">
+                                <a href="#" className="ui-ol-menu-toggle-btn" onClick={(e) => { e.preventDefault(); toggleMenu(); }}>
+                                    <span></span>
+                                </a>
+                            </div>
+                            <div className="ui-ol-menu-toggle-btn-text" onClick={(e) => { e.preventDefault(); toggleMenu(); }} style={{ cursor: 'pointer' }}>
+                                <span className="text-menu h6 color-white" data-hover="МЕНЮ">МЕНЮ</span>
+                                <span className="text-close h6">ЗАКРЫТЬ</span>
+                            </div>
+                        </div>
                         <div className="ui-btn ui-btn-primary hide-on-mobile">
-                            <Link href="/tours/booking" data-hover="BOOK NOW">BOOK NOW</Link>
+                            <Link href="/tours/booking" data-hover="ЗАБРОНИРОВАТЬ">ЗАБРОНИРОВАТЬ</Link>
                         </div>
                     </div>
                 </div>

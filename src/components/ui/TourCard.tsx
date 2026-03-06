@@ -9,13 +9,21 @@ interface TourCardProps {
     location: string;
     days: number;
     persons: number;
-    price: string;
+    price: number;
     href: string;
     className?: string;
 }
 
 export default function TourCard({ image, title, location, days, persons, price, href, className = '' }: TourCardProps) {
     const [wishlisted, setWishlisted] = useState(false);
+
+    const formatPrice = (p: number) => {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            maximumFractionDigits: 0,
+        }).format(p);
+    };
 
     return (
         <div className={`tour-card mb-32 ${className}`}>
@@ -33,12 +41,12 @@ export default function TourCard({ image, title, location, days, persons, price,
                 </div>
                 <div className="info-detail">
                     <ul className="unstyled">
-                        <li><i className="fa-light fa-calendar"></i><p>{days} Days</p></li>
+                        <li><i className="fa-light fa-calendar"></i><p>{days} Дней</p></li>
                         <li><i className="fa-solid fa-period dot"></i></li>
-                        <li><i className="fa-light fa-user"></i><p>{persons} Person</p></li>
+                        <li><i className="fa-light fa-user"></i><p>{persons} Человек</p></li>
                     </ul>
                     <div className="right-block">
-                        <h6>{price}</h6>
+                        <h6>{formatPrice(price)}</h6>
                         <Link href={href} className="ui-link-arrow">
                             <i className="fa-light fa-arrow-right arrow"></i>
                         </Link>
