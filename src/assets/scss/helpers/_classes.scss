@@ -100,6 +100,9 @@
     border-radius: clamp(20px, 1.55vw, 40px);
 }
 
+.br-36 {
+    border-radius: clamp(20px, 1.563vw, 36px);
+}
 
 @media(max-width: 767px) {
     .hide-on-mobile {

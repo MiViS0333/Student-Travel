@@ -32,7 +32,7 @@ export default function TourDetailPage() {
                         <div className="row">
                             <div className="col-lg-8">
                                 <div className="mb-48">
-                                    <img src="/media/tour/tour-detail-2.png" alt="" className="b-radius-20 w-100" />
+                                    <img src="/media/tour/tour-detail-2.png" alt="" className="br-36 w-100" />
                                 </div>
                                 <h2 className="mb-16">ОЗЕРО С ПРЕСНОЙ ВОДОЙ</h2>
                                 <p className="mb-32">
@@ -140,27 +140,6 @@ export default function TourDetailPage() {
                         setIsPopupOpen(false);
                     }}>
                         <div className="form-group mb-24">
-                            <label className="mb-8 fw-semibold">Имя</label>
-                            <input type="text" className="cus-form-control" required placeholder="Имя" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" title="Допускаются только буквы" />
-                        </div>
-                        <div className="form-group mb-24">
-                            <label className="mb-8 fw-semibold">Фамилия</label>
-                            <input type="text" className="cus-form-control" required placeholder="Фамилия" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" title="Допускаются только буквы" />
-                        </div>
-                        <div className="form-group mb-24">
-                            <label className="mb-8 fw-semibold">Телефон</label>
-                            <IMaskInput
-                                mask="+{998} (00) 000-00-00"
-                                className="cus-form-control"
-                                required
-                                placeholder="+998 (__) ___-__-__"
-                            />
-                        </div>
-                        <div className="form-group mb-24">
-                            <label className="mb-8 fw-semibold">Email</label>
-                            <input type="email" className="cus-form-control" required placeholder="Email адрес" />
-                        </div>
-                        <div className="form-group mb-24">
                             <div className="row g-3">
                                 <div className="col-6">
                                     <label className="mb-8 fw-semibold">День</label>
@@ -185,6 +164,27 @@ export default function TourDetailPage() {
                                     />
                                 </div>
                             </div>
+                        </div>
+                        <div className="form-group mb-24">
+                            <label className="mb-8 fw-semibold">Имя</label>
+                            <input type="text" className="cus-form-control" required placeholder="Имя" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" title="Допускаются только буквы" />
+                        </div>
+                        <div className="form-group mb-24">
+                            <label className="mb-8 fw-semibold">Фамилия</label>
+                            <input type="text" className="cus-form-control" required placeholder="Фамилия" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" title="Допускаются только буквы" />
+                        </div>
+                        <div className="form-group mb-24">
+                            <label className="mb-8 fw-semibold">Телефон</label>
+                            <IMaskInput
+                                mask="+{998} (00) 000-00-00"
+                                className="cus-form-control"
+                                required
+                                placeholder="+998 (__) ___-__-__"
+                            />
+                        </div>
+                        <div className="form-group mb-24">
+                            <label className="mb-8 fw-semibold">Email</label>
+                            <input type="email" className="cus-form-control" required placeholder="Email адрес" />
                         </div>
                         <div className="ui-btn ui-btn-primary w-100">
                             <button type="submit" data-hover="ПОДТВЕРДИТЬ БРОНИРОВАНИЕ">ПОДТВЕРДИТЬ БРОНИРОВАНИЕ</button>
