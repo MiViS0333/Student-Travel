@@ -1,6 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useRef, useLayoutEffect, useEffect } from 'react';
+
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PageHeader from '@/components/shared/PageHeader';
@@ -10,7 +12,9 @@ import GallerySlider from '@/components/ui/GallerySlider';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutPage() {
-    useEffect(() => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useIsomorphicLayoutEffect(() => {
         // About 1 animation
         const aboutTrigger1 = document.querySelector('.about-trigger-1');
         if (aboutTrigger1) {
@@ -55,11 +59,19 @@ export default function AboutPage() {
             });
         }
 
-        // Video autoplay
-        const video = document.getElementById('videoPlayer') as HTMLVideoElement | null;
-        if (video) video.play();
-
         return () => { ScrollTrigger.getAll().forEach((t) => t.kill()); };
+    }, []);
+
+    useEffect(() => {
+        // Video autoplay
+        if (videoRef.current) {
+            const playPromise = videoRef.current.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((error) => {
+                    console.log('Video auto-play prevented:', error);
+                });
+            }
+        }
     }, []);
 
     const aboutText = 'Studentravel предлагает лучшие туры для студентов по всему миру. Мы заботимся о вашем отдыхе, предоставляя незабываемые впечатления и отличный сервис.';
@@ -133,7 +145,7 @@ export default function AboutPage() {
                 <div className="container-fluid">
                     <div className="box-blur-bg">
                         <div className="bg-video b-radius-20">
-                            <video id="videoPlayer" loop playsInline muted autoPlay>
+                            <video id="videoPlayer" ref={videoRef} loop playsInline muted autoPlay>
                                 <source src="/media/inner-banner-video.mp4" type="video/mp4" />
                             </video>
                         </div>

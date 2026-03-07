@@ -1,7 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef, useLayoutEffect, useEffect } from 'react';
 import Link from 'next/link';
+
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TourCard from '@/components/ui/TourCard';
@@ -57,26 +59,17 @@ export default function HomePage() {
   const aboutRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     // Hero parallax
     if (heroRef.current) {
-      const titleEl = heroRef.current.querySelector('.banner-caption-title');
-      if (titleEl) {
-        const inner = document.createElement('div');
-        inner.className = 'banner-title-parallax';
-        inner.innerHTML = titleEl.innerHTML;
-        titleEl.innerHTML = '';
-        titleEl.appendChild(inner);
-
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        }).to('.banner-title-parallax', { y: -40 }, 0);
-      }
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      }).to('.banner-title-parallax', { y: -40 }, 0);
     }
 
     // About scroll animation
@@ -110,7 +103,9 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="hero-banner-1 banner-content-parallax" id="hero" ref={heroRef}>
         <div className="container-fluid">
-          <h1 className="title banner-caption-title ph-appear">TRAVEL</h1>
+          <h1 className="title banner-caption-title ph-appear">
+            <div className="banner-title-parallax">TRAVEL</div>
+          </h1>
           <div className="content">
             <div className="text-center sub-title">
               <h3 className="font-sec color-white">Путешествуйте туда, куда зовёт ваше сердце!</h3>

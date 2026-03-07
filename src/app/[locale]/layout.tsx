@@ -43,13 +43,15 @@ export default async function RootLayout({
         />
       </head>
       <body id="body" className="x-hidden ui-transition">
-        <TranslationsProvider
-          namespaces={i18nNamespaces}
-          locale={locale}
-          resources={resources}
-        >
-          <ClientLayout>{children}</ClientLayout>
-        </TranslationsProvider>
+        <div id="__next">
+          <TranslationsProvider
+            namespaces={i18nNamespaces}
+            locale={locale}
+            resources={resources}
+          >
+            <ClientLayout>{children}</ClientLayout>
+          </TranslationsProvider>
+        </div>
       </body>
     </html>
   );
