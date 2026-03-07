@@ -20,7 +20,6 @@ const menuItems: { label: string; href: string; active?: boolean }[] = [
     { label: 'О нас', href: '/about' },
     { label: 'Туры', href: '/tours' },
     { label: 'Блог', href: '/blog' },
-    { label: 'Аккаунт', href: '/account' },
     { label: 'Контакты', href: '/contact' },
 ];
 

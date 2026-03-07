@@ -78,6 +78,9 @@ export default function AboutPage() {
 
     const aboutText = 'Studentravel предлагает лучшие туры для студентов по всему миру. Мы заботимся о вашем отдыхе, предоставляя незабываемые впечатления и отличный сервис.';
 
+    const section1Images = ['asvbbs.png', 'bsfnsns.png', 'dsvbsdb.png', 'sbfdsfbs.png'];
+    const section2Images = ['sbsdvsbs.png', 'sdbsbsdb.png', 'sdvbs.png', 'sdvsdv.png'];
+
     return (
         <>
             <PageHeader title="О НАС" />
@@ -99,11 +102,14 @@ export default function AboutPage() {
                                     <div className="col-xl-6 col-md-5">
                                         <div className="images-area">
                                             <div className="images-block">
-                                                {[1, 2, 3, 4].map((n) => (
-                                                    <div key={n} className={`about-img-card box-blur-bg v-${n}`}>
-                                                        <img src={`/media/about/about-img-${n}.png`} alt="" className="b-radius-20" />
-                                                    </div>
-                                                ))}
+                                                {section1Images.map((imgName, index) => {
+                                                    const n = index + 1;
+                                                    return (
+                                                        <div key={n} className={`about-img-card box-blur-bg v-${n}`}>
+                                                            <img src={`/media/about_studenTravel/${imgName}`} alt="" className="b-radius-20" />
+                                                        </div>
+                                                    );
+                                                })}
                                             </div>
                                         </div>
                                     </div>
@@ -131,11 +137,14 @@ export default function AboutPage() {
                                     <div className="col-xl-6 col-md-5 order-md-1">
                                         <div className="images-area">
                                             <div className="images-block">
-                                                {[1, 2, 3, 4].map((n) => (
-                                                    <div key={n} className={`about-img-card box-blur-bg v-${n}`}>
-                                                        <img src={`/media/about/about-img-${n}.png`} alt="" className="b-radius-20" />
-                                                    </div>
-                                                ))}
+                                                {section2Images.map((imgName, index) => {
+                                                    const n = index + 1;
+                                                    return (
+                                                        <div key={n} className={`about-img-card box-blur-bg v-${n}`}>
+                                                            <img src={`/media/about_studenTravel/${imgName}`} alt="" className="b-radius-20" />
+                                                        </div>
+                                                    );
+                                                })}
                                             </div>
                                         </div>
                                     </div>

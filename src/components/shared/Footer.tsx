@@ -123,14 +123,10 @@ export default function Footer() {
                                 <li><img src="/media/icons/payment-2.png" alt="Visa" style={{ height: '28px', width: 'auto' }} /></li>
                                 <li><img src="/media/icons/payment-4.png" alt="Mastercard" style={{ height: '28px', width: 'auto' }} /></li>
                                 <li>
-                                    <div style={{ backgroundColor: '#FF8C00', color: '#fff', borderRadius: '4px', padding: '0 8px', fontWeight: '900', fontSize: '12px', display: 'flex', alignItems: 'center', height: '28px', letterSpacing: '1px' }}>
-                                        HUMO
-                                    </div>
+                                    <img src="/media/humo.png" alt="HUMO" style={{ height: '28px', width: 'auto', borderRadius: '4px' }} />
                                 </li>
                                 <li>
-                                    <div style={{ backgroundColor: '#0056b3', color: '#fff', borderRadius: '4px', padding: '0 8px', fontWeight: '900', fontSize: '12px', display: 'flex', alignItems: 'center', height: '28px', letterSpacing: '0.5px' }}>
-                                        UZCARD
-                                    </div>
+                                    <img src="/media/uzcard.png" alt="UZCARD" style={{ height: '28px', width: 'auto', borderRadius: '4px' }} />
                                 </li>
                             </ul>
                             <ul className="unstyled social-links">

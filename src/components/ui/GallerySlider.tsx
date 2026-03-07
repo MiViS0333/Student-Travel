@@ -27,6 +27,7 @@ export default function GallerySlider() {
             </div>
             <Swiper
                 className="gallery-slider"
+                style={{ pointerEvents: 'none' }}
                 modules={[Autoplay, FreeMode]}
                 freeMode={true}
                 loop={true}
@@ -46,9 +47,9 @@ export default function GallerySlider() {
             >
                 {galleryImages.map((img, i) => (
                     <SwiperSlide key={i}>
-                        <a href="#" className="gallery-img-block">
-                            <img src={img} alt={`Gallery ${i + 1}`} />
-                        </a>
+                        <div className="gallery-img-block" style={{ pointerEvents: 'none', userSelect: 'none' }}>
+                            <img src={img} alt={`Gallery ${i + 1}`} draggable={false} style={{ pointerEvents: 'none', userSelect: 'none' }} />
+                        </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
