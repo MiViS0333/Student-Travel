@@ -60,42 +60,42 @@ export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
 
   useIsomorphicLayoutEffect(() => {
-    // Hero parallax
-    if (heroRef.current) {
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
+    const ctx = gsap.context(() => {
+      // Hero parallax
+      if (heroRef.current) {
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }).to('.banner-title-parallax', { y: -40 }, 0);
+      }
+
+      // About scroll animation
+      if (aboutRef.current) {
+        const sideAnimation = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+        sideAnimation.to('.about-1 .images-area .v-4', { rotation: 21, duration: 0.3 });
+        sideAnimation.to('.about-1 .images-area .v-3', { x: '0', duration: 0.3 }, '<');
+        sideAnimation.to('.about-1 .images-area .v-3', { rotation: 15, duration: 0.3 });
+        sideAnimation.to('.about-1 .images-area .v-2', { x: '0' }, '<');
+        sideAnimation.to('.about-1 .images-area .v-2', { rotation: 7, duration: 0.3 });
+        sideAnimation.to('.about-1 .images-area .v-1', { x: '0', duration: 0.3 }, '<');
+        sideAnimation.to('.about-1 .images-area .v-1', { rotation: 2, duration: 0.3 });
+
+        ScrollTrigger.create({
+          trigger: aboutRef.current,
           scrub: true,
-        },
-      }).to('.banner-title-parallax', { y: -40 }, 0);
-    }
+          pin: true,
+          start: 'top top',
+          end: '+=300%',
+          animation: sideAnimation,
+        });
+      }
+    });
 
-    // About scroll animation
-    if (aboutRef.current) {
-      const sideAnimation = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
-      sideAnimation.to('.about-1 .images-area .v-4', { rotation: 21, duration: 0.3 });
-      sideAnimation.to('.about-1 .images-area .v-3', { x: '0', duration: 0.3 }, '<');
-      sideAnimation.to('.about-1 .images-area .v-3', { rotation: 15, duration: 0.3 });
-      sideAnimation.to('.about-1 .images-area .v-2', { x: '0' }, '<');
-      sideAnimation.to('.about-1 .images-area .v-2', { rotation: 7, duration: 0.3 });
-      sideAnimation.to('.about-1 .images-area .v-1', { x: '0', duration: 0.3 }, '<');
-      sideAnimation.to('.about-1 .images-area .v-1', { rotation: 2, duration: 0.3 });
-
-      ScrollTrigger.create({
-        trigger: aboutRef.current,
-        scrub: true,
-        pin: true,
-        start: 'top top',
-        end: '+=300%',
-        animation: sideAnimation,
-      });
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
