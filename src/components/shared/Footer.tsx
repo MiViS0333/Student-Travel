@@ -48,10 +48,12 @@ export default function Footer() {
                                                     <div className="widget mb-24">
                                                         <h6 className="mb-12">КАРТА САЙТА</h6>
                                                         <ul className="unstyled item-list">
+                                                            <li><Link href="/">Главная</Link></li>
                                                             <li><Link href="/about">О нас</Link></li>
+                                                            <li><Link href="/tours">Туры</Link></li>
+                                                            <li><Link href="/blog">Блог</Link></li>
                                                             <li><Link href="/contact">Контакты</Link></li>
                                                             <li><Link href="/tours/booking">Страница бронирования</Link></li>
-                                                            <li><Link href="/blog">Блог</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -79,10 +81,10 @@ export default function Footer() {
                                                         <h6 className="mb-12">ЧАСЫ РАБОТЫ</h6>
                                                         <ul className="unstyled item-list">
                                                             <li className="d-flex align-items-center justify-content-between">
-                                                                <p>ПН-ПТ</p><p>09:00 - 17:00</p>
+                                                                <p>ПН-ПТ</p><p>09:00 - 18:00</p>
                                                             </li>
                                                             <li className="d-flex align-items-center justify-content-between">
-                                                                <p>СБ-ВС</p><p>09:00 - 17:00</p>
+                                                                <p>СБ-ВС</p><p>09:00 - 18:00</p>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -130,10 +132,16 @@ export default function Footer() {
                                 </li>
                             </ul>
                             <ul className="unstyled social-links">
-                                <li><a href="#"><img src="/media/icons/Instagram.png" alt="Instagram" /></a></li>
-                                <li><a href="#"><img src="/media/icons/Twitter.png" alt="Twitter" /></a></li>
-                                <li><a href="#"><img src="/media/icons/Facebook.png" alt="Facebook" /></a></li>
-                                <li><a href="#"><img src="/media/icons/Linkedin.png" alt="Linkedin" /></a></li>
+                                <li>
+                                    <a href="https://www.instagram.com/studentravel.uz?igsh=MWVrYnY3ZTA3eWE0aw==" target="_blank" rel="noopener noreferrer">
+                                        <img src="/media/icons/Instagram.png" alt="Instagram" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://t.me/studentraveluz" target="_blank" rel="noopener noreferrer">
+                                        <img src="/media/icons/Telegram.svg" alt="Telegram" />
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
