@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { API_BASE_URL } from '@/lib/api/config';
 
 interface TourCardProps {
     image: string;
@@ -28,7 +29,7 @@ export default function TourCard({ image, title, location, days, persons, price,
     return (
         <div className={`tour-card mb-32 ${className}`}>
             <Link href={href} className="image-box">
-                <img src={image} alt={title} className="tour-img" />
+                <img src={(API_BASE_URL + '/storage/' + image)} alt={title} className="tour-img" />
                 <div className="wishlist-icon" onClick={(e) => { e.preventDefault(); setWishlisted(!wishlisted); }}>
                     <i className={`fa-${wishlisted ? 'solid' : 'light'} fa-heart`}></i>
                 </div>
