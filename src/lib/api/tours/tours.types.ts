@@ -2,6 +2,7 @@ export interface TourLanguage {
     languageCode: string; // e.g. 'en', 'ru'
     title?: string;
     description?: string;
+    short_description?: string;
     departure?: string;
     destination?: string;
     [key: string]: any; // fallback

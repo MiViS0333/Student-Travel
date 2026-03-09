@@ -132,3 +132,371 @@
         width: clamp(24px, 1.66vw, 42px);
     }
 }
+
+/* WYSIWYG Content Styling */
+.wysiwyg {
+    word-break: break-word;
+    color: $black;
+
+    p {
+        margin-bottom: clamp(20px, 1.4vw, 32px);
+        line-height: 160%;
+        color: $light-black;
+        font-size: clamp(15px, 1.05vw, 18px);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-top: clamp(24px, 1.666vw, 32px);
+        margin-bottom: clamp(16px, 1.11vw, 24px);
+        color: $black;
+        font-family: $font-primary;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    h1 {
+        font-size: clamp(32px, 17.949vw, 140px);
+        font-weight: 900;
+        line-height: 120%;
+        letter-spacing: -0.125vw;
+
+        @include media-query(1199px) {
+            font-size: clamp(70px, 7.789vw, 80px);
+        }
+
+        @include media-query(991px) {
+            font-size: clamp(60px, 9.444vw, 70px);
+        }
+
+        @include media-query(767px) {
+            font-size: clamp(50px, 10.43vw, 60px);
+        }
+
+        @include media-query(575px) {
+            font-size: clamp(32px, 17.949vw, 40px);
+        }
+    }
+
+    h2 {
+        font-size: clamp(24px, 9vw, 80px);
+        font-weight: 700;
+        line-height: 125%;
+        letter-spacing: -0.035vw;
+
+        @include media-query(1199px) {
+            font-size: clamp(35px, 4.837vw, 50px);
+        }
+
+        @include media-query(991px) {
+            font-size: clamp(30px, 5.556vw, 40px);
+        }
+
+        @include media-query(767px) {
+            font-size: clamp(28px, 6.462vw, 35px);
+        }
+
+        @include media-query(575px) {
+            font-size: clamp(24px, 9vw, 32px);
+        }
+    }
+
+    h3 {
+        font-size: clamp(21px, 6.75vw, 60px);
+        font-weight: 700;
+        line-height: 120%;
+        letter-spacing: -0.027vw;
+
+        @include media-query(1199px) {
+            font-size: clamp(32px, 4.199vw, 40px);
+        }
+
+        @include media-query(991px) {
+            font-size: clamp(27px, 4.471vw, 35px);
+        }
+
+        @include media-query(767px) {
+            font-size: clamp(24px, 5.231vw, 30px);
+        }
+
+        @include media-query(575px) {
+            font-size: clamp(21px, 6.75vw, 28px);
+        }
+    }
+
+    h4 {
+        font-size: clamp(19px, 6.375vw, 44px);
+        font-weight: 700;
+        line-height: 120%;
+        letter-spacing: -0.02vw;
+
+        @include media-query(1199px) {
+            font-size: clamp(25.5px, 3.125vw, 34px);
+        }
+
+        @include media-query(991px) {
+            font-size: clamp(23px, 3.393vw, 27px);
+        }
+
+        @include media-query(767px) {
+            font-size: clamp(21px, 3.923vw, 23px);
+        }
+
+        @include media-query(575px) {
+            font-size: clamp(19px, 6.375vw, 21px);
+        }
+    }
+
+    h5 {
+        font-size: clamp(16px, 5.25vw, 32px);
+        font-weight: 700;
+        line-height: 130%;
+
+        @include media-query(1199px) {
+            font-size: clamp(22px, 2.539vw, 24px);
+        }
+
+        @include media-query(991px) {
+            font-size: clamp(20px, 2.738vw, 22px);
+        }
+
+        @include media-query(767px) {
+            font-size: clamp(19px, 3.438vw, 23px);
+        }
+
+        @include media-query(575px) {
+            font-size: clamp(16px, 5.25vw, 18px);
+        }
+    }
+
+    h6 {
+        font-size: clamp(14px, 4.325vw, 24px);
+        font-weight: 700;
+        line-height: 150%;
+        letter-spacing: 0.42px;
+
+        @include media-query(1199px) {
+            font-size: clamp(15.5px, 2.051vw, 17px);
+        }
+
+        @include media-query(991px) {
+            font-size: clamp(15px, 2.381vw, 16px);
+        }
+
+        @include media-query(767px) {
+            font-size: clamp(14.5px, 2.969vw, 16px);
+        }
+
+        @include media-query(575px) {
+            font-size: clamp(14px, 4.325vw, 15px);
+        }
+    }
+
+    ul,
+    ol {
+        margin-bottom: clamp(16px, 1.11vw, 24px);
+        padding-left: clamp(20px, 1.5vw, 32px);
+
+        li {
+            margin-bottom: clamp(8px, 0.55vw, 12px);
+            line-height: 150%;
+
+            &::marker {
+                color: $accent-1;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    ul {
+        list-style-type: disc;
+
+        ul {
+            list-style-type: circle;
+            margin-top: clamp(8px, 0.55vw, 12px);
+            margin-bottom: 0;
+
+            li::marker {
+                color: $black;
+            }
+        }
+    }
+
+    ol {
+        list-style-type: decimal;
+
+        ol {
+            list-style-type: lower-alpha;
+            margin-top: clamp(8px, 0.55vw, 12px);
+            margin-bottom: 0;
+        }
+    }
+
+    a {
+        color: $accent-1;
+        text-decoration: none;
+        position: relative;
+        transition: $transition;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: $accent-1;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        &:hover {
+            color: $black;
+
+            &::after {
+                transform: scaleX(1);
+                transform-origin: bottom left;
+                background-color: $black;
+            }
+        }
+    }
+
+    strong,
+    b {
+        font-family: $font-primary;
+        font-weight: 700;
+        color: $black;
+    }
+
+    em,
+    i {
+        font-style: italic;
+    }
+
+    blockquote {
+        margin: clamp(24px, 1.666vw, 40px) 0;
+        padding: clamp(16px, 1.11vw, 32px) clamp(24px, 1.66vw, 40px);
+        background: $lightest-gray;
+        border-left: clamp(4px, 0.25vw, 8px) solid $accent-1;
+        border-radius: clamp(12px, 1vw, 20px);
+        box-shadow: $shadow;
+
+        p {
+            margin-bottom: 0;
+            font-style: italic;
+            font-size: clamp(16px, 1.11vw, 22px);
+            color: $light-black;
+            position: relative;
+        }
+    }
+
+    img,
+    video {
+        max-width: 100%;
+        height: auto;
+        border-radius: clamp(12px, 1vw, 40px);
+        margin: clamp(24px, 1.666vw, 48px) 0;
+        display: block;
+        box-shadow: $shadow;
+    }
+
+    figure {
+        margin: clamp(24px, 1.666vw, 48px) 0;
+
+        img {
+            margin: 0;
+        }
+
+        figcaption {
+            margin-top: clamp(12px, 0.8vw, 16px);
+            font-size: clamp(12px, 0.833vw, 16px);
+            color: $dark-gray;
+            text-align: center;
+        }
+    }
+
+    iframe {
+        max-width: 100%;
+        border-radius: clamp(12px, 1vw, 40px);
+        margin: clamp(24px, 1.666vw, 48px) 0;
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        box-shadow: $shadow;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: clamp(32px, 2.22vw, 48px);
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: clamp(16px, 1.2vw, 24px);
+        overflow: hidden;
+
+        /* Glassmorphism effect */
+        background: rgba(255, 252, 250, 0.5);
+        box-shadow: $shadow;
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(205, 204, 203, 0.4);
+
+        /* Ensure table doesn't break out on small screens */
+        display: table;
+        white-space: normal;
+
+        @include media-query(991px) {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        th,
+        td {
+            padding: clamp(16px, 1.11vw, 24px) clamp(20px, 1.4vw, 32px);
+            border-bottom: 1px solid rgba(205, 204, 203, 0.3);
+            text-align: left;
+            vertical-align: middle;
+            color: $light-black;
+        }
+
+        th {
+            background: rgba($accent-1, 0.04);
+            font-weight: 600;
+            color: $black;
+            font-size: clamp(15px, 1.04vw, 18px);
+        }
+
+        tr:last-child {
+            td {
+                border-bottom: none;
+            }
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        tr:hover {
+            background: rgba($accent-1, 0.03);
+            transition: $transition;
+        }
+    }
+
+    hr {
+        margin: clamp(32px, 2.22vw, 64px) 0;
+        border: 0;
+        border-top: 1px solid $light-gray;
+    }
+}
