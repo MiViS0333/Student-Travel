@@ -13,7 +13,7 @@ import BlogsSlider from '@/components/ui/BlogsSlider';
 import GallerySlider from '@/components/ui/GallerySlider';
 import NiceSelect from '@/components/ui/NiceSelect';
 
-import { Tour } from '@/lib/api';
+import { Tour, Blog } from '@/lib/api';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,10 +36,11 @@ interface HomePageClientProps {
     departures: SelectOption[];
     destinations: SelectOption[];
     tourTypes: SelectOption[];
+    blogs: Blog[];
     locale: string;
 }
 
-export default function HomePageClient({ tours, departures, destinations: serverDestinations, tourTypes, locale }: HomePageClientProps) {
+export default function HomePageClient({ tours, departures, destinations: serverDestinations, tourTypes, blogs, locale }: HomePageClientProps) {
     const aboutRef = useRef<HTMLDivElement>(null);
     const heroRef = useRef<HTMLElement>(null);
 
@@ -247,7 +248,7 @@ export default function HomePageClient({ tours, departures, destinations: server
                 <TestimonialsSlider />
 
                 {/* Blogs */}
-                <BlogsSlider />
+                <BlogsSlider blogs={blogs} locale={locale} />
 
                 {/* Gallery */}
                 <GallerySlider />

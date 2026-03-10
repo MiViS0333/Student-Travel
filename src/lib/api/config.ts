@@ -14,4 +14,8 @@ export const API_ENDPOINTS = {
         types: '/tours/types',
         byId: (id: string) => `/tours/${id}`,
     },
+    blogs: {
+        list: '/blogs/',
+        byId: (id: string) => `/blogs/${id}`,
+    },
 };

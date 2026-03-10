@@ -4,17 +4,26 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import BlogCard from './BlogCard';
 
-const blogs = [
-    { image: '/media/blogs/blog_1.png', title: 'Идеи для идеального пикника', authorImg: '/media/users/author.png', authorName: 'Julia Fernandez' },
-    { image: '/media/blogs/blog_2.png', title: 'Полное руководство по пикникам', authorImg: '/media/users/author-2.png', authorName: 'Carlos Taylor' },
-    { image: '/media/blogs/blog_3.png', title: 'Лучшие места для отдыха', authorImg: '/media/users/author.png', authorName: 'Julia Fernandez' },
-    { image: '/media/blogs/blog_4.png', title: 'Вкусные рецепты для поездки', authorImg: '/media/users/author.png', authorName: 'Julia Fernandez' },
-    { image: '/media/blogs/blog_2.png', title: 'Полное руководство по пикникам', authorImg: '/media/users/author-2.png', authorName: 'Carlos Taylor' },
-];
+import { Blog } from '@/lib/api';
+
+interface BlogsSliderProps {
+    blogs: Blog[];
+    locale: string;
+}
 
 const defaultExcerpt = 'Узнайте больше в нашей новой статье, где мы делимся интересными фактами...';
 
-export default function BlogsSlider() {
+export default function BlogsSlider({ blogs, locale }: BlogsSliderProps) {
+    const getBlogTitle = (blog: Blog) => {
+        const langData = blog.languages?.find(l => l.languageCode === locale.toUpperCase());
+        return langData?.title || 'Unknown Title';
+    };
+
+    const getBlogExcerpt = (blog: Blog) => {
+        const langData = blog.languages?.find(l => l.languageCode === locale.toUpperCase());
+        return langData?.excerpt || defaultExcerpt;
+    };
+
     return (
         <section className="py-64">
             <div className="container-fluid">
@@ -38,19 +47,19 @@ export default function BlogsSlider() {
                         1399: { slidesPerView: 4 },
                     }}
                 >
-                    {blogs.map((b, i) => (
-                        <SwiperSlide key={i}>
+                    {blogs && blogs.length > 0 ? blogs.map((b, i) => (
+                        <SwiperSlide key={b.id || i}>
                             <BlogCard
-                                image={b.image}
-                                date="12-Oct-2024"
-                                title={b.title}
-                                excerpt={defaultExcerpt}
-                                authorImg={b.authorImg}
-                                authorName={b.authorName}
-                                href={`/blog/${i + 1}`}
+                                image={b.image || '/media/blogs/blog_1.png'}
+                                date={b.createdAt ? new Date(b.createdAt).toLocaleDateString() : '12-Oct-2024'}
+                                title={getBlogTitle(b)}
+                                excerpt={getBlogExcerpt(b)}
+                                href={`/${locale}/blog/${b.id || i}`}
                             />
                         </SwiperSlide>
-                    ))}
+                    )) : (
+                        <div className="text-center py-4">Нет доступных статей</div>
+                    )}
                 </Swiper>
             </div>
         </section>

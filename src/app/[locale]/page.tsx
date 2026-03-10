@@ -1,4 +1,4 @@
-import { toursService, TourLocationsResponse, TourType, ToursResponse } from '@/lib/api';
+import { toursService, blogsService, TourLocationsResponse, TourType, ToursResponse, BlogsResponse } from '@/lib/api';
 import HomePageClient from './HomePageClient';
 
 interface PageProps {
@@ -13,22 +13,24 @@ export default async function HomePage({ params }: PageProps) {
   let toursData: ToursResponse | null = null;
   let locationsData: TourLocationsResponse | null = null;
   let tourTypesData: TourType[] | null = null;
+  let blogsData: BlogsResponse | null = null;
 
   try {
     // Fetch data in parallel on the server
-    const [toursRes, locationsRes, tourTypesRes] = await Promise.allSettled([
+    const [toursRes, locationsRes, tourTypesRes, blogsRes] = await Promise.allSettled([
       toursService.getTours({ lang: locale, limit: 4 }), // Fetch 4 tours for the homepage
       toursService.getLocations(locale),
       toursService.getTourTypes(locale),
+      blogsService.getBlogs({ lang: locale, limit: 5 }), // Fetch latest blogs
     ]);
 
     if (toursRes.status === 'fulfilled') toursData = toursRes.value;
     if (locationsRes.status === 'fulfilled') locationsData = locationsRes.value;
     if (tourTypesRes.status === 'fulfilled') tourTypesData = tourTypesRes.value;
+    if (blogsRes.status === 'fulfilled') blogsData = blogsRes.value;
   } catch (error) {
     console.error('Failed to fetch home page data', error);
   }
-
   // Transform data to expected format for Selects
   const departures = locationsData?.departures
     ? locationsData.departures.map(d => ({ value: d, label: d }))
@@ -46,6 +48,7 @@ export default async function HomePage({ params }: PageProps) {
     : [];
 
   const tours = toursData?.data || [];
+  const blogs = blogsData?.data || [];
 
   return (
     <HomePageClient
@@ -53,6 +56,7 @@ export default async function HomePage({ params }: PageProps) {
       departures={departures}
       destinations={destinations}
       tourTypes={tourTypes}
+      blogs={blogs}
       locale={locale.toLowerCase()}
     />
   );

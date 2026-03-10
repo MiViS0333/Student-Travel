@@ -5,12 +5,10 @@ interface BlogCardProps {
     date: string;
     title: string;
     excerpt: string;
-    authorImg: string;
-    authorName: string;
     href: string;
 }
 
-export default function BlogCard({ image, date, title, excerpt, authorImg, authorName, href }: BlogCardProps) {
+export default function BlogCard({ image, date, title, excerpt, href }: BlogCardProps) {
     return (
         <div className="blog-card mb-32 box-blur-bg">
             <div className="content b-radius-20">
@@ -21,11 +19,7 @@ export default function BlogCard({ image, date, title, excerpt, authorImg, autho
                 <div className="text-block">
                     <Link href={href} className="mb-16 h6">{title}</Link>
                     <p className="mb-40">{excerpt}</p>
-                    <div className="bottom-row">
-                        <div className="author">
-                            <img src={authorImg} alt={authorName} className="author-img" />
-                            <p>{authorName}</p>
-                        </div>
+                    <div className="bottom-row justify-content-end">
                         <Link href={href} className="ui-link-arrow">
                             <i className="fa-light fa-arrow-right arrow"></i>
                         </Link>

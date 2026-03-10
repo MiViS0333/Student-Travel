@@ -1,7 +1,7 @@
 'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, FreeMode } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
 
 const galleryImages = [
     '/media/gallery/sdvb.png',
@@ -28,8 +28,9 @@ export default function GallerySlider() {
             <Swiper
                 className="gallery-slider"
                 style={{ pointerEvents: 'none' }}
-                modules={[Autoplay, FreeMode]}
-                freeMode={true}
+                modules={[Autoplay]}
+                observer={true}
+                observeParents={true}
                 loop={true}
                 autoplay={{ delay: 0, disableOnInteraction: false }}
                 speed={6000}
