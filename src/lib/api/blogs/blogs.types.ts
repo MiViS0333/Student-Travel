@@ -11,7 +11,7 @@ export interface BlogLanguage {
 
 export interface Blog {
     id: string;
-    image?: string;
+    card_image?: string;
     authorName?: string;
     authorImg?: string;
     createdAt?: string;

@@ -1,71 +1,83 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import PageHeader from '@/components/shared/PageHeader';
 import BlogsSlider from '@/components/ui/BlogsSlider';
+import { blogsService } from '@/lib/api';
+import { API_BASE_URL } from '@/lib/api/config';
 
-export default function BlogDetailPage() {
-    return (
-        <>
-            <PageHeader title="BLOG DETAIL" />
+interface PageProps {
+    params: Promise<{ locale: string; id: string }>;
+}
 
-            <section className="py-64">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-xl-8 col-lg-10 mx-auto">
-                            <article className="blog-detail">
-                                <div className="box-blur-bg mb-32">
-                                    <img src="/media/blogs/blog_1.png" alt="Blog" className="b-radius-20 w-100" />
-                                </div>
-                                <div className="blog-meta mb-24">
-                                    <span className="date">12-Oct-2024</span>
-                                    <span className="author">
-                                        <img src="/media/users/author.png" alt="" className="author-img" />
-                                        Julia Fernandez
-                                    </span>
-                                </div>
-                                <h2 className="mb-24">PERFECT OUTDOOR PICNIC IDEAS</h2>
-                                <p className="mb-24">
-                                    Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque tincidunt
-                                    erat porttitor. Sed sed in suscipit lorem. Ut felis velit tristique posuere tellus sed. Arcu
-                                    convallis nam massa leo viverra volutpat facilisis. Nulla sagittis nam pellentesque sagittis in
-                                    turpis nulla et. Varius felis pellentesque molestie justo semper id. Donec tortor dui et etiam.
-                                    Vitae fermentum nibh nam ac aliquet fringilla ante integer.
-                                </p>
-                                <p className="mb-24">
-                                    Convallis vitae commodo quis a integer. Lectus facilisis non vel vel sit. Turpis enim feugiat
-                                    tincidunt neque cursus proin amet eleifend sagittis. Magna eget facilisi posuere dignissim neque.
-                                    Scelerisque adipiscing eget nisl ut molestie. Nulla sagittis nam pellentesque sagittis in turpis
-                                    nulla et.
-                                </p>
-                                <blockquote className="mb-24">
-                                    <p>
-                                        &ldquo;Lorem ipsum dolor sit amet consectetur. Aliquam in neque eleifend placerat scelerisque
-                                        tincidunt erat porttitor. Sed sed in suscipit lorem.&rdquo;
-                                    </p>
-                                </blockquote>
-                                <p className="mb-48">
-                                    Lorem ipsum dolor sit amet consectetur. Ultrices pretium malesuada nisi arcu egestas at ac
-                                    consectetur enim. Sollicitudin ultrices morbi adipiscing scelerisque accumsan erat quam pharetra
-                                    quisque. In sem gravida in magna. Diam sodales sodales malesuada senectus enim nullam.
-                                </p>
-                                <div className="row mb-48">
-                                    <div className="col-6">
-                                        <img src="/media/blogs/blog_2.png" alt="" className="b-radius-20 w-100" />
+export default async function BlogDetailPage({ params }: PageProps) {
+    const resolvedParams = await params;
+    const locale = (resolvedParams.locale || 'ru').toUpperCase();
+    const id = resolvedParams.id;
+
+    try {
+        const [blog, recentBlogsRes] = await Promise.all([
+            blogsService.getBlogById(id, locale),
+            blogsService.getBlogs({ lang: locale, limit: 10 })
+        ]);
+
+        if (!blog) {
+            return notFound();
+        }
+
+        const langData = blog.languages?.find(l => l.languageCode === locale) || blog.languages?.[0];
+        const title = langData?.title || 'BLOG DETAIL';
+        const content = langData?.content || '';
+        const excerpt = langData?.excerpt || '';
+
+        const getImageUrl = (path: string | null | undefined) => {
+            if (!path) return '/media/blogs/blog_1.png';
+            if (path.startsWith('http')) return path;
+            return `${API_BASE_URL}/storage/${path}`;
+        };
+
+        const mainImage = getImageUrl(blog.card_image);
+        const date = blog.createdAt ? new Date(blog.createdAt).toLocaleDateString(resolvedParams.locale || 'ru', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        }) : '';
+
+        return (
+            <>
+                <PageHeader title={title.toUpperCase()} />
+
+                <section className="py-64">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-xl-8 col-lg-10 mx-auto">
+                                <article className="blog-detail">
+                                    <div className="box-blur-bg mb-32">
+                                        <img style={{ aspectRatio: '16/9' }} src={mainImage} alt={title} className="b-radius-20 w-100" />
                                     </div>
-                                    <div className="col-6">
-                                        <img src="/media/blogs/blog_3.png" alt="" className="b-radius-20 w-100" />
+                                    <div className="blog-meta mb-24">
+                                        {date && <span className="date">{date}</span>}
                                     </div>
-                                </div>
-                                <p className="mb-48">
-                                    Convallis vitae commodo quis a integer. Lectus facilisis non vel vel sit. Turpis enim feugiat
-                                    tincidunt neque cursus proin amet eleifend sagittis. Magna eget facilisi posuere dignissim neque.
-                                </p>
-                            </article>
+                                    <h2 className="mb-24">{title}</h2>
+
+                                    {content ? (
+                                        <div
+                                            dangerouslySetInnerHTML={{ __html: content }}
+                                            className="wysiwyg mb-48"
+                                        />
+                                    ) : (
+                                        <p className="mb-48">{excerpt}</p>
+                                    )}
+                                </article>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <BlogsSlider />
-        </>
-    );
+                <BlogsSlider blogs={recentBlogsRes.data || []} locale={resolvedParams.locale || 'ru'} />
+            </>
+        );
+    } catch (error) {
+        console.error('Failed to fetch blog details', error);
+        return notFound();
+    }
 }
