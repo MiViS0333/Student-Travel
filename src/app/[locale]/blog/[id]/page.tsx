@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PageHeader from '@/components/shared/PageHeader';
 import BlogsSlider from '@/components/ui/BlogsSlider';
+import TourCard from '@/components/ui/TourCard';
 import { blogsService } from '@/lib/api';
 import { API_BASE_URL } from '@/lib/api/config';
 
@@ -42,6 +43,28 @@ export default async function BlogDetailPage({ params }: PageProps) {
             year: 'numeric'
         }) : '';
 
+        const getDays = (start: string | null | undefined, end: string | null | undefined) => {
+            if (!start || !end) return 0;
+            const s = new Date(start).getTime();
+            const e = new Date(end).getTime();
+            return Math.ceil(Math.abs(e - s) / (1000 * 60 * 60 * 24));
+        };
+
+        const tour = blog.tour;
+        let tourData = null;
+        if (tour) {
+            const tourLangData = tour.languages?.find(l => l.languageCode === locale) || tour.languages?.[0];
+            tourData = {
+                image: tour.card_image || tour.image || '',
+                title: tourLangData?.title || '',
+                location: tourLangData?.destination || '',
+                days: getDays(tour.departure_time, tour.return_time),
+                persons: tour.max_person || 0,
+                price: tour.price || 0,
+                href: `/${locale.toLowerCase()}/tours/${tour.id}`
+            };
+        }
+
         return (
             <>
                 <PageHeader title={title.toUpperCase()} />
@@ -49,13 +72,13 @@ export default async function BlogDetailPage({ params }: PageProps) {
                 <section className="py-64">
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-xl-8 col-lg-10 mx-auto">
+                            <div className={`col-xl-${tourData ? '8' : '8 mx-auto'} col-lg-${tourData ? '8' : '10 mx-auto'}`}>
                                 <article className="blog-detail">
                                     <div className="box-blur-bg mb-32">
-                                        <img style={{ aspectRatio: '16/9' }} src={mainImage} alt={title} className="b-radius-20 w-100" />
-                                    </div>
-                                    <div className="blog-meta mb-24">
-                                        {date && <span className="date">{date}</span>}
+                                        <div className="position-relative">
+                                            {date && <span className="date">{date}</span>}
+                                            <img style={{ aspectRatio: '16/9', objectFit: 'cover' }} src={mainImage} alt={title} className="b-radius-20 w-100" />
+                                        </div>
                                     </div>
                                     <h2 className="mb-24">{title}</h2>
 
@@ -69,6 +92,15 @@ export default async function BlogDetailPage({ params }: PageProps) {
                                     )}
                                 </article>
                             </div>
+                            
+                            {tourData && (
+                                <div className="col-xl-4 col-lg-4">
+                                    <aside className="sticky-top" style={{ top: '120px' }}>
+                                        <h4 className="mb-32">{locale === 'RU' ? 'Связанный тур' : 'Related Tour'}</h4>
+                                        <TourCard {...tourData} />
+                                    </aside>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </section>

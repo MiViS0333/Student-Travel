@@ -1,3 +1,5 @@
+import { Tour } from '../tours/tours.types';
+
 export interface BlogLanguage {
     id: string;
     languageCode: string;
@@ -17,6 +19,8 @@ export interface Blog {
     createdAt?: string;
     updatedAt?: string;
     languages?: BlogLanguage[];
+    tourId?: string;
+    tour?: Tour;
 }
 
 export interface GetBlogsParams {

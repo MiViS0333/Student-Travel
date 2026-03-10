@@ -14,7 +14,7 @@ export default function BlogCard({ image, date, title, excerpt, href }: BlogCard
             <div className="content b-radius-20">
                 <span className="date">{date}</span>
                 <Link href={href} className="image-block">
-                    <img src={image} alt={title} className="blog-img" />
+                    <img style={{ aspectRatio: '16/9', objectFit: 'cover' }} src={image} alt={title} className="blog-img" />
                 </Link>
                 <div className="text-block">
                     <Link href={href} className="mb-16 h6">{title}</Link>

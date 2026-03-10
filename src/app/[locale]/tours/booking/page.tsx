@@ -1,167 +1,233 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import PageHeader from '@/components/shared/PageHeader';
 import { IMaskInput } from 'react-imask';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import NiceSelect from '@/components/ui/NiceSelect';
+import gsap from 'gsap';
 
-export default function TourBookingPage() {
+function BookingFormMain() {
     const { t } = useTranslation();
+    const searchParams = useSearchParams();
     const [formData, setFormData] = useState({
-        firstName: '',
+        tourId: searchParams.get('tourId') || '',
+        name: '',
         lastName: '',
         email: '',
         phone: '',
         destination: '',
-        persons: '1',
-        date: '',
-        message: '',
+        departure_date: '',
+        number_of_people: 1,
+        comments: '',
     });
 
+    useEffect(() => {
+        const tl = gsap.timeline();
+        tl.fromTo('.promo-column', { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' })
+            .fromTo('.booking-form-wrapper', { x: 50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.6');
+    }, []);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData(prev => ({ 
+            ...prev, 
+            [name]: name === 'number_of_people' ? parseInt(value) || 1 : value 
+        }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle booking submission
-        toast.success(t('booking_success'));
-        setFormData({
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            destination: '',
-            persons: '1',
-            date: '',
-            message: '',
-        });
+        try {
+            // Here would be the API call
+            console.log('Submitting booking data:', formData);
+            toast.success(t('booking_success'));
+            setFormData({
+                tourId: searchParams.get('tourId') || '',
+                name: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                destination: '',
+                departure_date: '',
+                number_of_people: 1,
+                comments: '',
+            });
+        } catch (error) {
+            toast.error(t('booking_error'));
+        }
     };
 
     return (
-        <>
-            <PageHeader title="БРОНИРОВАНИЕ ТУРА" />
+        <section className="booking-section overflow-hidden position-relative">
+            {/* Ultra-Modern Mesh Background */}
+            <div className="mesh-bg">
+                <div className="blob one"></div>
+                <div className="blob two"></div>
+            </div>
 
-            <section className="py-64">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-xl-8 col-lg-10 mx-auto">
-                            <div className="box-blur-bg">
-                                <div className="booking-form b-radius-20 bg-white p-48">
-                                    <h3 className="mb-32">ЗАБРОНИРУЙТЕ ТУР</h3>
-                                    <form onSubmit={handleSubmit}>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <div className="form-group mb-24">
-                                                    <label className="mb-8 h6">Имя</label>
-                                                    <input type="text" name="firstName" className="cus-form-control" value={formData.firstName}
-                                                        onChange={handleChange} required placeholder="Имя" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" title="Допускаются только буквы" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group mb-24">
-                                                    <label className="mb-8 h6">Фамилия</label>
-                                                    <input type="text" name="lastName" className="cus-form-control" value={formData.lastName}
-                                                        onChange={handleChange} required placeholder="Фамилия" pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" title="Допускаются только буквы" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group mb-24">
-                                                    <label className="mb-8 h6">Email</label>
-                                                    <input type="email" name="email" className="cus-form-control" value={formData.email}
-                                                        onChange={handleChange} required placeholder="Email адрес" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group mb-24">
-                                                    <label className="mb-8 h6">Телефон</label>
-                                                    <IMaskInput
-                                                        mask="+{998} (00) 000-00-00"
-                                                        name="phone"
-                                                        className="cus-form-control"
-                                                        value={formData.phone}
-                                                        onAccept={(value: string) => setFormData({ ...formData, phone: value })}
-                                                        required
-                                                        placeholder="+998 (__) ___-__-__"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group mb-24">
-                                                    <label className="mb-8 h6">Направление</label>
-                                                    <select name="destination" className="cus-form-control" value={formData.destination}
-                                                        onChange={handleChange} required>
-                                                        <option value="" disabled>Выберите направление</option>
-                                                        <option value="kyoto">Киото, Япония</option>
-                                                        <option value="bali">Бали, Индонезия</option>
-                                                        <option value="paris">Париж, Франция</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group mb-24">
-                                                    <label className="mb-8 h6">Дата поездки</label>
-                                                    <div className="row g-3">
-                                                        <div className="col-6">
-                                                            <NiceSelect
-                                                                name="day"
-                                                                placeholder="ДД"
-                                                                options={Array.from({ length: 31 }, (_, i) => ({
-                                                                    value: String(i + 1).padStart(2, '0'),
-                                                                    label: String(i + 1).padStart(2, '0')
-                                                                }))}
-                                                                onChange={(val: string) => setFormData(prev => ({ ...prev, date: `${prev.date.split('-')[0] || ''}-${prev.date.split('-')[1] || ''}-${val}` }))}
-                                                            />
-                                                        </div>
-                                                        <div className="col-6">
-                                                            <NiceSelect
-                                                                name="month"
-                                                                placeholder="ММ"
-                                                                options={Object.entries(t('months', { returnObjects: true }) as Record<string, string>).map(([key, value]) => ({
-                                                                    value: key,
-                                                                    label: value
-                                                                }))}
-                                                                onChange={(val: string) => setFormData(prev => ({ ...prev, date: `${prev.date.split('-')[0] || ''}-${val}-${prev.date.split('-')[2] || ''}` }))}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group mb-24">
-                                                    <label className="mb-8 h6">Количество человек</label>
-                                                    <select name="persons" className="cus-form-control" value={formData.persons}
-                                                        onChange={handleChange}>
-                                                        <option value="1">1 Человек</option>
-                                                        <option value="2">2 Человека</option>
-                                                        <option value="3">3 Человека</option>
-                                                        <option value="4">4 Человека</option>
-                                                        <option value="5">5+ Человек</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div className="col-12">
-                                                <div className="form-group mb-32">
-                                                    <label className="mb-8 h6">Дополнительное сообщение</label>
-                                                    <textarea name="message" className="cus-form-control textarea" value={formData.message}
-                                                        onChange={handleChange} rows={5} placeholder="Ваше сообщение..."></textarea>
-                                                </div>
-                                            </div>
-                                            <div className="col-12">
-                                                <div className="ui-btn ui-btn-primary">
-                                                    <button type="submit" data-hover="ЗАБРОНИРОВАТЬ">ЗАБРОНИРОВАТЬ</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+            <div className="container position-relative z-index-1">
+                <div className="row g-5 align-items-stretch">
+                    {/* Left Column: Bento Grid Features */}
+                    <div className="col-lg-5 promo-column">
+                        <div className="bento-grid h-100">
+                            <div className="bento-item big">
+                                <div>
+                                    <span className="badge bg-white-soft color-white mb-16 br-30 text-uppercase fw-bold ls-1 px-16 py-8">
+                                        {t('booking.badge') || 'Student Travel'}
+                                    </span>
+                                    <h2 className="display-4 fw-900 mb-20 text-white">{t('booking.promo_title')}</h2>
+                                    <p className="lead color-white opacity-75">{t('booking.promo_text')}</p>
+                                </div>
+                            </div>
+
+                            <div className="bento-item">
+                                <div className="icon-box bg-primary-soft color-primary d-flex align-items-center justify-content-center br-15 mb-20" style={{ width: '48px', height: '48px' }}>
+                                    <i className="fa-light fa-map-location-dot fa-lg"></i>
+                                </div>
+                                <div>
+                                    <h5 className="fw-800 mb-8">{t('booking.feature_1_title')}</h5>
+                                    <p className="small color-dark-gray mb-0">{t('booking.feature_1_text')}</p>
+                                </div>
+                            </div>
+
+                            <div className="bento-item">
+                                <div className="icon-box bg-primary-soft color-primary d-flex align-items-center justify-content-center br-15 mb-20" style={{ width: '48px', height: '48px' }}>
+                                    <i className="fa-light fa-user-tie fa-lg"></i>
+                                </div>
+                                <div>
+                                    <h5 className="fw-800 mb-8">{t('booking.feature_2_title')}</h5>
+                                    <p className="small color-dark-gray mb-0">{t('booking.feature_2_text')}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    {/* Right Column: Neo-Glass Form */}
+                    <div className="col-lg-7 booking-form-wrapper">
+                        <div className="neo-glass p-40 p-lg-80 h-100">
+                            <div className="mb-48">
+                                <h3 className="fw-900 fs-2 mb-12">{t('booking.form_title')}</h3>
+                                <p className="color-dark-gray">{t('booking.form_subtitle') || 'Enter your details to secure your spot'}</p>
+                            </div>
+
+                            <form onSubmit={handleSubmit} className="row g-4">
+                                <div className="col-md-6">
+                                    <div className="modern-field">
+                                        <label>{t('booking.first_name')}</label>
+                                        <input type="text" name="name" className="form-control" 
+                                            value={formData.name} onChange={handleChange} required placeholder="John" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="modern-field">
+                                        <label>{t('booking.last_name')}</label>
+                                        <input type="text" name="lastName" className="form-control" 
+                                            value={formData.lastName} onChange={handleChange} required placeholder="Doe" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="modern-field">
+                                        <label>{t('booking.email')}</label>
+                                        <input type="email" name="email" className="form-control" 
+                                            value={formData.email} onChange={handleChange} required placeholder="john@example.com" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="modern-field">
+                                        <label>{t('booking.phone')}</label>
+                                        <IMaskInput
+                                            mask="+{998} (00) 000-00-00"
+                                            name="phone"
+                                            className="form-control"
+                                            value={formData.phone}
+                                            onAccept={(value: string) => setFormData(prev => ({ ...prev, phone: value }))}
+                                            required
+                                            placeholder="+998 (__)"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-12">
+                                    <div className="modern-field">
+                                        <label>{t('booking.destination')}</label>
+                                        <NiceSelect
+                                            name="destination"
+                                            placeholder={t('booking.select_destination')}
+                                            options={[
+                                                { value: 'kyoto', label: 'Kyoto, Japan' },
+                                                { value: 'bali', label: 'Bali, Indonesia' },
+                                                { value: 'paris', label: 'Paris, France' },
+                                            ]}
+                                            onChange={(val) => setFormData(prev => ({ ...prev, destination: val }))}
+                                            defaultValue={formData.destination}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="modern-field">
+                                        <label>{t('booking.travel_date')}</label>
+                                        <input 
+                                            type="date" 
+                                            name="departure_date" 
+                                            className="form-control"
+                                            value={formData.departure_date}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="modern-field">
+                                        <label>{t('booking.persons')}</label>
+                                        <NiceSelect
+                                            name="number_of_people"
+                                            placeholder={t('booking.persons')}
+                                            options={[
+                                                { value: '1', label: '1 Guest' },
+                                                { value: '2', label: '2 Guests' },
+                                                { value: '3', label: '3 Guests' },
+                                                { value: '4', label: '4 Guests' },
+                                                { value: '5', label: '5+ Guests' },
+                                            ]}
+                                            onChange={(val) => setFormData(prev => ({ ...prev, number_of_people: parseInt(val) }))}
+                                            defaultValue={String(formData.number_of_people)}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-12">
+                                    <div className="modern-field">
+                                        <label>{t('booking.message')}</label>
+                                        <textarea name="comments" className="form-control" 
+                                            value={formData.comments} onChange={handleChange} rows={3} 
+                                            placeholder={t('booking.message_placeholder')} style={{ height: 'auto' }}></textarea>
+                                    </div>
+                                </div>
+                                <div className="col-12 mt-32">
+                                    <button type="submit" className="btn-premium">
+                                        {t('booking.submit') || 'Confirm Booking'}
+                                        <i className="fa-light fa-arrow-right-long ms-12"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </section>
-        </>
+            </div>
+        </section>
     );
 }
+
+export default function TourBookingPage() {
+    const { t } = useTranslation();
+    return (
+        <main className="bg-white">
+            <PageHeader title={t('booking.page_title')} />
+            <Suspense fallback={<div className="py-80 text-center"><div className="spinner-border text-primary" role="status"></div></div>}>
+                <BookingFormMain />
+            </Suspense>
+        </main>
+    );
+}
+

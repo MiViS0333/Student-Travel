@@ -4,24 +4,26 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import BlogCard from './BlogCard';
 
-import { Blog } from '@/lib/api';
+import { API_BASE_URL, Blog } from '@/lib/api';
 
 interface BlogsSliderProps {
     blogs: Blog[];
     locale: string;
 }
 
-const defaultExcerpt = 'Узнайте больше в нашей новой статье, где мы делимся интересными фактами...';
-
 export default function BlogsSlider({ blogs, locale }: BlogsSliderProps) {
     const getBlogTitle = (blog: Blog) => {
         const langData = blog.languages?.find(l => l.languageCode === locale.toUpperCase());
         return langData?.title || 'Unknown Title';
     };
-
+    const getImageUrl = (path: string | null | undefined) => {
+        if (!path) return '/media/blogs/blog_1.png';
+        if (path.startsWith('http')) return path;
+        return `${API_BASE_URL}/storage/${path}`;
+    };
     const getBlogExcerpt = (blog: Blog) => {
         const langData = blog.languages?.find(l => l.languageCode === locale.toUpperCase());
-        return langData?.excerpt || defaultExcerpt;
+        return langData?.excerpt || '';
     };
 
     return (
@@ -50,7 +52,7 @@ export default function BlogsSlider({ blogs, locale }: BlogsSliderProps) {
                     {blogs && blogs.length > 0 ? blogs.map((b, i) => (
                         <SwiperSlide key={b.id || i}>
                             <BlogCard
-                                image={b.image || '/media/blogs/blog_1.png'}
+                                image={getImageUrl(b.card_image)}
                                 date={b.createdAt ? new Date(b.createdAt).toLocaleDateString() : '12-Oct-2024'}
                                 title={getBlogTitle(b)}
                                 excerpt={getBlogExcerpt(b)}
