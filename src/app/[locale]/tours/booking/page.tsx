@@ -8,8 +8,13 @@ import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import NiceSelect from '@/components/ui/NiceSelect';
 import gsap from 'gsap';
+import { bookingsService } from '@/lib/api';
 
-function BookingFormMain() {
+interface BookingFormMainProps {
+    destinations: { value: string; label: string }[];
+}
+
+function BookingFormMain({ destinations }: BookingFormMainProps) {
     const { t } = useTranslation(['booking', 'common']);
     const searchParams = useSearchParams();
     const [formData, setFormData] = useState({
@@ -38,12 +43,46 @@ function BookingFormMain() {
         }));
     };
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        
+        // Basic validation
+        if (!formData.name || !formData.departure_date || !formData.number_of_people) {
+            toast.error(t('fill_required_fields', { ns: 'common', defaultValue: 'Please fill all required fields' }));
+            return;
+        }
+
+        setIsSubmitting(true);
+        const toastId = toast.loading(t('submitting', { ns: 'common', defaultValue: 'Submitting your request...' }));
+
         try {
-            // Here would be the API call
-            console.log('Submitting booking data:', formData);
-            toast.success(t('booking_success'));
+            // Format departure_date to ISO 8601 string as required by the backend
+            let formattedDate = formData.departure_date;
+            if (formattedDate) {
+                formattedDate = new Date(formattedDate).toISOString();
+            }
+
+            const payload: any = {
+                name: formData.name,
+                lastName: formData.lastName || undefined,
+                email: formData.email || undefined,
+                phone: formData.phone || undefined,
+                destination: formData.destination || undefined,
+                departure_date: formattedDate,
+                number_of_people: formData.number_of_people,
+                comments: formData.comments || undefined,
+            };
+
+            if (formData.tourId) {
+                payload.tourId = formData.tourId;
+            }
+
+            await bookingsService.createBooking(payload);
+
+            // Success
+            toast.success(t('booking_success', { ns: 'booking', defaultValue: 'Booking successful!' }), { id: toastId });
             setFormData({
                 tourId: searchParams.get('tourId') || '',
                 name: '',
@@ -55,8 +94,11 @@ function BookingFormMain() {
                 number_of_people: 1,
                 comments: '',
             });
-        } catch (error) {
-            toast.error(t('form_error', { ns: 'common' }));
+        } catch (error: any) {
+            console.error("Booking error details:", error);
+            toast.error(error.message || t('form_error', { ns: 'common', defaultValue: 'An error occurred while submitting.' }), { id: toastId });
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -155,11 +197,7 @@ function BookingFormMain() {
                                         <NiceSelect
                                             name="destination"
                                             placeholder={t('select_destination', { ns: 'booking' })}
-                                            options={[
-                                                { value: 'kyoto', label: 'Kyoto, Japan' },
-                                                { value: 'bali', label: 'Bali, Indonesia' },
-                                                { value: 'paris', label: 'Paris, France' },
-                                            ]}
+                                            options={destinations}
                                             onChange={(val) => setFormData(prev => ({ ...prev, destination: val }))}
                                             defaultValue={formData.destination}
                                         />
@@ -205,9 +243,18 @@ function BookingFormMain() {
                                     </div>
                                 </div>
                                 <div className="col-12 mt-32">
-                                    <button type="submit" className="btn-premium">
-                                        {t('submit', { ns: 'booking' })}
-                                        <i className="fa-light fa-arrow-right-long ms-12"></i>
+                                    <button type="submit" className="btn-premium" disabled={isSubmitting}>
+                                        {isSubmitting ? (
+                                            <>
+                                                <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                {t('submitting', { ns: 'common', defaultValue: 'Submitting...' })}
+                                            </>
+                                        ) : (
+                                            <>
+                                                {t('submit', { ns: 'booking' })}
+                                                <i className="fa-light fa-arrow-right-long ms-12"></i>
+                                            </>
+                                        )}
                                     </button>
                                 </div>
                             </form>
@@ -219,13 +266,51 @@ function BookingFormMain() {
     );
 }
 
-export default function TourBookingPage() {
+interface PageProps {
+    params: Promise<{ locale: string }>;
+}
+
+export default function TourBookingPageWrapper({ params }: PageProps) {
+    const [destinations, setDestinations] = useState<{ value: string; label: string }[]>([]);
+
+    useEffect(() => {
+        let isMounted = true;
+        
+        async function fetchDestinations() {
+            try {
+                // Determine locale asynchronously 
+                const resolvedParams = await params;
+                const locale = (resolvedParams.locale || 'ru').toUpperCase();
+                
+                // Directly fetch from API inside client component
+                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+                const res = await fetch(`${apiUrl}/tours/locations?lang=${locale}`);
+                
+                if (res.ok && isMounted) {
+                    const data = await res.json();
+                    if (data && data.destinations) {
+                        const formatted = data.destinations.map((d: string) => ({ value: d, label: d }));
+                        setDestinations(formatted);
+                    }
+                }
+            } catch (error) {
+                console.error("Failed to fetch locations:", error);
+            }
+        }
+        
+        fetchDestinations();
+        
+        return () => {
+            isMounted = false;
+        };
+    }, [params]);
+
     const { t } = useTranslation('booking');
     return (
         <main className="bg-white">
             <PageHeader title={t('page_title')} />
             <Suspense fallback={<div className="py-80 text-center"><div className="spinner-border text-primary" role="status"></div></div>}>
-                <BookingFormMain />
+                <BookingFormMain destinations={destinations} />
             </Suspense>
         </main>
     );

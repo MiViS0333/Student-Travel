@@ -5,7 +5,7 @@ import { IMaskInput } from 'react-imask';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import NiceSelect from '@/components/ui/NiceSelect';
-import { Tour } from '@/lib/api';
+import { Tour, bookingsService } from '@/lib/api';
 import { API_BASE_URL } from '@/lib/api/config';
 
 interface TourDetailClientProps {
@@ -14,10 +14,60 @@ interface TourDetailClientProps {
 }
 
 export default function TourDetailClient({ tour, locale }: TourDetailClientProps) {
-    const { t } = useTranslation('tours');
+    const { t } = useTranslation(['tours', 'booking', 'common']);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
     const [galleries, setGalleries] = useState<string[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    
+    const [bookingData, setBookingData] = useState({
+        departure_date: '',
+        name: '',
+        lastName: '',
+        phone: '',
+        email: '',
+        number_of_people: 1,
+        comments: '',
+    });
+
+    const handleBookingSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        if (!bookingData.departure_date || !bookingData.name || !bookingData.number_of_people) {
+            toast.error(t('fill_required_fields', { ns: 'common', defaultValue: 'Please fill all required fields' }));
+            return;
+        }
+
+        setIsSubmitting(true);
+        const toastId = toast.loading(t('submitting', { ns: 'common', defaultValue: 'Submitting your request...' }));
+
+        try {
+            const formattedDate = new Date(bookingData.departure_date).toISOString();
+
+            await bookingsService.createBooking({
+                tourId: tour.id,
+                name: bookingData.name,
+                lastName: bookingData.lastName || undefined,
+                email: bookingData.email || undefined,
+                phone: bookingData.phone || undefined,
+                number_of_people: bookingData.number_of_people,
+                departure_date: formattedDate,
+                comments: bookingData.comments || undefined,
+                destination: tour.languages?.[0]?.destination || undefined
+            });
+
+            toast.success(t('booking_success', { ns: 'booking', defaultValue: 'Booking successful!' }), { id: toastId });
+            setIsPopupOpen(false);
+            setBookingData({
+                 departure_date: '', name: '', lastName: '', phone: '', email: '', number_of_people: 1, comments: ''
+            });
+        } catch (error: any) {
+            console.error("Booking error details:", error);
+            toast.error(error.message || t('form_error', { ns: 'common', defaultValue: 'An error occurred while submitting.' }), { id: toastId });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     useEffect(() => {
         setIsMounted(true);
@@ -171,67 +221,121 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
                 </div>
             </div>
             <div className={`booking-popup-overlay ${isPopupOpen ? 'active' : ''}`} onClick={() => setIsPopupOpen(false)}>
-                <div className={`booking-form-box ${isPopupOpen ? 'active' : ''}`} onClick={(e) => e.stopPropagation()}>
+                <div className={`booking-form-box ${isPopupOpen ? 'active' : ''}`} onClick={(e) => e.stopPropagation()} style={{ maxWidth: '700px', width: '95%' }}>
                     <div className="d-flex justify-content-between align-items-center mb-32">
                         <h4 className="mb-0">{t('book_tour_title')}</h4>
                         <button type="button" onClick={() => setIsPopupOpen(false)} style={{ background: 'transparent', border: 'none', fontSize: '24px', cursor: 'pointer', color: '#333' }}>
                             <i className="fa-light fa-xmark"></i>
                         </button>
                     </div>
-                    <form onSubmit={(e) => {
-                        e.preventDefault();
-                        toast.success(t('booking_success', { ns: 'common' }));
-                        setIsPopupOpen(false);
-                    }}>
-                        <div className="form-group mb-24">
-                            <div className="row g-3">
-                                <div className="col-6">
-                                    <label className="mb-8 fw-semibold">{t('day')}</label>
-                                    <NiceSelect
-                                        name="day"
-                                        placeholder="DD"
-                                        options={Array.from({ length: 31 }, (_, i) => ({
-                                            value: String(i + 1).padStart(2, '0'),
-                                            label: String(i + 1).padStart(2, '0')
-                                        }))}
-                                    />
-                                </div>
-                                <div className="col-6">
-                                    <label className="mb-8 fw-semibold">{t('month')}</label>
-                                    <NiceSelect
-                                        name="month"
-                                        placeholder="MM"
-                                        options={Object.entries(t('months', { ns: 'common', returnObjects: true }) as Record<string, string>).map(([key, value]) => ({
-                                            value: key,
-                                            label: value
-                                        }))}
+                    <form onSubmit={handleBookingSubmit}>
+                        <div className="row g-4">
+                            <div className="col-sm-6">
+                                <div className="form-group mb-0">
+                                    <label className="mb-8 fw-semibold">{t('first_name')}</label>
+                                    <input 
+                                        type="text" 
+                                        className="cus-form-control" 
+                                        required 
+                                        placeholder={t('first_name')} 
+                                        pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" 
+                                        title={t('only_letters')}
+                                        value={bookingData.name}
+                                        onChange={(e) => setBookingData(prev => ({ ...prev, name: e.target.value }))}
                                     />
                                 </div>
                             </div>
+                            <div className="col-sm-6">
+                                <div className="form-group mb-0">
+                                    <label className="mb-8 fw-semibold">{t('last_name')}</label>
+                                    <input 
+                                        type="text" 
+                                        className="cus-form-control" 
+                                        required 
+                                        placeholder={t('last_name')} 
+                                        pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" 
+                                        title={t('only_letters')}
+                                        value={bookingData.lastName}
+                                        onChange={(e) => setBookingData(prev => ({ ...prev, lastName: e.target.value }))}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-sm-6">
+                                <div className="form-group mb-0">
+                                    <label className="mb-8 fw-semibold">{t('phone')}</label>
+                                    <IMaskInput
+                                        mask="+{998} (00) 000-00-00"
+                                        className="cus-form-control"
+                                        required
+                                        placeholder="+998 (__) ___-__-__"
+                                        value={bookingData.phone}
+                                        onAccept={(value: string) => setBookingData(prev => ({ ...prev, phone: value }))}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-sm-6">
+                                <div className="form-group mb-0">
+                                    <label className="mb-8 fw-semibold">{t('email')}</label>
+                                    <input 
+                                        type="email" 
+                                        className="cus-form-control" 
+                                        required 
+                                        placeholder={t('email_placeholder')}
+                                        value={bookingData.email}
+                                        onChange={(e) => setBookingData(prev => ({ ...prev, email: e.target.value }))}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-sm-6">
+                                <div className="form-group mb-0">
+                                    <label className="mb-8 fw-semibold">{t('departure_date', { ns: 'booking', defaultValue: 'Departure Date' })}</label>
+                                    <input 
+                                        type="date" 
+                                        className="cus-form-control" 
+                                        required 
+                                        value={bookingData.departure_date}
+                                        onChange={(e) => setBookingData(prev => ({ ...prev, departure_date: e.target.value }))}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-sm-6">
+                                <div className="form-group mb-0">
+                                    <label className="mb-8 fw-semibold">{t('persons', { ns: 'booking', defaultValue: 'Persons' })}</label>
+                                    <input 
+                                        type="number" 
+                                        className="cus-form-control" 
+                                        required 
+                                        min="1"
+                                        placeholder="1"
+                                        value={bookingData.number_of_people}
+                                        onChange={(e) => setBookingData(prev => ({ ...prev, number_of_people: parseInt(e.target.value) || 1 }))}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-12">
+                                <div className="form-group mb-0">
+                                    <label className="mb-8 fw-semibold">{t('comments_optional', { ns: 'booking', defaultValue: 'Comments (Optional)' })}</label>
+                                    <textarea 
+                                        className="cus-form-control" 
+                                        rows={3}
+                                        placeholder={t('write_comments', { ns: 'booking', defaultValue: 'Any special requests?' })}
+                                        value={bookingData.comments}
+                                        onChange={(e) => setBookingData(prev => ({ ...prev, comments: e.target.value }))}
+                                    ></textarea>
+                                </div>
+                            </div>
                         </div>
-                        <div className="form-group mb-24">
-                            <label className="mb-8 fw-semibold">{t('first_name')}</label>
-                            <input type="text" className="cus-form-control" required placeholder={t('first_name')} pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" title={t('only_letters')} />
-                        </div>
-                        <div className="form-group mb-24">
-                            <label className="mb-8 fw-semibold">{t('last_name')}</label>
-                            <input type="text" className="cus-form-control" required placeholder={t('last_name')} pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" title={t('only_letters')} />
-                        </div>
-                        <div className="form-group mb-24">
-                            <label className="mb-8 fw-semibold">{t('phone')}</label>
-                            <IMaskInput
-                                mask="+{998} (00) 000-00-00"
-                                className="cus-form-control"
-                                required
-                                placeholder="+998 (__) ___-__-__"
-                            />
-                        </div>
-                        <div className="form-group mb-24">
-                            <label className="mb-8 fw-semibold">{t('email')}</label>
-                            <input type="email" className="cus-form-control" required placeholder={t('email_placeholder')} />
-                        </div>
-                        <div className="ui-btn ui-btn-primary w-100">
-                            <button type="submit" data-hover={t('confirm_booking')}>{t('confirm_booking')}</button>
+                        <div className="ui-btn ui-btn-primary w-100 mt-24">
+                            <button type="submit" disabled={isSubmitting}>
+                                {isSubmitting ? (
+                                    <>
+                                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                        {t('submitting', { ns: 'common', defaultValue: 'Submitting...' })}
+                                    </>
+                                ) : (
+                                    t('confirm_booking')
+                                )}
+                            </button>
                         </div>
                     </form>
                 </div>

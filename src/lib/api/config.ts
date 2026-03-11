@@ -18,4 +18,7 @@ export const API_ENDPOINTS = {
         list: '/blogs/',
         byId: (id: string) => `/blogs/${id}`,
     },
+    bookings: {
+        create: '/bookings/',
+    }
 };
