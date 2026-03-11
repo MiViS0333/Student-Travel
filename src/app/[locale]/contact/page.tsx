@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 
 export default function ContactPage() {
-    const { t } = useTranslation();
+    const { t } = useTranslation('contact');
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -21,13 +21,13 @@ export default function ContactPage() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Handle contact form submission
-        toast.success(t('form_success'));
+        toast.success(t('form_success', { ns: 'common' }));
         setFormData({ name: '', email: '', subject: '', message: '' });
     };
 
     return (
         <>
-            <PageHeader title="КОНТАКТЫ" />
+            <PageHeader title={t('page_title')} />
 
             <section className="py-64">
                 <div className="container-fluid">
@@ -35,26 +35,26 @@ export default function ContactPage() {
                         <div className="col-lg-6 mb-48 mb-lg-0">
                             <div className="box-blur-bg">
                                 <div className="contact-form b-radius-20 bg-white p-48">
-                                    <h3 className="mb-32">СВЯЖИТЕСЬ С НАМИ</h3>
+                                    <h3 className="mb-32">{t('form_title')}</h3>
                                     <form onSubmit={handleSubmit}>
                                         <div className="form-group mb-24">
                                             <input type="text" name="name" className="cus-form-control" value={formData.name}
-                                                onChange={handleChange} required placeholder="Полное имя" />
+                                                onChange={handleChange} required placeholder={t('name_placeholder')} />
                                         </div>
                                         <div className="form-group mb-24">
                                             <input type="email" name="email" className="cus-form-control" value={formData.email}
-                                                onChange={handleChange} required placeholder="Email адрес" />
+                                                onChange={handleChange} required placeholder={t('email_placeholder')} />
                                         </div>
                                         <div className="form-group mb-24">
                                             <input type="text" name="subject" className="cus-form-control" value={formData.subject}
-                                                onChange={handleChange} required placeholder="Тема" />
+                                                onChange={handleChange} required placeholder={t('subject_placeholder')} />
                                         </div>
                                         <div className="form-group mb-32">
                                             <textarea name="message" className="cus-form-control textarea" value={formData.message}
-                                                onChange={handleChange} rows={5} required placeholder="Ваше сообщение..."></textarea>
+                                                onChange={handleChange} rows={5} required placeholder={t('message_placeholder')}></textarea>
                                         </div>
                                         <div className="ui-btn ui-btn-primary">
-                                            <button type="submit" data-hover="ОТПРАВИТЬ СООБЩЕНИЕ">ОТПРАВИТЬ СООБЩЕНИЕ</button>
+                                            <button type="submit" data-hover={t('submit_button')}>{t('submit_button')}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -64,24 +64,24 @@ export default function ContactPage() {
                             <div className="contact-info mb-32">
                                 <div className="box-blur-bg">
                                     <div className="b-radius-20 bg-white p-48">
-                                        <h5 className="mb-24">КОНТАКТНАЯ ИНФОРМАЦИЯ</h5>
+                                        <h5 className="mb-24">{t('info_title')}</h5>
                                         <div className="row">
                                             <div className="col-sm-6 mb-24">
-                                                <h6 className="mb-8">ПОЗВОНИТЕ НАМ</h6>
+                                                <h6 className="mb-8">{t('call_us')}</h6>
                                                 <a href="tel:+998900007961">+998 90 000 79 61</a>
                                             </div>
                                             <div className="col-sm-6 mb-24">
-                                                <h6 className="mb-8">АДРЕС</h6>
-                                                <a href="https://yandex.uz/maps/-/CPuif4yL" target="_blank" rel="noopener noreferrer">Ташкентский институт менеджмента и экономики</a>
+                                                <h6 className="mb-8">{t('address_title')}</h6>
+                                                <a href="https://yandex.uz/maps/-/CPuif4yL" target="_blank" rel="noopener noreferrer">{t('address')}</a>
                                             </div>
                                             <div className="col-sm-6 mb-24">
-                                                <h6 className="mb-8">ПОСЕТИТЕ НАС</h6>
-                                                <p>Ташкент, Узбекистан</p>
+                                                <h6 className="mb-8">{t('visit_us')}</h6>
+                                                <p>{t('location')}</p>
                                             </div>
                                             <div className="col-sm-6 mb-24">
-                                                <h6 className="mb-8">ЧАСЫ РАБОТЫ</h6>
-                                                <p>Пн-Пт: 09:00 - 17:00</p>
-                                                <p>Сб-Вс: 09:00 - 17:00</p>
+                                                <h6 className="mb-8">{t('working_hours')}</h6>
+                                                <p>{t('weekdays')}</p>
+                                                <p>{t('weekends')}</p>
                                             </div>
                                         </div>
                                     </div>

@@ -1,11 +1,14 @@
 import PageHeader from '@/components/shared/PageHeader';
 import { toursService } from '@/lib/api';
 import ToursClient from './ToursClient';
+import initTranslations from '@/lib/i18n';
 
 export default async function ToursPage({ params, searchParams }: { params: Promise<{ locale: string }>, searchParams: Promise<any> }) {
     const resolvedParams = await params;
     const locale = (resolvedParams.locale || 'ru').toUpperCase();
     const resolvedSearchParams = await searchParams;
+
+    const { t } = await initTranslations(locale.toLowerCase(), ['tours']);
 
     // Fetch initial tours
     const toursData = await toursService.getTours({
@@ -23,7 +26,7 @@ export default async function ToursPage({ params, searchParams }: { params: Prom
 
     return (
         <>
-            <PageHeader title="СПИСОК ТУРОВ" />
+            <PageHeader title={t('page_title')} />
             <ToursClient
                 initialTours={toursData}
                 locations={locations}

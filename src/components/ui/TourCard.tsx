@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { API_BASE_URL } from '@/lib/api/config';
 
 interface TourCardProps {
@@ -16,6 +17,7 @@ interface TourCardProps {
 }
 
 export default function TourCard({ image, title, location, days, persons, price, href, className = '' }: TourCardProps) {
+    const { t } = useTranslation('common');
     const [wishlisted, setWishlisted] = useState(false);
 
     const formatPrice = (p: number) => {
@@ -42,9 +44,9 @@ export default function TourCard({ image, title, location, days, persons, price,
                 </div>
                 <div className="info-detail">
                     <ul className="unstyled">
-                        <li><i className="fa-light fa-calendar"></i><p>{days} Дней</p></li>
+                        <li><i className="fa-light fa-calendar"></i><p>{days} {t('days')}</p></li>
                         <li><i className="fa-solid fa-period dot"></i></li>
-                        <li><i className="fa-light fa-user"></i><p>{persons} Человек</p></li>
+                        <li><i className="fa-light fa-user"></i><p>{persons} {t('persons')}</p></li>
                     </ul>
                     <div className="right-block">
                         <h6>{formatPrice(price)}</h6>

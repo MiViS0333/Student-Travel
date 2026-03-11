@@ -1,0 +1,22 @@
+{
+    "hero_title": "TRAVEL",
+    "hero_subtitle": "Travel to where your heart calls!",
+    "search_destination_placeholder": "Where to?",
+    "search_departure_placeholder": "From where?",
+    "search_type_placeholder": "Tour Type",
+    "search_button": "FIND",
+    "no_data": "No data",
+    "about_subtitle": "about us :",
+    "about_title": "WHERE PASSION<br /> MEETS ADVENTURE,<br /> IGNITING YOUR DESIRE<br /> TO TRAVEL",
+    "about_button": "LEARN MORE",
+    "tours_subtitle": "tour list :",
+    "tours_title": "AMAZING TOURS FOR YOU",
+    "tours_empty": "No tours available",
+    "tours_view_all": "View All",
+    "dest_subtitle": "destinations :",
+    "dest_title": "BEST PLACES TO TRAVEL",
+    "dest_desc_default": "Studentravel offers the best tours for students worldwide. We care about your rest, providing unforgettable experiences and excellent service.",
+    "dest_charvak": "Charvak Reservoir",
+    "dest_chimgan": "Chimgan Mountains",
+    "dest_samarkand": "Samarkand"
+}

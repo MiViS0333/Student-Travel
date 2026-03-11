@@ -1,0 +1,15 @@
+{
+    "page_title": "МОЙ АККАУНТ",
+    "login_tab": "ВХОД",
+    "register_tab": "РЕГИСТРАЦИЯ",
+    "email_label": "Email",
+    "email_placeholder": "Email адрес",
+    "password_label": "Пароль",
+    "password_placeholder": "Пароль",
+    "login_button": "ВОЙТИ",
+    "name_label": "Полное имя",
+    "name_placeholder": "Полное имя",
+    "confirm_password_label": "Подтвердите Пароль",
+    "confirm_password_placeholder": "Подтвердите Пароль",
+    "register_button": "ЗАРЕГИСТРИРОВАТЬСЯ"
+}

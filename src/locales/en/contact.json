@@ -1,0 +1,18 @@
+{
+    "page_title": "CONTACTS",
+    "form_title": "CONTACT US",
+    "name_placeholder": "Full Name",
+    "email_placeholder": "Email Address",
+    "subject_placeholder": "Subject",
+    "message_placeholder": "Your message...",
+    "submit_button": "SEND MESSAGE",
+    "info_title": "CONTACT INFORMATION",
+    "call_us": "CALL US",
+    "address_title": "ADDRESS",
+    "address": "Tashkent Institute of Management and Economics",
+    "visit_us": "VISIT US",
+    "location": "Tashkent, Uzbekistan",
+    "working_hours": "WORKING HOURS",
+    "weekdays": "Mon-Fri: 09:00 - 17:00",
+    "weekends": "Sat-Sun: 09:00 - 17:00"
+}

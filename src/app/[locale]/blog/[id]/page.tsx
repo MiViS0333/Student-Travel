@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import PageHeader from '@/components/shared/PageHeader';
 import BlogsSlider from '@/components/ui/BlogsSlider';
 import TourCard from '@/components/ui/TourCard';
+import initTranslations from '@/lib/i18n';
 import { blogsService } from '@/lib/api';
 import { API_BASE_URL } from '@/lib/api/config';
 
@@ -14,6 +15,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
     const resolvedParams = await params;
     const locale = (resolvedParams.locale || 'ru').toUpperCase();
     const id = resolvedParams.id;
+    const { t } = await initTranslations(locale.toLowerCase(), ['common']);
 
     try {
         const [blog, recentBlogsRes] = await Promise.all([
@@ -96,7 +98,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
                             {tourData && (
                                 <div className="col-xl-4 col-lg-4">
                                     <aside className="sticky-top" style={{ top: '120px' }}>
-                                        <h4 className="mb-32">{locale === 'RU' ? 'Связанный тур' : 'Related Tour'}</h4>
+                                        <h4 className="mb-32">{t('related_tour')}</h4>
                                         <TourCard {...tourData} />
                                     </aside>
                                 </div>

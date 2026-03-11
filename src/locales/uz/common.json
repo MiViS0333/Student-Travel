@@ -22,5 +22,22 @@
         "10": "Oktabr",
         "11": "Noyabr",
         "12": "Dekabr"
-    }
+    },
+    "days": "Kunlar",
+    "persons": "Kishi",
+    "reviews_subtitle": "sharhlar :",
+    "reviews_title": "BIZ HAQIMIZDA NIMA DEYISHADI!",
+    "default_review": "Studentravel talabalar uchun eng yaxshi xizmatlarni taqdim etadi. Ajoyib tashkillashtirish va unutilmas taassurotlar! Biz albatta yana boramiz. Rahmat! Bu ajoyib edi.",
+    "instagram_subtitle": "instagram :",
+    "gallery_title": "SAYOHAT GALEREYASI",
+    "discount_badge": "CHEGIRMA",
+    "discount_title": "QIZIQMISIZ?",
+    "discount_subtitle": "HOZIR BAND QILINGANDA CHEGIRMA",
+    "discount_text": "Sayohatni hozir band qiling va keyingi <br /> talabalik sayohatingiz uchun eksklyuziv chegirmaga ega bo'ling. Biz eng yaxshi yo'nalishlarni <br /> eng maqbul narxlarda taklif qilamiz. Imkoniyatni qo'ldan boy bermang!",
+    "contact_us": "BIZ BILAN BOG'LANISH",
+    "blog_subtitle": "blog :",
+    "blog_title": "QIZIQARLI HIKOYALARNI O'QING",
+    "no_blogs": "Maqolalar mavjud emas",
+    "related_tour": "Tegishli Tur",
+    "tour_details": "TUR TAFSILOTLARI"
 }

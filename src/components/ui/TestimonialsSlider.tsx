@@ -3,6 +3,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import TestimonialCard from './TestimonialCard';
+import { useTranslation } from 'react-i18next';
 
 const testimonials = [
     { image: '/media/users/user_1.png', name: 'Julia Fernandez', rating: 5 },
@@ -12,15 +13,16 @@ const testimonials = [
     { image: '/media/users/user_1.png', name: 'Julia Fernandez', rating: 5 },
 ];
 
-const defaultReview = 'Studentravel предоставляет лучшие услуги для студентов. Отличная организация и незабываемые впечатления! Мы обязательно поедем еще раз. Спасибо! Это было потрясающе.';
-
 export default function TestimonialsSlider() {
+    const { t } = useTranslation('common');
+    const defaultReview = t('default_review');
+
     return (
         <section className="py-64">
             <div className="container-fluid">
                 <div className="heading mb-48">
-                    <h3 className="font-sec color-primary">отзывы :</h3>
-                    <h2>ЧТО ГОВОРЯТ О НАС!</h2>
+                    <h3 className="font-sec color-primary">{t('reviews_subtitle')}</h3>
+                    <h2>{t('reviews_title')}</h2>
                 </div>
                 <Swiper
                     className="testimonials-slider"

@@ -1,0 +1,22 @@
+{
+    "hero_title": "TRAVEL",
+    "hero_subtitle": "Путешествуйте туда, куда зовёт ваше сердце!",
+    "search_destination_placeholder": "Куда?",
+    "search_departure_placeholder": "Откуда",
+    "search_type_placeholder": "Тип тура",
+    "search_button": "НАЙТИ",
+    "no_data": "Нет данных",
+    "about_subtitle": "о нас :",
+    "about_title": "ГДЕ СТРАСТЬ<br /> ВСТРЕЧАЕТСЯ С ПРИКЛЮЧЕНИЯМИ,<br /> РАЗЖИГАЯ ВАШЕ ЖЕЛАНИЕ<br /> ПУТЕШЕСТВОВАТЬ",
+    "about_button": "УЗНАТЬ БОЛЬШЕ",
+    "tours_subtitle": "список туров :",
+    "tours_title": "ПОТРЯСАЮЩИЕ ТУРЫ ДЛЯ ВАС",
+    "tours_empty": "Нет доступных туров",
+    "tours_view_all": "Посмотреть все",
+    "dest_subtitle": "направления :",
+    "dest_title": "ЛУЧШИЕ МЕСТА ДЛЯ ПУТЕШЕСТВИЙ",
+    "dest_desc_default": "Studentravel предлагает лучшие туры для студентов по всему миру. Мы заботимся о вашем отдыхе, предоставляя незабываемые впечатления и отличный сервис.",
+    "dest_charvak": "Чарвакское водохранилище",
+    "dest_chimgan": "Чимганские горы",
+    "dest_samarkand": "Самарканд"
+}

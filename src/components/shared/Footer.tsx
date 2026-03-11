@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 
 export default function Footer() {
-    const { t } = useTranslation();
+    const { t } = useTranslation('footer');
     return (
         <footer className="pt-64 pb-40">
             <div className="container-fluid">
@@ -12,20 +12,20 @@ export default function Footer() {
                         {/* Features Row */}
                         <div className="features-row row">
                             <div className="col-lg-3 col-6 feature-block">
-                                <img src="/media/icons/australia.png" alt="Особые мероприятия" />
-                                <h6>ОСОБЫЕ МЕРОПРИЯТИЯ</h6>
+                                <img src="/media/icons/australia.png" alt={t('features_1_title')} />
+                                <h6>{t('features_1_title')}</h6>
                             </div>
                             <div className="col-lg-3 col-6 feature-block">
-                                <img src="/media/icons/tour-guide.png" alt="Лучшие гиды" />
-                                <h6>ЛУЧШИЕ ГИДЫ</h6>
+                                <img src="/media/icons/tour-guide.png" alt={t('features_2_title')} />
+                                <h6>{t('features_2_title')}</h6>
                             </div>
                             <div className="col-lg-3 col-6 feature-block">
-                                <img src="/media/icons/bus.png" alt="Транспорт" />
-                                <h6>ТРАНСПОРТНЫЕ УСЛУГИ</h6>
+                                <img src="/media/icons/bus.png" alt={t('features_3_title')} />
+                                <h6>{t('features_3_title')}</h6>
                             </div>
                             <div className="col-lg-3 col-6 feature-block">
-                                <img src="/media/icons/online-chat.png" alt="Поддержка" />
-                                <h6>НЕПРЕВЗОЙДЕННАЯ ПОДДЕРЖКА</h6>
+                                <img src="/media/icons/online-chat.png" alt={t('features_4_title')} />
+                                <h6>{t('features_4_title')}</h6>
                             </div>
                         </div>
 
@@ -37,7 +37,7 @@ export default function Footer() {
                                         <img src="/media/logoStudent (1).png" alt="Logo" />
                                     </Link>
                                     <p className="mb-40 mb-xl-0">
-                                        Мы в Studentravel стремимся предоставить вам лучшие условия для отдыха и учебы. Наша команда организует увлекательные поездки, чтобы каждый студент мог получить незабываемые эмоции и впечатления от путешествий.
+                                        {t('description')}
                                     </p>
                                 </div>
                                 <div className="col-xl-6 offset-xl-1">
@@ -46,45 +46,45 @@ export default function Footer() {
                                             <div className="row">
                                                 <div className="col-sm-4 col-6">
                                                     <div className="widget mb-24">
-                                                        <h6 className="mb-12">КАРТА САЙТА</h6>
+                                                        <h6 className="mb-12">{t('sitemap')}</h6>
                                                         <ul className="unstyled item-list">
-                                                            <li><Link href="/">Главная</Link></li>
-                                                            <li><Link href="/about">О нас</Link></li>
-                                                            <li><Link href="/tours">Туры</Link></li>
-                                                            <li><Link href="/blog">Блог</Link></li>
-                                                            <li><Link href="/contact">Контакты</Link></li>
-                                                            <li><Link href="/tours/booking">Страница бронирования</Link></li>
+                                                            <li><Link href="/">{t('menu_home')}</Link></li>
+                                                            <li><Link href="/about">{t('menu_about')}</Link></li>
+                                                            <li><Link href="/tours">{t('menu_tours')}</Link></li>
+                                                            <li><Link href="/blog">{t('menu_blog')}</Link></li>
+                                                            <li><Link href="/contact">{t('menu_contact')}</Link></li>
+                                                            <li><Link href="/tours/booking">{t('menu_booking')}</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                                 <div className="col-sm-4 col-6">
                                                     <div className="widget mb-24">
-                                                        <h6 className="mb-12">КАТЕГОРИИ</h6>
+                                                        <h6 className="mb-12">{t('categories')}</h6>
                                                         <ul className="unstyled item-list">
-                                                            <li><Link href="/tours">Пакетные туры</Link></li>
-                                                            <li><Link href="/tours">Туры</Link></li>
-                                                            <li><Link href="/tours">Для молодоженов</Link></li>
-                                                            <li><Link href="/tours">Парные поездки</Link></li>
-                                                            <li><Link href="/tours">Семейные поездки</Link></li>
+                                                            <li><Link href="/tours">{t('cat_package')}</Link></li>
+                                                            <li><Link href="/tours">{t('cat_tours')}</Link></li>
+                                                            <li><Link href="/tours">{t('cat_honeymoon')}</Link></li>
+                                                            <li><Link href="/tours">{t('cat_couple')}</Link></li>
+                                                            <li><Link href="/tours">{t('cat_family')}</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                                 <div className="col-sm-4">
                                                     <div className="widget mb-24">
-                                                        <h6 className="mb-12">КОНТАКТНАЯ ИНФОРМАЦИЯ</h6>
+                                                        <h6 className="mb-12">{t('contact_info')}</h6>
                                                         <ul className="unstyled item-list">
                                                             <li><a href="tel:+998900007961">+998 90 000 79 61</a></li>
-                                                            <li><a href="https://yandex.uz/maps/-/CPuif4yL" target="_blank" rel="noopener noreferrer">Ташкентский институт менеджмента и экономики</a></li>
+                                                            <li><a href="https://yandex.uz/maps/-/CPuif4yL" target="_blank" rel="noopener noreferrer">{t('institute')}</a></li>
                                                         </ul>
                                                     </div>
                                                     <div className="widget mb-24">
-                                                        <h6 className="mb-12">ЧАСЫ РАБОТЫ</h6>
+                                                        <h6 className="mb-12">{t('working_hours')}</h6>
                                                         <ul className="unstyled item-list">
                                                             <li className="d-flex align-items-center justify-content-between">
-                                                                <p>ПН-ПТ</p><p>09:00 - 18:00</p>
+                                                                <p>{t('weekdays')}</p><p>09:00 - 18:00</p>
                                                             </li>
                                                             <li className="d-flex align-items-center justify-content-between">
-                                                                <p>СБ-ВС</p><p>09:00 - 18:00</p>
+                                                                <p>{t('weekends')}</p><p>09:00 - 18:00</p>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -94,21 +94,21 @@ export default function Footer() {
 
                                         {/* Newsletter */}
                                         <div className="newsletter">
-                                            <h5 className="mb-12">ХОТИТЕ ПОЛУЧАТЬ НОВОСТИ?</h5>
+                                            <h5 className="mb-12">{t('news_title')}</h5>
                                             <p className="mb-32">
-                                                Получайте регулярные новости о наших турах и специальных предложениях. Это лучший способ быть в курсе самых выгодных цен. Этот сайт защищен reCAPTCHA и Политикой конфиденциальности Google.
+                                                {t('news_desc')}
                                             </p>
                                             <form onSubmit={(e) => {
                                                 e.preventDefault();
-                                                toast.success(t('form_success'));
+                                                toast.success(t('form_success', { ns: 'common' }));
                                                 (e.target as HTMLFormElement).reset();
                                             }}>
                                                 <div className="newsletter-field">
                                                     <div className="form-group">
-                                                        <input type="email" required placeholder="email@example.com" />
+                                                        <input type="email" required placeholder={t('subscribe_placeholder')} />
                                                     </div>
                                                     <div className="ui-btn ui-btn-primary">
-                                                        <button type="submit" data-hover="ПОДПИСАТЬСЯ">ПОДПИСАТЬСЯ</button>
+                                                        <button type="submit" data-hover={t('subscribe_btn')}>{t('subscribe_btn')}</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -120,7 +120,7 @@ export default function Footer() {
 
                         {/* Footer Bottom */}
                         <div className="footer-bottom-row">
-                            <p>©2025 Все права защищены</p>
+                            <p>{t('copyright')}</p>
                             <ul className="unstyled payment-methods align-items-center">
                                 <li><img src="/media/icons/payment-2.png" alt="Visa" style={{ height: '28px', width: 'auto' }} /></li>
                                 <li><img src="/media/icons/payment-4.png" alt="Mastercard" style={{ height: '28px', width: 'auto' }} /></li>

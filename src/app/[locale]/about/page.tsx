@@ -8,10 +8,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PageHeader from '@/components/shared/PageHeader';
 import TestimonialsSlider from '@/components/ui/TestimonialsSlider';
 import GallerySlider from '@/components/ui/GallerySlider';
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutPage() {
+    const { t } = useTranslation('about');
     const videoRef = useRef<HTMLVideoElement>(null);
     const about1Ref = useRef<HTMLDivElement>(null);
     const about2Ref = useRef<HTMLDivElement>(null);
@@ -76,14 +78,14 @@ export default function AboutPage() {
         }
     }, []);
 
-    const aboutText = 'Studentravel предлагает лучшие туры для студентов по всему миру. Мы заботимся о вашем отдыхе, предоставляя незабываемые впечатления и отличный сервис.';
+    const aboutText = t('text');
 
     const section1Images = ['asvbbs.png', 'bsfnsns.png', 'dsvbsdb.png', 'sbfdsfbs.png'];
     const section2Images = ['sbsdvsbs.png', 'sdbsbsdb.png', 'sdvbs.png', 'sdvsdv.png'];
 
     return (
         <>
-            <PageHeader title="О НАС" />
+            <PageHeader title={t('page_title')} />
 
             {/* About Section 1 */}
             <div className="about-trigger-1" ref={about1Ref}>
@@ -94,8 +96,8 @@ export default function AboutPage() {
                                 <div className="row align-items-center">
                                     <div className="col-xl-6 col-md-7">
                                         <div className="text-block text-md-start text-center">
-                                            <h3 className="mb-8 font-sec color-primary">о нас :</h3>
-                                            <h2 className="mb-24">ГДЕ СТРАСТЬ<br /> ВСТРЕЧАЕТСЯ С ПРИКЛЮЧЕНИЯМИ,<br /> РАЗЖИГАЯ ВАШЕ ЖЕЛАНИЕ<br /> ПУТЕШЕСТВОВАТЬ</h2>
+                                            <h3 className="mb-8 font-sec color-primary">{t('subtitle')}</h3>
+                                            <h2 className="mb-24" dangerouslySetInnerHTML={{ __html: t('title1') }} />
                                             <p>{aboutText}</p>
                                         </div>
                                     </div>
@@ -129,8 +131,8 @@ export default function AboutPage() {
                                 <div className="row align-items-center">
                                     <div className="col-xl-6 col-md-7 order-md-2">
                                         <div className="text-block text-md-start text-center">
-                                            <h3 className="mb-8 font-sec color-primary">о нас :</h3>
-                                            <h2 className="mb-24">МЫ ХОТИМ ПРЕДОСТАВЛЯТЬ ЛУЧШИЕ ТУРЫ</h2>
+                                            <h3 className="mb-8 font-sec color-primary">{t('subtitle')}</h3>
+                                            <h2 className="mb-24">{t('title2')}</h2>
                                             <p>{aboutText} {aboutText}</p>
                                         </div>
                                     </div>

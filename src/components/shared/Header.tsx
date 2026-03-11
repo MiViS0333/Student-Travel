@@ -4,6 +4,8 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
+import { useTranslation } from 'react-i18next';
+import LanguageChanger from '../LanguageChanger';
 
 interface HeaderProps {
 }
@@ -15,15 +17,19 @@ interface SubmenuItem {
     active?: boolean;
 }
 
-const menuItems: { label: string; href: string; active?: boolean }[] = [
-    { label: 'Главная', href: '/' },
-    { label: 'О нас', href: '/about' },
-    { label: 'Туры', href: '/tours' },
-    { label: 'Блог', href: '/blog' },
-    { label: 'Контакты', href: '/contact' },
-];
+// Dynamic translations directly inside the component are preferred for next-i18next. 
+// We will generate menu items dynamically inside the component instead of the static array.
 
 export default function Header({ }: HeaderProps) {
+    const { t } = useTranslation('header');
+    
+    const menuItems = [
+        { label: t('menu_home'), href: '/' },
+        { label: t('menu_about'), href: '/about' },
+        { label: t('menu_tours'), href: '/tours' },
+        { label: t('menu_blog'), href: '/blog' },
+        { label: t('menu_contact'), href: '/contact' },
+    ];
     const [menuOpen, setMenuOpen] = useState(false);
     const [openSubmenus, setOpenSubmenus] = useState<Set<string>>(new Set());
     const overlayRef = useRef<HTMLElement>(null);
@@ -132,6 +138,9 @@ export default function Header({ }: HeaderProps) {
                                                         </li>
                                                     );
                                                 })}
+                                                <li className="ui-ol-menu-language">
+                                                    <LanguageChanger />
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -148,12 +157,14 @@ export default function Header({ }: HeaderProps) {
                                 </a>
                             </div>
                             <div className="ui-ol-menu-toggle-btn-text" onClick={(e) => { e.preventDefault(); toggleMenu(); }} style={{ cursor: 'pointer' }}>
-                                <span className="text-menu h6 color-white" data-hover="МЕНЮ">МЕНЮ</span>
-                                <span className="text-close h6">ЗАКРЫТЬ</span>
+                                <span className="text-menu h6 color-white" data-hover={t('menu')}>{t('menu')}</span>
+                                <span className="text-close h6">{t('close')}</span>
                             </div>
                         </div>
-                        <div className="ui-btn ui-btn-primary hide-on-mobile">
-                            <Link href="/tours/booking" data-hover="ЗАБРОНИРОВАТЬ">ЗАБРОНИРОВАТЬ</Link>
+                        <div className="d-flex align-items-center gap-3">
+                                                            <div className="ui-btn ui-btn-primary hide-on-mobile">
+                                <Link href="/tours/booking" data-hover={t('book_button')}>{t('book_button')}</Link>
+                            </div>
                         </div>
                     </div>
                 </div>

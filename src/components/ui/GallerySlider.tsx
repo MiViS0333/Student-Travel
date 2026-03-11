@@ -2,6 +2,7 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
+import { useTranslation } from 'react-i18next';
 
 const galleryImages = [
     '/media/gallery/sdvb.png',
@@ -19,11 +20,13 @@ const galleryImages = [
 ];
 
 export default function GallerySlider() {
+    const { t } = useTranslation('common');
+
     return (
         <section className="py-64">
             <div className="heading mb-48">
-                <h3 className="font-sec color-primary">инстаграм :</h3>
-                <h2>ГАЛЕРЕЯ ПУТЕШЕСТВИЙ</h2>
+                <h3 className="font-sec color-primary">{t('instagram_subtitle')}</h3>
+                <h2>{t('gallery_title')}</h2>
             </div>
             <Swiper
                 className="gallery-slider"

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import PageHeader from '@/components/shared/PageHeader';
 import BlogCard from '@/components/ui/BlogCard';
 import { API_BASE_URL, blogsService } from '@/lib/api';
+import initTranslations from '@/lib/i18n';
 
 export default async function BlogGridPage({ params, searchParams }: { params: Promise<{ locale: string }>, searchParams: Promise<any> }) {
     const resolvedParams = await params;
@@ -10,6 +11,7 @@ export default async function BlogGridPage({ params, searchParams }: { params: P
     const page = Number(resolvedSearchParams.page) || 1;
     const limit = 8;
 
+    const { t } = await initTranslations(locale.toLowerCase(), ['blog']);
     const blogsData = await blogsService.getBlogs({ lang: locale, limit, page });
 
     const getBlogTitle = (blog: any) => {
@@ -37,13 +39,13 @@ export default async function BlogGridPage({ params, searchParams }: { params: P
 
     return (
         <>
-            <PageHeader title="БЛОГ" />
+            <PageHeader title={t('page_title')} />
 
             <section className="py-64">
                 <div className="container-fluid">
                     <div className="heading mb-48">
-                        <h3 className="font-sec color-primary">блог :</h3>
-                        <h2>ЧИТАЙТЕ УВЛЕКАТЕЛЬНЫЕ ИСТОРИИ</h2>
+                        <h3 className="font-sec color-primary">{t('subtitle')}</h3>
+                        <h2>{t('title')}</h2>
                     </div>
                     <div className="row">
                         {blogsData.data && blogsData.data.length > 0 ? (
@@ -60,7 +62,7 @@ export default async function BlogGridPage({ params, searchParams }: { params: P
                             ))
                         ) : (
                             <div className="col-12 text-center py-64">
-                                <h3 className="color-primary">Блоги не найдены.</h3>
+                                <h3 className="color-primary">{t('not_found')}</h3>
                             </div>
                         )}
                     </div>

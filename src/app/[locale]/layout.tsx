@@ -8,7 +8,7 @@ import ClientLayout from './ClientLayout';
 import TranslationsProvider from '@/components/TranslationsProvider';
 import initTranslations from '@/lib/i18n';
 
-const i18nNamespaces = ['common'];
+const i18nNamespaces = ['common', 'header', 'footer', 'home', 'booking', 'about', 'contact', 'blog', 'tours', 'account'];
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'Studentravel',
-  description: 'Student Travel — исследуйте мир вместе с нами',
+  description: 'Student Travel — explore the world with us',
   icons: {
     icon: '/media/icoStudentTravel.png',
   },

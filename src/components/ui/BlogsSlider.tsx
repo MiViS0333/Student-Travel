@@ -3,6 +3,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import BlogCard from './BlogCard';
+import { useTranslation } from 'react-i18next';
 
 import { API_BASE_URL, Blog } from '@/lib/api';
 
@@ -12,6 +13,8 @@ interface BlogsSliderProps {
 }
 
 export default function BlogsSlider({ blogs, locale }: BlogsSliderProps) {
+    const { t } = useTranslation('common');
+
     const getBlogTitle = (blog: Blog) => {
         const langData = blog.languages?.find(l => l.languageCode === locale.toUpperCase());
         return langData?.title || 'Unknown Title';
@@ -30,8 +33,8 @@ export default function BlogsSlider({ blogs, locale }: BlogsSliderProps) {
         <section className="py-64">
             <div className="container-fluid">
                 <div className="heading mb-48">
-                    <h3 className="font-sec color-primary">блог :</h3>
-                    <h2>ЧИТАЙТЕ УВЛЕКАТЕЛЬНЫЕ ИСТОРИИ</h2>
+                    <h3 className="font-sec color-primary">{t('blog_subtitle')}</h3>
+                    <h2>{t('blog_title')}</h2>
                 </div>
                 <Swiper
                     className="blogs-slider"
@@ -60,7 +63,7 @@ export default function BlogsSlider({ blogs, locale }: BlogsSliderProps) {
                             />
                         </SwiperSlide>
                     )) : (
-                        <div className="text-center py-4">Нет доступных статей</div>
+                        <div className="text-center py-4">{t('no_blogs')}</div>
                     )}
                 </Swiper>
             </div>

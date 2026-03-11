@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 export default function DiscountBanner() {
+    const { t } = useTranslation('common');
     return (
         <section className="position-relative z-2 py-64">
             <div className="container-fluid">
@@ -18,18 +20,14 @@ export default function DiscountBanner() {
                                         <div className="title-block">
                                             <div className="discount-tag">
                                                 <h2 className="color-white">30%</h2>
-                                                <h4 className="color-white">СКИДКА</h4>
+                                                <h4 className="color-white">{t('discount_badge')}</h4>
                                             </div>
-                                            <h1 className="mb-16 color-white position-relative z-3">ИНТЕРЕСНО?</h1>
+                                            <h1 className="mb-16 color-white position-relative z-3">{t('discount_title')}</h1>
                                         </div>
-                                        <h5 className="mb-16 color-primary">СКИДКА ПРИ БРОНИРОВАНИИ СЕЙЧАС</h5>
-                                        <p className="mb-48 color-white">
-                                            Забронируйте тур прямо сейчас и получите эксклюзивную скидку на ваше <br />
-                                            следующее студенческое путешествие. Мы предлагаем лучшие направления <br />
-                                            по самым выгодным ценам. Не упустите свой шанс!
-                                        </p>
+                                        <h5 className="mb-16 color-primary">{t('discount_subtitle')}</h5>
+                                        <p className="mb-48 color-white" dangerouslySetInnerHTML={{ __html: t('discount_text') }}></p>
                                         <div className="ui-btn ui-btn-primary">
-                                            <Link href="/tours/booking" data-hover="СВЯЗАТЬСЯ С НАМИ">СВЯЗАТЬСЯ С НАМИ</Link>
+                                            <Link href="/tours/booking" data-hover={t('contact_us')}>{t('contact_us')}</Link>
                                         </div>
                                     </div>
                                 </div>

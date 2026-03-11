@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import TourCard from '@/components/ui/TourCard';
 import NiceSelect from '@/components/ui/NiceSelect';
+import { useTranslation } from 'react-i18next';
 import { Tour, ToursResponse, TourLocationsResponse, TourType } from '@/lib/api/tours/tours.types';
 
 interface ToursClientProps {
@@ -13,18 +14,19 @@ interface ToursClientProps {
     locale: string;
 }
 
-const sortOptions = [
-    { value: 'default', label: 'По умолчанию' },
-    { value: 'price-low', label: 'Цена: дешевле' },
-    { value: 'price-high', label: 'Цена: дороже' },
-    { value: 'name-az', label: 'Название: А-Я' },
-    { value: 'name-za', label: 'Название: Я-А' },
-];
-
 export default function ToursClient({ initialTours, locations, tourTypes, locale }: ToursClientProps) {
+    const { t } = useTranslation('tours');
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
+
+    const sortOptions = [
+        { value: 'default', label: t('sort_default') },
+        { value: 'price-low', label: t('sort_price_low') },
+        { value: 'price-high', label: t('sort_price_high') },
+        { value: 'name-az', label: t('sort_name_az') },
+        { value: 'name-za', label: t('sort_name_za') },
+    ];
 
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
@@ -119,7 +121,7 @@ export default function ToursClient({ initialTours, locations, tourTypes, locale
                 {/* Mobile Filter Button */}
                 <div className="d-xl-none mb-32 d-flex justify-content-center">
                     <button className="filter-toggle-btn" onClick={() => setIsMobileFilterOpen(true)}>
-                        <i className="fa-light fa-sliders-up"></i> Фильтры
+                        <i className="fa-light fa-sliders-up"></i> {t('filters')}
                     </button>
                 </div>
 
@@ -127,7 +129,7 @@ export default function ToursClient({ initialTours, locations, tourTypes, locale
                 <div className={`filter-popup-overlay ${isMobileFilterOpen ? 'active' : ''}`} onClick={() => setIsMobileFilterOpen(false)}></div>
                 <div className={`filter-popup ${isMobileFilterOpen ? 'active' : ''}`}>
                     <div className="filter-popup-header d-xl-none">
-                        <h5>Фильтры</h5>
+                        <h5>{t('filters')}</h5>
                         <button className="close-btn" onClick={() => setIsMobileFilterOpen(false)}>
                             <i className="fa-light fa-xmark"></i>
                         </button>
@@ -141,8 +143,8 @@ export default function ToursClient({ initialTours, locations, tourTypes, locale
                                         <div className="form-group">
                                             <NiceSelect
                                                 name="destination"
-                                                options={[{ value: '', label: 'Куда?' }, ...destinationOptions]}
-                                                placeholder="Куда?"
+                                                options={[{ value: '', label: t('destination') }, ...destinationOptions]}
+                                                placeholder={t('destination')}
                                                 defaultValue={destination}
                                                 onChange={(val) => handleFilterChange('destination', val)}
                                             />
@@ -152,8 +154,8 @@ export default function ToursClient({ initialTours, locations, tourTypes, locale
                                         <div className="form-group">
                                             <NiceSelect
                                                 name="departure"
-                                                options={[{ value: '', label: 'Откуда?' }, ...departureOptions]}
-                                                placeholder="Откуда"
+                                                options={[{ value: '', label: t('departure') }, ...departureOptions]}
+                                                placeholder={t('departure')}
                                                 defaultValue={departure}
                                                 onChange={(val) => handleFilterChange('departure', val)}
                                             />
@@ -163,8 +165,8 @@ export default function ToursClient({ initialTours, locations, tourTypes, locale
                                         <div className="form-group">
                                             <NiceSelect
                                                 name="type"
-                                                options={[{ value: '', label: 'Тип тура' }, ...typeOptions]}
-                                                placeholder="Тип тура"
+                                                options={[{ value: '', label: t('tour_type') }, ...typeOptions]}
+                                                placeholder={t('tour_type')}
                                                 defaultValue={type}
                                                 onChange={(val) => handleFilterChange('type', val)}
                                             />
@@ -175,7 +177,7 @@ export default function ToursClient({ initialTours, locations, tourTypes, locale
                                             <NiceSelect
                                                 name="sort"
                                                 options={sortOptions}
-                                                placeholder="Сортировка"
+                                                placeholder={t('sorting')}
                                                 defaultValue={sortBy}
                                                 onChange={(val) => handleFilterChange('sort', val)}
                                             />
@@ -187,7 +189,7 @@ export default function ToursClient({ initialTours, locations, tourTypes, locale
                         <div className="col-xl-3">
                             <div className="price-filter">
                                 <div className="filter-title">
-                                    <h6>Макс. цена:</h6>
+                                    <h6>{t('max_price')}</h6>
                                     <span className="price-amount">${maxPrice}</span>
                                 </div>
                                 <input
@@ -204,7 +206,7 @@ export default function ToursClient({ initialTours, locations, tourTypes, locale
                     </div>
 
                     <div className="filter-popup-footer d-xl-none mt-24">
-                        <button className="show-tours-btn" onClick={() => setIsMobileFilterOpen(false)}>Показать туры</button>
+                        <button className="show-tours-btn" onClick={() => setIsMobileFilterOpen(false)}>{t('show_tours')}</button>
                     </div>
                 </div>
 
@@ -226,7 +228,7 @@ export default function ToursClient({ initialTours, locations, tourTypes, locale
                         ))
                     ) : (
                         <div className="col-12 text-center py-64">
-                            <h3 className="color-primary">Туры, соответствующие вашим критериям, не найдены.</h3>
+                            <h3 className="color-primary">{t('not_found')}</h3>
                         </div>
                     )}
                 </div>

@@ -10,7 +10,7 @@ import NiceSelect from '@/components/ui/NiceSelect';
 import gsap from 'gsap';
 
 function BookingFormMain() {
-    const { t } = useTranslation();
+    const { t } = useTranslation(['booking', 'common']);
     const searchParams = useSearchParams();
     const [formData, setFormData] = useState({
         tourId: searchParams.get('tourId') || '',
@@ -56,7 +56,7 @@ function BookingFormMain() {
                 comments: '',
             });
         } catch (error) {
-            toast.error(t('booking_error'));
+            toast.error(t('form_error', { ns: 'common' }));
         }
     };
 
@@ -76,10 +76,10 @@ function BookingFormMain() {
                             <div className="bento-item big">
                                 <div>
                                     <span className="badge bg-white-soft color-white mb-16 br-30 text-uppercase fw-bold ls-1 px-16 py-8">
-                                        {t('booking.badge') || 'Student Travel'}
+                                        {'Student Travel'}
                                     </span>
-                                    <h2 className="display-4 fw-900 mb-20 text-white">{t('booking.promo_title')}</h2>
-                                    <p className="lead color-white opacity-75">{t('booking.promo_text')}</p>
+                                    <h2 className="display-4 fw-900 mb-20 text-white">{t('promo_title', { ns: 'booking' })}</h2>
+                                    <p className="lead color-white opacity-75">{t('promo_text', { ns: 'booking' })}</p>
                                 </div>
                             </div>
 
@@ -88,8 +88,8 @@ function BookingFormMain() {
                                     <i className="fa-light fa-map-location-dot fa-lg"></i>
                                 </div>
                                 <div>
-                                    <h5 className="fw-800 mb-8">{t('booking.feature_1_title')}</h5>
-                                    <p className="small color-dark-gray mb-0">{t('booking.feature_1_text')}</p>
+                                    <h5 className="fw-800 mb-8">{t('feature_1_title', { ns: 'booking' })}</h5>
+                                    <p className="small color-dark-gray mb-0">{t('feature_1_text', { ns: 'booking' })}</p>
                                 </div>
                             </div>
 
@@ -98,8 +98,8 @@ function BookingFormMain() {
                                     <i className="fa-light fa-user-tie fa-lg"></i>
                                 </div>
                                 <div>
-                                    <h5 className="fw-800 mb-8">{t('booking.feature_2_title')}</h5>
-                                    <p className="small color-dark-gray mb-0">{t('booking.feature_2_text')}</p>
+                                    <h5 className="fw-800 mb-8">{t('feature_2_title', { ns: 'booking' })}</h5>
+                                    <p className="small color-dark-gray mb-0">{t('feature_2_text', { ns: 'booking' })}</p>
                                 </div>
                             </div>
                         </div>
@@ -109,35 +109,35 @@ function BookingFormMain() {
                     <div className="col-lg-7 booking-form-wrapper">
                         <div className="neo-glass p-40 p-lg-80 h-100">
                             <div className="mb-48">
-                                <h3 className="fw-900 fs-2 mb-12">{t('booking.form_title')}</h3>
-                                <p className="color-dark-gray">{t('booking.form_subtitle') || 'Enter your details to secure your spot'}</p>
+                                <h3 className="fw-900 fs-2 mb-12">{t('form_title', { ns: 'booking' })}</h3>
+                                <p className="color-dark-gray">{'Enter your details to secure your spot'}</p>
                             </div>
 
                             <form onSubmit={handleSubmit} className="row g-4">
                                 <div className="col-md-6">
                                     <div className="modern-field">
-                                        <label>{t('booking.first_name')}</label>
+                                        <label>{t('first_name', { ns: 'booking' })}</label>
                                         <input type="text" name="name" className="form-control" 
                                             value={formData.name} onChange={handleChange} required placeholder="John" />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="modern-field">
-                                        <label>{t('booking.last_name')}</label>
+                                        <label>{t('last_name', { ns: 'booking' })}</label>
                                         <input type="text" name="lastName" className="form-control" 
                                             value={formData.lastName} onChange={handleChange} required placeholder="Doe" />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="modern-field">
-                                        <label>{t('booking.email')}</label>
+                                        <label>{t('email', { ns: 'booking' })}</label>
                                         <input type="email" name="email" className="form-control" 
                                             value={formData.email} onChange={handleChange} required placeholder="john@example.com" />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="modern-field">
-                                        <label>{t('booking.phone')}</label>
+                                        <label>{t('phone', { ns: 'booking' })}</label>
                                         <IMaskInput
                                             mask="+{998} (00) 000-00-00"
                                             name="phone"
@@ -151,10 +151,10 @@ function BookingFormMain() {
                                 </div>
                                 <div className="col-md-12">
                                     <div className="modern-field">
-                                        <label>{t('booking.destination')}</label>
+                                        <label>{t('destination', { ns: 'booking' })}</label>
                                         <NiceSelect
                                             name="destination"
-                                            placeholder={t('booking.select_destination')}
+                                            placeholder={t('select_destination', { ns: 'booking' })}
                                             options={[
                                                 { value: 'kyoto', label: 'Kyoto, Japan' },
                                                 { value: 'bali', label: 'Bali, Indonesia' },
@@ -167,7 +167,7 @@ function BookingFormMain() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="modern-field">
-                                        <label>{t('booking.travel_date')}</label>
+                                        <label>{t('travel_date', { ns: 'booking' })}</label>
                                         <input 
                                             type="date" 
                                             name="departure_date" 
@@ -180,10 +180,10 @@ function BookingFormMain() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="modern-field">
-                                        <label>{t('booking.persons')}</label>
+                                        <label>{t('persons', { ns: 'booking' })}</label>
                                         <NiceSelect
                                             name="number_of_people"
-                                            placeholder={t('booking.persons')}
+                                            placeholder={t('persons', { ns: 'booking' })}
                                             options={[
                                                 { value: '1', label: '1 Guest' },
                                                 { value: '2', label: '2 Guests' },
@@ -198,15 +198,15 @@ function BookingFormMain() {
                                 </div>
                                 <div className="col-12">
                                     <div className="modern-field">
-                                        <label>{t('booking.message')}</label>
+                                        <label>{t('message', { ns: 'booking' })}</label>
                                         <textarea name="comments" className="form-control" 
                                             value={formData.comments} onChange={handleChange} rows={3} 
-                                            placeholder={t('booking.message_placeholder')} style={{ height: 'auto' }}></textarea>
+                                            placeholder={t('message_placeholder', { ns: 'booking' })} style={{ height: 'auto' }}></textarea>
                                     </div>
                                 </div>
                                 <div className="col-12 mt-32">
                                     <button type="submit" className="btn-premium">
-                                        {t('booking.submit') || 'Confirm Booking'}
+                                        {t('submit', { ns: 'booking' })}
                                         <i className="fa-light fa-arrow-right-long ms-12"></i>
                                     </button>
                                 </div>
@@ -220,10 +220,10 @@ function BookingFormMain() {
 }
 
 export default function TourBookingPage() {
-    const { t } = useTranslation();
+    const { t } = useTranslation('booking');
     return (
         <main className="bg-white">
-            <PageHeader title={t('booking.page_title')} />
+            <PageHeader title={t('page_title')} />
             <Suspense fallback={<div className="py-80 text-center"><div className="spinner-border text-primary" role="status"></div></div>}>
                 <BookingFormMain />
             </Suspense>

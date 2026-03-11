@@ -12,19 +12,13 @@ import TestimonialsSlider from '@/components/ui/TestimonialsSlider';
 import BlogsSlider from '@/components/ui/BlogsSlider';
 import GallerySlider from '@/components/ui/GallerySlider';
 import NiceSelect from '@/components/ui/NiceSelect';
+import { useTranslation } from 'react-i18next';
 
 import { Tour, Blog } from '@/lib/api';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const defaultDescription = 'Studentravel предлагает лучшие туры для студентов по всему миру. Мы заботимся о вашем отдыхе, предоставляя незабываемые впечатления и отличный сервис.';
-
-// Fixed destinations for UI showcase since they might not come from API like this
-const destinations = [
-    { name: 'Чарвакское водохранилище', image: '/media/banner/charvak.png', reverse: true },
-    { name: 'Чимганские горы', image: '/media/banner/chimgan.png', reverse: false },
-    { name: 'Самарканд', image: '/media/banner/samarkand.png', reverse: true },
-];
+// Fixed destinations for UI showcase
 
 interface SelectOption {
     value: string;
@@ -41,8 +35,15 @@ interface HomePageClientProps {
 }
 
 export default function HomePageClient({ tours, departures, destinations: serverDestinations, tourTypes, blogs, locale }: HomePageClientProps) {
+    const { t } = useTranslation('home');
     const aboutRef = useRef<HTMLDivElement>(null);
     const heroRef = useRef<HTMLElement>(null);
+    
+    const uiDestinations = [
+        { name: t('dest_charvak'), image: '/media/banner/charvak.png', reverse: true },
+        { name: t('dest_chimgan'), image: '/media/banner/chimgan.png', reverse: false },
+        { name: t('dest_samarkand'), image: '/media/banner/samarkand.png', reverse: true },
+    ];
 
     useIsomorphicLayoutEffect(() => {
         const ctx = gsap.context(() => {
@@ -99,25 +100,25 @@ export default function HomePageClient({ tours, departures, destinations: server
             <section className="hero-banner-1 banner-content-parallax" id="hero" ref={heroRef}>
                 <div className="container-fluid">
                     <h1 className="title banner-caption-title ph-appear">
-                        <div className="banner-title-parallax">TRAVEL</div>
+                        <div className="banner-title-parallax">{t('hero_title')}</div>
                     </h1>
                     <div className="content">
                         <div className="text-center sub-title">
-                            <h3 className="font-sec color-white">Путешествуйте туда, куда зовёт ваше сердце!</h3>
+                            <h3 className="font-sec color-white">{t('hero_subtitle')}</h3>
                         </div>
                         <form action={`/${locale}/tours`}>
                             <div className="find-banner-row">
                                 <div className="form-group white-input">
-                                    <NiceSelect name="destination" options={serverDestinations.length ? serverDestinations : [{ value: '', label: 'Нет данных' }]} placeholder="Куда?" />
+                                    <NiceSelect name="destination" options={serverDestinations.length ? serverDestinations : [{ value: '', label: t('no_data') }]} placeholder={t('search_destination_placeholder')} />
                                 </div>
                                 <div className="form-group white-input">
-                                    <NiceSelect name="departure" options={departures.length ? departures : [{ value: '', label: 'Нет данных' }]} placeholder="Откуда" />
+                                    <NiceSelect name="departure" options={departures.length ? departures : [{ value: '', label: t('no_data') }]} placeholder={t('search_departure_placeholder')} />
                                 </div>
                                 <div className="form-group white-input">
-                                    <NiceSelect name="type" options={tourTypes.length ? tourTypes : [{ value: '', label: 'Нет данных' }]} placeholder="Тип тура" />
+                                    <NiceSelect name="type" options={tourTypes.length ? tourTypes : [{ value: '', label: t('no_data') }]} placeholder={t('search_type_placeholder')} />
                                 </div>
                                 <div className="ui-btn ui-btn-primary">
-                                    <button type="submit" data-hover="НАЙТИ">НАЙТИ</button>
+                                    <button type="submit" data-hover={t('search_button')}>{t('search_button')}</button>
                                 </div>
                             </div>
                         </form>
@@ -136,12 +137,10 @@ export default function HomePageClient({ tours, departures, destinations: server
                             <div className="row align-items-center">
                                 <div className="col-xl-6 col-md-7">
                                     <div className="text-block text-md-start text-center">
-                                        <h3 className="mb-8 font-sec color-primary">о нас :</h3>
-                                        <h2 className="mb-24">
-                                            ГДЕ СТРАСТЬ<br /> ВСТРЕЧАЕТСЯ С ПРИКЛЮЧЕНИЯМИ,<br /> РАЗЖИГАЯ ВАШЕ ЖЕЛАНИЕ<br /> ПУТЕШЕСТВОВАТЬ
-                                        </h2>
+                                        <h3 className="mb-8 font-sec color-primary">{t('about_subtitle')}</h3>
+                                        <h2 className="mb-24" dangerouslySetInnerHTML={{ __html: t('about_title') }} />
                                         <div className="ui-btn ui-btn-primary mx-auto ms-md-0">
-                                            <Link href={`/${locale}/about`} data-hover="УЗНАТЬ БОЛЬШЕ">УЗНАТЬ БОЛЬШЕ</Link>
+                                            <Link href={`/${locale}/about`} data-hover={t('about_button')}>{t('about_button')}</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -170,12 +169,12 @@ export default function HomePageClient({ tours, departures, destinations: server
                 <section className="position-relative z-2 py-64">
                     <div className="container-fluid">
                         <div className="heading mb-48">
-                            <h3 className="font-sec color-primary">список туров :</h3>
-                            <h2>ПОТРЯСАЮЩИЕ ТУРЫ ДЛЯ ВАС</h2>
+                            <h3 className="font-sec color-primary">{t('tours_subtitle')}</h3>
+                            <h2>{t('tours_title')}</h2>
                         </div>
 
                         {tours.length === 0 ? (
-                            <div className="text-center py-4">Нет доступных туров</div>
+                            <div className="text-center py-4">{t('tours_empty')}</div>
                         ) : (
                             <div className="row mb-16">
                                 {tours.map((tour, i) => (
@@ -196,7 +195,7 @@ export default function HomePageClient({ tours, departures, destinations: server
 
                         <div className="text-center">
                             <div className="ui-btn ui-btn-primary">
-                                <Link href={`/${locale}/tours`} data-hover="Посмотреть все">Посмотреть все</Link>
+                                <Link href={`/${locale}/tours`} data-hover={t('tours_view_all')}>{t('tours_view_all')}</Link>
                             </div>
                         </div>
                     </div>
@@ -206,16 +205,16 @@ export default function HomePageClient({ tours, departures, destinations: server
                 <section className="position-relative z-2 py-64">
                     <div className="container-fluid">
                         <div className="heading mb-48">
-                            <h3 className="font-sec color-primary">направления :</h3>
-                            <h2>ЛУЧШИЕ МЕСТА ДЛЯ ПУТЕШЕСТВИЙ</h2>
+                            <h3 className="font-sec color-primary">{t('dest_subtitle')}</h3>
+                            <h2>{t('dest_title')}</h2>
                         </div>
-                        {destinations.map((dest, i) => (
+                        {uiDestinations.map((dest, i) => (
                             <div key={i} className="row py-64 align-items-center">
                                 {dest.reverse ? (
                                     <>
                                         <div className="col-lg-5 order-lg-1 order-2">
                                             <h2 className="mb-8">{dest.name}</h2>
-                                            <p className="pe-sm-5">{defaultDescription}</p>
+                                            <p className="pe-sm-5">{t('dest_desc_default')}</p>
                                         </div>
                                         <div className="col-lg-6 offset-lg-1 order-lg-2 order-1">
                                             <div className="box-blur-bg mb-16 mb-lg-0">
@@ -232,7 +231,7 @@ export default function HomePageClient({ tours, departures, destinations: server
                                         </div>
                                         <div className="col-lg-5 offset-lg-1">
                                             <h2 className="mb-8">{dest.name}</h2>
-                                            <p className="pe-sm-5">{defaultDescription}</p>
+                                            <p className="pe-sm-5">{t('dest_desc_default')}</p>
                                         </div>
                                     </>
                                 )}

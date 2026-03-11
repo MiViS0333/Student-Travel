@@ -1,0 +1,15 @@
+{
+    "page_title": "MENING AKKAUNTIM",
+    "login_tab": "KIRISH",
+    "register_tab": "RO'YHATDAN O'TISH",
+    "email_label": "Email",
+    "email_placeholder": "Email manzil",
+    "password_label": "Parol",
+    "password_placeholder": "Parol",
+    "login_button": "KIRISH",
+    "name_label": "To'liq ism",
+    "name_placeholder": "To'liq ism",
+    "confirm_password_label": "Parolni tasdiqlang",
+    "confirm_password_placeholder": "Parolni tasdiqlang",
+    "register_button": "RO'YHATDAN O'TISH"
+}

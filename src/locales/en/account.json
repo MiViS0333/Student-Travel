@@ -1,0 +1,15 @@
+{
+    "page_title": "MY ACCOUNT",
+    "login_tab": "LOGIN",
+    "register_tab": "REGISTER",
+    "email_label": "Email",
+    "email_placeholder": "Email Address",
+    "password_label": "Password",
+    "password_placeholder": "Password",
+    "login_button": "LOGIN",
+    "name_label": "Full Name",
+    "name_placeholder": "Full Name",
+    "confirm_password_label": "Confirm Password",
+    "confirm_password_placeholder": "Confirm Password",
+    "register_button": "REGISTER"
+}

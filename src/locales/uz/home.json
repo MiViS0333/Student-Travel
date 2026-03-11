@@ -1,0 +1,22 @@
+{
+    "hero_title": "TRAVEL",
+    "hero_subtitle": "Yuragingiz chaqirgan joyga sayohat qiling!",
+    "search_destination_placeholder": "Qayerga?",
+    "search_departure_placeholder": "Qayerdan?",
+    "search_type_placeholder": "Tur turi",
+    "search_button": "TOPISH",
+    "no_data": "Ma'lumot yo'q",
+    "about_subtitle": "biz haqimizda :",
+    "about_title": "IDROK VA SARGUZASHT<br /> UCHRASHGAN JOYDA,<br /> SAYOHAT QILISH<br /> XOHISHINGIZNI UYG'OTADI",
+    "about_button": "KO'PROQ BILISH",
+    "tours_subtitle": "turlar ro'yxati :",
+    "tours_title": "SIZ UCHUN AJOYIB TURLAR",
+    "tours_empty": "Turlar mavjud emas",
+    "tours_view_all": "Barchasini ko'rish",
+    "dest_subtitle": "yo'nalishlar :",
+    "dest_title": "SAYOHAT QILISH UCHUN ENG YAXSHI JOYLAR",
+    "dest_desc_default": "Studentravel butun dunyo bo'ylab talabalar uchun eng yaxshi turlarni taklif etadi. Unutilmas taassurotlar va ajoyib xizmat ko'rsatib, dam olishingiz haqida qayg'uramiz.",
+    "dest_charvak": "Chorvoq suv ombori",
+    "dest_chimgan": "Chimgon tog'lari",
+    "dest_samarkand": "Samarqand"
+}

@@ -1,0 +1,18 @@
+{
+    "page_title": "КОНТАКТЫ",
+    "form_title": "СВЯЖИТЕСЬ С НАМИ",
+    "name_placeholder": "Полное имя",
+    "email_placeholder": "Email адрес",
+    "subject_placeholder": "Тема",
+    "message_placeholder": "Ваше сообщение...",
+    "submit_button": "ОТПРАВИТЬ СООБЩЕНИЕ",
+    "info_title": "КОНТАКТНАЯ ИНФОРМАЦИЯ",
+    "call_us": "ПОЗВОНИТЕ НАМ",
+    "address_title": "АДРЕС",
+    "address": "Ташкентский институт менеджмента и экономики",
+    "visit_us": "ПОСЕТИТЕ НАС",
+    "location": "Ташкент, Узбекистан",
+    "working_hours": "ЧАСЫ РАБОТЫ",
+    "weekdays": "Пн-Пт: 09:00 - 17:00",
+    "weekends": "Сб-Вс: 09:00 - 17:00"
+}
