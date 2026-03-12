@@ -5,8 +5,7 @@ import { IMaskInput } from 'react-imask';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import NiceSelect from '@/components/ui/NiceSelect';
-import { Tour, bookingsService } from '@/lib/api';
-import { API_BASE_URL } from '@/lib/api/config';
+import { Tour, bookingsService, getImageUrl } from '@/lib/api';
 
 interface TourDetailClientProps {
     tour: Tour;
@@ -85,7 +84,7 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
     }, [isPopupOpen]);
 
     useEffect(() => {
-        setGalleries(tour.galleries?.map(g => getImageUrl(g?.image || g?.url || g)) || []);
+        setGalleries(tour.galleries?.map(g => getImageUrl(g?.image || g?.url || g, 'gallery')) || []);
     }, [tour.galleries]);
 
     const langData = tour.languages?.find(l => l.languageCode === locale) || tour.languages?.[0];
@@ -103,13 +102,7 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
         }).format(p);
     };
 
-    const getImageUrl = (path: string | null | undefined) => {
-        if (!path) return '/media/tour/tour-detail-2.png';
-        if (path.startsWith('http')) return path;
-        return `${API_BASE_URL}/storage/${path}`;
-    };
-
-    const mainImage = getImageUrl(tour.image);
+    const mainImage = getImageUrl(tour.image, 'tour');
 
     return (
         <section className="py-64">

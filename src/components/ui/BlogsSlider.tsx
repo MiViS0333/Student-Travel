@@ -5,7 +5,7 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import BlogCard from './BlogCard';
 import { useTranslation } from 'react-i18next';
 
-import { API_BASE_URL, Blog } from '@/lib/api';
+import { getImageUrl, Blog } from '@/lib/api';
 
 interface BlogsSliderProps {
     blogs: Blog[];
@@ -19,11 +19,7 @@ export default function BlogsSlider({ blogs, locale }: BlogsSliderProps) {
         const langData = blog.languages?.find(l => l.languageCode === locale.toUpperCase());
         return langData?.title || 'Unknown Title';
     };
-    const getImageUrl = (path: string | null | undefined) => {
-        if (!path) return '/media/blogs/blog_1.png';
-        if (path.startsWith('http')) return path;
-        return `${API_BASE_URL}/storage/${path}`;
-    };
+
     const getBlogExcerpt = (blog: Blog) => {
         const langData = blog.languages?.find(l => l.languageCode === locale.toUpperCase());
         return langData?.excerpt || '';
@@ -55,7 +51,7 @@ export default function BlogsSlider({ blogs, locale }: BlogsSliderProps) {
                     {blogs && blogs.length > 0 ? blogs.map((b, i) => (
                         <SwiperSlide key={b.id || i}>
                             <BlogCard
-                                image={getImageUrl(b.card_image)}
+                                image={getImageUrl(b.card_image, 'blog')}
                                 date={b.createdAt ? new Date(b.createdAt).toLocaleDateString() : '12-Oct-2024'}
                                 title={getBlogTitle(b)}
                                 excerpt={getBlogExcerpt(b)}

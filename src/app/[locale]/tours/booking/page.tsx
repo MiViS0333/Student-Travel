@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import NiceSelect from '@/components/ui/NiceSelect';
 import gsap from 'gsap';
-import { bookingsService } from '@/lib/api';
+import { bookingsService, API_BASE_URL } from '@/lib/api';
 
 interface BookingFormMainProps {
     destinations: { value: string; label: string }[];
@@ -283,8 +283,7 @@ export default function TourBookingPageWrapper({ params }: PageProps) {
                 const locale = (resolvedParams.locale || 'ru').toUpperCase();
                 
                 // Directly fetch from API inside client component
-                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-                const res = await fetch(`${apiUrl}/tours/locations?lang=${locale}`);
+                const res = await fetch(`${API_BASE_URL}/tours/locations?lang=${locale}`);
                 
                 if (res.ok && isMounted) {
                     const data = await res.json();

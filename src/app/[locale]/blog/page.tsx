@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import PageHeader from '@/components/shared/PageHeader';
 import BlogCard from '@/components/ui/BlogCard';
-import { API_BASE_URL, blogsService } from '@/lib/api';
+import { blogsService, getImageUrl } from '@/lib/api';
 import initTranslations from '@/lib/i18n';
 
 export default async function BlogGridPage({ params, searchParams }: { params: Promise<{ locale: string }>, searchParams: Promise<any> }) {
@@ -29,11 +29,7 @@ export default async function BlogGridPage({ params, searchParams }: { params: P
         const date = new Date(dateString);
         return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).replace(/ /g, '-');
     };
-    const getImageUrl = (path: string | null | undefined) => {
-        if (!path) return '/media/blogs/blog_1.png';
-        if (path.startsWith('http')) return path;
-        return `${API_BASE_URL}/storage/${path}`;
-    };
+
     const currentPage = blogsData.meta.page;
     const totalPages = blogsData.meta.totalPages;
 
@@ -52,7 +48,7 @@ export default async function BlogGridPage({ params, searchParams }: { params: P
                             blogsData.data.map((b) => (
                                 <div key={b.id} className="col-xxl-3 col-lg-4 col-sm-6">
                                     <BlogCard
-                                        image={getImageUrl(b.card_image)}
+                                        image={getImageUrl(b.card_image, 'blog')}
                                         date={formatDate(b.createdAt)}
                                         title={getBlogTitle(b)}
                                         excerpt={getBlogExcerpt(b)}

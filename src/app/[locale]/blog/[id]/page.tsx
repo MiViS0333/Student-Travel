@@ -4,8 +4,7 @@ import PageHeader from '@/components/shared/PageHeader';
 import BlogsSlider from '@/components/ui/BlogsSlider';
 import TourCard from '@/components/ui/TourCard';
 import initTranslations from '@/lib/i18n';
-import { blogsService } from '@/lib/api';
-import { API_BASE_URL } from '@/lib/api/config';
+import { blogsService, getImageUrl } from '@/lib/api';
 
 interface PageProps {
     params: Promise<{ locale: string; id: string }>;
@@ -32,13 +31,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
         const content = langData?.content || '';
         const excerpt = langData?.excerpt || '';
 
-        const getImageUrl = (path: string | null | undefined) => {
-            if (!path) return '/media/blogs/blog_1.png';
-            if (path.startsWith('http')) return path;
-            return `${API_BASE_URL}/storage/${path}`;
-        };
-
-        const mainImage = getImageUrl(blog.card_image);
+        const mainImage = getImageUrl(blog.card_image, 'blog');
         const date = blog.createdAt ? new Date(blog.createdAt).toLocaleDateString(resolvedParams.locale || 'ru', {
             day: 'numeric',
             month: 'short',
