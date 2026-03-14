@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { getImageUrl } from '@/lib/api/config';
+import { formatPrice } from '@/lib/utils/format';
+
 
 interface TourCardProps {
     image: string;
@@ -20,13 +22,7 @@ export default function TourCard({ image, title, location, days, persons, price,
     const { t } = useTranslation('common');
     const [wishlisted, setWishlisted] = useState(false);
 
-    const formatPrice = (p: number) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            maximumFractionDigits: 0,
-        }).format(p);
-    };
+
 
     return (
         <div className={`tour-card mb-32 ${className}`}>
@@ -49,7 +45,8 @@ export default function TourCard({ image, title, location, days, persons, price,
                         <li><i className="fa-light fa-user"></i><p>{persons} {t('persons')}</p></li>
                     </ul>
                     <div className="right-block">
-                        <h6>{formatPrice(price)}</h6>
+                        <h6 suppressHydrationWarning>{formatPrice(price)}</h6>
+
                         <Link href={href} className="ui-link-arrow">
                             <i className="fa-light fa-arrow-right arrow"></i>
                         </Link>

@@ -39,7 +39,7 @@ export default async function RootLayout({
       <head>
         <link
           rel="stylesheet"
-          href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css"
+          href="/css/all.min.css"
         />
       </head>
       <body id="body" className="x-hidden ui-transition">

@@ -38,7 +38,7 @@ export default function HomePageClient({ tours, departures, destinations: server
     const { t } = useTranslation('home');
     const aboutRef = useRef<HTMLDivElement>(null);
     const heroRef = useRef<HTMLElement>(null);
-    
+
     const uiDestinations = [
         { name: t('dest_charvak'), image: '/media/banner/charvak.png', reverse: true },
         { name: t('dest_chimgan'), image: '/media/banner/chimgan.png', reverse: false },
@@ -100,11 +100,11 @@ export default function HomePageClient({ tours, departures, destinations: server
             <section className="hero-banner-1 banner-content-parallax" id="hero" ref={heroRef}>
                 <div className="container-fluid">
                     <h1 className="title banner-caption-title ph-appear">
-                        <div className="banner-title-parallax">{t('hero_title')}</div>
+                        {/* <div className="banner-title-parallax">{t('hero_title')}</div> */}
                     </h1>
                     <div className="content">
                         <div className="text-center sub-title">
-                            <h3 className="font-sec color-white">{t('hero_subtitle')}</h3>
+                            {/* <h3 className="font-sec color-white">{t('hero_subtitle')}</h3> */}
                         </div>
                         <form action={`/${locale}/tours`}>
                             <div className="find-banner-row">
@@ -124,9 +124,6 @@ export default function HomePageClient({ tours, departures, destinations: server
                         </form>
                     </div>
                 </div>
-                <img src="/media/banner/mask-layer.png" alt="" className="mask-layer mask-layer-desktop" />
-                <img src="/media/banner/tabmask.png" alt="" className="mask-layer mask-layer-tab" />
-                <img src="/media/banner/mobilemask.png" alt="" className="mask-layer mask-layer-phone" />
             </section>
 
             <div className="about-trigger-1" id="page-content" ref={aboutRef}>

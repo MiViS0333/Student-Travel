@@ -4,24 +4,24 @@
 .hero-banner-1 {
     position: relative;
     height: 100vh;
-    background: url(/media/banner/hero-1-main-bg-1.png);
+    background: url(/media/banner/herobanner.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-color: $white;
 
     @include media-query(1199px) {
-        background: url(/media/banner/banner-tab-bg.png);
+        background: url(/media/banner/herobanner.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
     }
 
     @include media-query(575px) {
-        background: url(/media/banner/banner-mobile-bg.png);
+        background: url(/media/banner/herobanner.jpg);
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: center;
+        background-position: -120px center;
     }
 
     .title {

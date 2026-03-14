@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import NiceSelect from '@/components/ui/NiceSelect';
 import { Tour, bookingsService, getImageUrl } from '@/lib/api';
+import { formatPrice } from '@/lib/utils/format';
+
 
 interface TourDetailClientProps {
     tour: Tour;
@@ -18,7 +20,7 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
     const [isMounted, setIsMounted] = useState(false);
     const [galleries, setGalleries] = useState<string[]>([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    
+
     const [bookingData, setBookingData] = useState({
         departure_date: '',
         name: '',
@@ -31,7 +33,7 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
 
     const handleBookingSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         if (!bookingData.departure_date || !bookingData.name || !bookingData.number_of_people) {
             toast.error(t('fill_required_fields', { ns: 'common', defaultValue: 'Please fill all required fields' }));
             return;
@@ -58,7 +60,7 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
             toast.success(t('booking_success', { ns: 'booking', defaultValue: 'Booking successful!' }), { id: toastId });
             setIsPopupOpen(false);
             setBookingData({
-                 departure_date: '', name: '', lastName: '', phone: '', email: '', number_of_people: 1, comments: ''
+                departure_date: '', name: '', lastName: '', phone: '', email: '', number_of_people: 1, comments: ''
             });
         } catch (error: any) {
             console.error("Booking error details:", error);
@@ -94,13 +96,7 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
     const departure = langData?.departure || '';
     const destination = langData?.destination || '';
 
-    const formatPrice = (p: number) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            maximumFractionDigits: 0,
-        }).format(p);
-    };
+
 
     const mainImage = getImageUrl(tour.image, 'tour');
 
@@ -165,12 +161,14 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
                             <div className="box-blur-bg b-radius-20 sticky-top" style={{ padding: '24px', top: '100px', zIndex: 10 }}>
                                 <h4 className="mb-16">{t('book_this_tour')}</h4>
                                 <div className="price-rating mb-24">
-                                    <h3 className="color-primary mb-0">{formatPrice(tour.price)}</h3>
+                                    <h3 className="color-primary mb-0" suppressHydrationWarning>{formatPrice(tour.price)}</h3>
+
                                 </div>
 
                                 <div className="d-flex justify-content-between align-items-center mb-24 pt-16">
                                     <h5 className="mb-0">{t('price')}</h5>
-                                    <h3 className="color-primary mb-0">{formatPrice(tour.price)}</h3>
+                                    <h3 className="color-primary mb-0" suppressHydrationWarning>{formatPrice(tour.price)}</h3>
+
                                 </div>
                                 <div className="ui-btn ui-btn-primary w-100" onClick={() => setIsPopupOpen(true)}>
                                     <button type="button" data-hover={t('book')}>{t('book')}</button>
@@ -207,7 +205,8 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
             <div className="d-flex d-lg-none align-items-center justify-content-between bg-white w-100 position-fixed bottom-0 start-0" style={{ padding: '16px', paddingBottom: '32px', boxShadow: '0 -4px 10px rgba(0,0,0,0.1)', zIndex: 1050 }}>
                 <div>
                     <p className="mb-0 text-muted" style={{ fontSize: '12px' }}>{t('price')}</p>
-                    <h4 className="color-primary mb-0">{formatPrice(tour.price)}</h4>
+                    <h4 className="color-primary mb-0" suppressHydrationWarning>{formatPrice(tour.price)}</h4>
+
                 </div>
                 <div className="ui-btn ui-btn-primary" onClick={() => setIsPopupOpen(true)}>
                     <button type="button" data-hover={t('book')}>{t('book')}</button>
@@ -226,12 +225,12 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
                             <div className="col-sm-6">
                                 <div className="form-group mb-0">
                                     <label className="mb-8 fw-semibold">{t('first_name')}</label>
-                                    <input 
-                                        type="text" 
-                                        className="cus-form-control" 
-                                        required 
-                                        placeholder={t('first_name')} 
-                                        pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" 
+                                    <input
+                                        type="text"
+                                        className="cus-form-control"
+                                        required
+                                        placeholder={t('first_name')}
+                                        pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$"
                                         title={t('only_letters')}
                                         value={bookingData.name}
                                         onChange={(e) => setBookingData(prev => ({ ...prev, name: e.target.value }))}
@@ -241,12 +240,12 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
                             <div className="col-sm-6">
                                 <div className="form-group mb-0">
                                     <label className="mb-8 fw-semibold">{t('last_name')}</label>
-                                    <input 
-                                        type="text" 
-                                        className="cus-form-control" 
-                                        required 
-                                        placeholder={t('last_name')} 
-                                        pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$" 
+                                    <input
+                                        type="text"
+                                        className="cus-form-control"
+                                        required
+                                        placeholder={t('last_name')}
+                                        pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$"
                                         title={t('only_letters')}
                                         value={bookingData.lastName}
                                         onChange={(e) => setBookingData(prev => ({ ...prev, lastName: e.target.value }))}
@@ -269,10 +268,10 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
                             <div className="col-sm-6">
                                 <div className="form-group mb-0">
                                     <label className="mb-8 fw-semibold">{t('email')}</label>
-                                    <input 
-                                        type="email" 
-                                        className="cus-form-control" 
-                                        required 
+                                    <input
+                                        type="email"
+                                        className="cus-form-control"
+                                        required
                                         placeholder={t('email_placeholder')}
                                         value={bookingData.email}
                                         onChange={(e) => setBookingData(prev => ({ ...prev, email: e.target.value }))}
@@ -282,10 +281,10 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
                             <div className="col-sm-6">
                                 <div className="form-group mb-0">
                                     <label className="mb-8 fw-semibold">{t('departure_date', { ns: 'booking', defaultValue: 'Departure Date' })}</label>
-                                    <input 
-                                        type="date" 
-                                        className="cus-form-control" 
-                                        required 
+                                    <input
+                                        type="date"
+                                        className="cus-form-control"
+                                        required
                                         value={bookingData.departure_date}
                                         onChange={(e) => setBookingData(prev => ({ ...prev, departure_date: e.target.value }))}
                                     />
@@ -294,10 +293,10 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
                             <div className="col-sm-6">
                                 <div className="form-group mb-0">
                                     <label className="mb-8 fw-semibold">{t('persons', { ns: 'booking', defaultValue: 'Persons' })}</label>
-                                    <input 
-                                        type="number" 
-                                        className="cus-form-control" 
-                                        required 
+                                    <input
+                                        type="number"
+                                        className="cus-form-control"
+                                        required
                                         min="1"
                                         placeholder="1"
                                         value={bookingData.number_of_people}
@@ -308,8 +307,8 @@ export default function TourDetailClient({ tour, locale }: TourDetailClientProps
                             <div className="col-12">
                                 <div className="form-group mb-0">
                                     <label className="mb-8 fw-semibold">{t('comments_optional', { ns: 'booking', defaultValue: 'Comments (Optional)' })}</label>
-                                    <textarea 
-                                        className="cus-form-control" 
+                                    <textarea
+                                        className="cus-form-control"
                                         rows={3}
                                         placeholder={t('write_comments', { ns: 'booking', defaultValue: 'Any special requests?' })}
                                         value={bookingData.comments}
